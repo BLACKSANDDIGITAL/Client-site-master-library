@@ -1,0 +1,209 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/layout/Header.astro";
+import Footer from "../../components/layout/Footer.astro";
+import Button from "../../components/ui/Button.astro";
+import ServicesGrid from "../../components/sections/ServicesGrid.astro";
+import ProcessSteps from "../../components/sections/ProcessSteps.astro";
+import Testimonials from "../../components/sections/Testimonials.astro";
+import FAQ from "../../components/sections/FAQ.astro";
+import ContactCTA from "../../components/sections/ContactCTA.astro";
+import site from "../../content/site.json";
+---
+
+<BaseLayout
+  title={`Professional Services Example | ${site.businessName}`}
+  description="Internal component-library example for professional-service websites."
+>
+  <Header />
+
+  <main>
+    <section class="guide">
+      <div class="container">
+        <p class="eyebrow">Industry example</p>
+        <h1>Professional Services</h1>
+        <p>
+          This template supports consultants, advisors, accountants, attorneys,
+          agencies, and other expertise-led businesses that need to convert visitors
+          into consultations rather than immediate phone calls.
+        </p>
+
+        <div class="guide-grid">
+          <article>
+            <h2>Primary goal</h2>
+            <p>Build trust and encourage a qualified consultation request.</p>
+          </article>
+
+          <article>
+            <h2>Suggested sequence</h2>
+            <p>Professional hero → proof → services → process → case study → FAQ → booking CTA.</p>
+          </article>
+
+          <article>
+            <h2>Verify before launch</h2>
+            <p>Credentials, client logos, case study outcomes, claims, and scheduling links.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero">
+      <div class="content-container">
+        <p class="eyebrow">Clear expertise for important decisions</p>
+        <h2>Confident guidance for your next business step.</h2>
+        <p>
+          Use this hero for a client whose value comes from experience, strategy,
+          specialist knowledge, or professional services.
+        </p>
+        <Button href="/contact">Book a consultation</Button>
+      </div>
+    </section>
+
+    <section class="proof">
+      <div class="container proof-grid">
+        <div>
+          <strong>Credential</strong>
+          <span>Use only a verified license, degree, membership, or certification.</span>
+        </div>
+
+        <div>
+          <strong>Experience</strong>
+          <span>Use a client-approved fact, not an invented number of years.</span>
+        </div>
+
+        <div>
+          <strong>Approach</strong>
+          <span>Explain the business process in clear, customer-friendly language.</span>
+        </div>
+      </div>
+    </section>
+
+    <ServicesGrid
+      title="How we can help"
+      description="Present services in plain language and link to details where useful."
+    />
+
+    <ProcessSteps
+      title="A clear path to working together"
+      description="Consultation-focused businesses should make the first interaction feel low-friction and understandable."
+    />
+
+    <Testimonials
+      title="Trusted by clients"
+      description="Use approved, attributable client feedback or a permitted case-study section."
+    />
+
+    <FAQ />
+
+    <ContactCTA
+      title="Start with a conversation"
+      description="Use an accurate invitation to book a consultation, ask a question, or submit an inquiry."
+    />
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .guide {
+    padding-block: var(--space-7);
+    background: #101828;
+    color: white;
+  }
+
+  .guide h1 {
+    margin: 0;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.05;
+  }
+
+  .guide > div > p:not(.eyebrow) {
+    max-width: 760px;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 1.1rem;
+  }
+
+  .eyebrow {
+    margin: 0 0 var(--space-3);
+    color: var(--color-accent);
+    font-size: 0.78rem;
+    font-weight: 850;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .guide-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+    margin-top: var(--space-6);
+  }
+
+  .guide-grid article {
+    padding: var(--space-5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-md);
+  }
+
+  .guide-grid h2 {
+    margin-top: 0;
+    font-size: 1.05rem;
+  }
+
+  .guide-grid p {
+    margin-bottom: 0;
+    color: rgba(255, 255, 255, 0.76);
+  }
+
+  .hero {
+    padding-block: var(--space-9);
+    background: linear-gradient(135deg, #f2f4f7, #ffffff);
+  }
+
+  .hero h2 {
+    max-width: 15ch;
+    margin: 0;
+    font-size: clamp(2.5rem, 5vw, 4.7rem);
+    line-height: 1.04;
+    letter-spacing: -0.045em;
+  }
+
+  .hero p:not(.eyebrow) {
+    max-width: 680px;
+    color: var(--color-muted);
+    font-size: 1.1rem;
+  }
+
+  .proof {
+    padding-block: var(--space-6);
+    border-block: 1px solid var(--color-border);
+    background: white;
+  }
+
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+  }
+
+  .proof-grid div {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .proof-grid strong {
+    color: var(--color-primary);
+  }
+
+  .proof-grid span {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 760px) {
+    .guide-grid,
+    .proof-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Starter",
+    "price": "Contact for pricing",
+    "description": "Use only if the client wants package pricing displayed.",
+    "features": [
+      "Feature or included service",
+      "Feature or included service",
+      "Feature or included service"
+    ]
+  }
+]

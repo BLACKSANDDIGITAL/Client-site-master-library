@@ -1,0 +1,134 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/layout/Header.astro";
+import Footer from "../../components/layout/Footer.astro";
+import ContactCTA from "../../components/sections/ContactCTA.astro";
+import Button from "../../components/ui/Button.astro";
+import site from "../../content/site.json";
+import services from "../../content/services.json";
+
+export function getStaticPaths() {
+  return services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service }
+  }));
+}
+
+const { service } = Astro.props;
+---
+
+<BaseLayout
+  title={`${service.name} | ${site.businessName}`}
+  description={service.shortDescription}
+>
+  <Header />
+
+  <main>
+    <section class="service-hero">
+      <div class="container">
+        <p class="eyebrow">Our services</p>
+
+        <nav aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="/services">Services</a>
+          <span aria-hidden="true">/</span>
+          <span>{service.name}</span>
+        </nav>
+
+        <h1>{service.name}</h1>
+        <p>{service.description}</p>
+
+        <Button href="/contact">Request a Free Estimate</Button>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="content-container">
+        <h2>Why choose this service?</h2>
+        <ul class="feature-list">
+          {service.benefits.map((benefit) => (
+            <li>{benefit}</li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="content-container">
+        <h2>What is included</h2>
+        <ul class="feature-list">
+          {service.included.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <ContactCTA
+      title={`Need help with ${service.name.toLowerCase()}?`}
+      description="Contact us today to discuss your needs and next steps."
+    />
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .service-hero {
+    padding-block: var(--space-8);
+    background: linear-gradient(135deg, var(--color-secondary), var(--color-surface));
+  }
+
+  .service-hero > div {
+    max-width: 800px;
+  }
+
+  .eyebrow {
+    margin: 0 0 var(--space-3);
+    color: var(--color-primary);
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-5);
+    color: var(--color-muted);
+    font-size: 0.95rem;
+  }
+
+  nav a {
+    color: var(--color-primary);
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.05;
+  }
+
+  .service-hero p:not(.eyebrow) {
+    max-width: 700px;
+    color: var(--color-muted);
+    font-size: 1.15rem;
+  }
+
+  h2 {
+    font-size: clamp(1.8rem, 4vw, 2.75rem);
+  }
+
+  .feature-list {
+    display: grid;
+    gap: var(--space-3);
+    padding-left: 1.25rem;
+  }
+
+  .feature-list li {
+    padding-left: var(--space-2);
+  }
+</style>

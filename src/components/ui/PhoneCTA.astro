@@ -1,0 +1,32 @@
+---
+import site from "../../content/site.json";
+
+interface Props {
+  label?: string;
+}
+
+const { label = `Call ${site.phoneDisplay}` } = Astro.props;
+---
+
+<a class="phone-cta" href={`tel:${site.phoneLink}`}>
+  {label}
+</a>
+
+<style>
+  .phone-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0.75rem 1.1rem;
+    border: 1px solid var(--color-primary);
+    border-radius: var(--radius-md);
+    color: var(--color-primary);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .phone-cta:hover {
+    background: var(--color-secondary);
+  }
+</style>

@@ -1,17 +1,50 @@
 [
   {
-    "icon": "bi-tools",
-    "title": "Repairs & Maintenance",
-    "description": "Fast, dependable support to keep your home or business running smoothly."
+    "slug": "service-one",
+    "name": "Service One",
+    "shortDescription": "A short, specific description of the first core client service.",
+    "description": "Use this page to explain the problem the service solves, who it is for, what is included, and how a customer gets started.",
+    "benefits": [
+      "Clear scope before work begins",
+      "Friendly and responsive communication",
+      "A simple next step for customers"
+    ],
+    "included": [
+      "Initial consultation or assessment",
+      "Service recommendation",
+      "Clear follow-up instructions"
+    ]
   },
   {
-    "icon": "bi-house-check",
-    "title": "Professional Installation",
-    "description": "Careful installation, clear communication, and quality workmanship."
+    "slug": "service-two",
+    "name": "Service Two",
+    "shortDescription": "A concise description of another important service or service category.",
+    "description": "Explain this service in client-approved language. Avoid vague claims, fake pricing, or unverified guarantees.",
+    "benefits": [
+      "Built around the customer need",
+      "Easy contact and scheduling options",
+      "Straightforward communication"
+    ],
+    "included": [
+      "Client consultation",
+      "Service plan",
+      "Completion follow-up"
+    ]
   },
   {
-    "icon": "bi-shield-check",
-    "title": "Inspections & Advice",
-    "description": "Clear guidance that helps customers understand their options and make confident decisions."
+    "slug": "service-three",
+    "name": "Service Three",
+    "shortDescription": "A third service card for the initial master-library demonstration.",
+    "description": "Replace all demo copy with accurate information provided or approved by the actual business before launch.",
+    "benefits": [
+      "Local service focus",
+      "Clear customer expectations",
+      "Helpful support throughout the process"
+    ],
+    "included": [
+      "Project review",
+      "Service delivery",
+      "Next-step guidance"
+    ]
   }
 ]

@@ -1,0 +1,17 @@
+[
+  {
+    "number": "01",
+    "title": "Get in touch",
+    "description": "Call, request an estimate, or use the preferred booking method."
+  },
+  {
+    "number": "02",
+    "title": "Confirm details",
+    "description": "Review the service need, schedule, scope, and next steps."
+  },
+  {
+    "number": "03",
+    "title": "Move forward",
+    "description": "Complete the work and provide the agreed follow-up."
+  }
+]

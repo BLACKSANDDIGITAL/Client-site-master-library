@@ -1,6 +1,8 @@
 {
   "businessName": "Demo Local Business",
+  "legalBusinessName": "Demo Local Business LLC",
   "tagline": "Dependable local service you can trust",
+  "description": "Reliable service for homes and businesses in the local area.",
   "phoneDisplay": "(408) 555-0198",
   "phoneLink": "+14085550198",
   "email": "hello@example.com",
@@ -8,17 +10,31 @@
     "street": "123 Main Street",
     "city": "San Jose",
     "state": "CA",
-    "zip": "95112"
+    "zip": "95112",
+    "country": "US"
   },
+  "hours": "Monday–Friday, 8 AM–6 PM",
   "serviceAreas": [
     "San Jose",
     "Santa Clara",
     "Campbell",
     "Sunnyvale"
   ],
-  "hours": "Monday–Friday, 8 AM–6 PM",
   "primaryCta": {
     "label": "Request a Free Estimate",
     "href": "/contact"
+  },
+  "social": {
+    "googleBusinessProfile": "",
+    "facebook": "",
+    "instagram": "",
+    "linkedin": ""
+  },
+  "form": {
+    "provider": "tally",
+    "tallyFormId": ""
+  },
+  "analytics": {
+    "googleAnalyticsId": ""
   }
 }

@@ -1,0 +1,153 @@
+---
+import recipes from "../../content/industry-recipes.json";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Industry website examples",
+  description = "Open a full-page example to see the recommended component sequence, conversion goal, and client-content requirements."
+} = Astro.props;
+---
+
+<section class="industry-examples">
+  <div class="industry-examples__intro">
+    <p class="eyebrow">Full-page examples</p>
+    <h2>{title}</h2>
+    <p>{description}</p>
+  </div>
+
+  <div class="industry-examples__grid">
+    {recipes.map((recipe) => (
+      <article class="industry-card">
+        <div class="industry-card__top">
+          <span>{recipe.number}</span>
+          <p>{recipe.goal}</p>
+        </div>
+
+        <h3>{recipe.name}</h3>
+        <p>{recipe.bestFor}</p>
+
+        <ul aria-label={`${recipe.name} included components`}>
+          {recipe.components.slice(0, 4).map((component) => (
+            <li>{component}</li>
+          ))}
+        </ul>
+
+        <a href={`/examples/${recipe.slug}`}>
+          Open full example <span aria-hidden="true">→</span>
+        </a>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .industry-examples {
+    padding: clamp(1.25rem, 3vw, 3rem);
+    background: white;
+  }
+
+  .industry-examples__intro {
+    max-width: 760px;
+    margin-bottom: 2rem;
+  }
+
+  .eyebrow {
+    margin: 0 0 0.6rem;
+    color: var(--color-primary);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.035em;
+  }
+
+  .industry-examples__intro > p:last-child {
+    color: var(--color-muted);
+    font-size: 1.05rem;
+  }
+
+  .industry-examples__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .industry-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .industry-card__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .industry-card__top span {
+    color: var(--color-primary);
+    font-size: 0.75rem;
+    font-weight: 900;
+  }
+
+  .industry-card__top p {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 0.78rem;
+    text-align: right;
+  }
+
+  h3 {
+    margin: 1rem 0 0;
+    color: var(--color-text);
+    font-size: 1.2rem;
+    line-height: 1.2;
+  }
+
+  .industry-card > p {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+  }
+
+  ul {
+    display: grid;
+    gap: 0.35rem;
+    margin: 0 0 1.2rem;
+    padding-left: 1rem;
+    color: var(--color-muted);
+    font-size: 0.82rem;
+  }
+
+  a {
+    margin-top: auto;
+    color: var(--color-primary);
+    font-weight: 800;
+  }
+
+  @media (max-width: 980px) {
+    .industry-examples__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 620px) {
+    .industry-examples__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

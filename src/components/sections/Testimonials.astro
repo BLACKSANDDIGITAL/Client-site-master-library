@@ -1,58 +1,78 @@
 ---
-interface Testimonial {
-  quote: string;
-  name: string;
-  role: string;
-}
+import testimonials from "../../content/testimonials.json";
+import SectionHeading from "../ui/SectionHeading.astro";
 
 interface Props {
-  testimonials: Testimonial[];
+  title?: string;
+  description?: string;
 }
 
-const { testimonials } = Astro.props;
+const {
+  title = "Trusted by people in the community",
+  description = "Replace these demo testimonials with genuine, approved client reviews."
+} = Astro.props;
 ---
 
-<section class="section section-muted">
+<section class="section" aria-labelledby="testimonials-heading">
   <div class="container">
-    <div class="row justify-content-center text-center mb-5">
-      <div class="col-lg-8">
-        <p class="text-uppercase text-accent fw-bold small mb-3">
-          Client Feedback
-        </p>
+    <SectionHeading
+      eyebrow="Client feedback"
+      title={title}
+      description={description}
+    />
 
-        <h2 class="display-6">
-          Trusted by people in the community.
-        </h2>
-
-        <p class="lead text-secondary mb-0">
-          Replace these demo testimonials with verified client reviews.
-        </p>
-      </div>
-    </div>
-
-    <div class="row g-4">
-      {
-        testimonials.map((testimonial) => (
-          <div class="col-md-6 col-lg-4">
-            <article class="card h-100 p-4">
-              <div class="text-warning fs-5 mb-3" aria-label="Five stars">
-                ★★★★★
-              </div>
-
-              <blockquote class="mb-4">
-                <p class="fs-5 mb-0">“{testimonial.quote}”</p>
-              </blockquote>
-
-              <footer class="mt-auto">
-                <strong class="d-block">{testimonial.name}</strong>
-                <span class="text-secondary small">
-                  {testimonial.role}
-                </span>
-              </footer>
-            </article>
-          </div>
-        ))
-      }
+    <div class="testimonial-grid">
+      {testimonials.map((testimonial) => (
+        <figure class="testimonial-card">
+          <blockquote>“{testimonial.quote}”</blockquote>
+          <figcaption>
+            <strong>{testimonial.name}</strong>
+            <span>{testimonial.detail}</span>
+          </figcaption>
+        </figure>
+      ))}
     </div>
   </div>
 </section>
+
+<style>
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+
+  .testimonial-card {
+    display: grid;
+    gap: var(--space-5);
+    margin: 0;
+    padding: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+  }
+
+  blockquote {
+    margin: 0;
+    color: var(--color-text);
+    font-size: 1.03rem;
+    line-height: 1.65;
+  }
+
+  figcaption {
+    display: grid;
+    gap: var(--space-1);
+  }
+
+  figcaption span {
+    color: var(--color-muted);
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 860px) {
+    .testimonial-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

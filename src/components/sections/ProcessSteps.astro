@@ -1,0 +1,101 @@
+---
+import SectionHeading from "../ui/SectionHeading.astro";
+
+interface Step {
+  number: string;
+  title: string;
+  description: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  steps?: Step[];
+}
+
+const {
+  eyebrow = "How it works",
+  title = "A simple process from first contact to completion",
+  description = "Replace these demo steps with the client’s real process.",
+  steps = [
+    {
+      number: "01",
+      title: "Get in touch",
+      description: "Call, submit a request, or use the preferred booking method."
+    },
+    {
+      number: "02",
+      title: "Review the details",
+      description: "Confirm the service, timing, scope, and next best step."
+    },
+    {
+      number: "03",
+      title: "Move forward",
+      description: "Complete the work and provide any agreed follow-up."
+    }
+  ]
+} = Astro.props;
+---
+
+<section class="section" aria-labelledby="process-heading">
+  <div class="container">
+    <SectionHeading
+      eyebrow={eyebrow}
+      title={title}
+      description={description}
+    />
+
+    <ol class="process-grid">
+      {steps.map((step) => (
+        <li class="process-card">
+          <span class="process-number">{step.number}</span>
+          <h3>{step.title}</h3>
+          <p>{step.description}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .process-card {
+    padding: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .process-number {
+    color: var(--color-primary);
+    font-size: 0.8rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+  }
+
+  h3 {
+    margin: var(--space-4) 0 var(--space-2);
+    font-size: 1.25rem;
+  }
+
+  p {
+    margin: 0;
+    color: var(--color-muted);
+  }
+
+  @media (max-width: 760px) {
+    .process-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

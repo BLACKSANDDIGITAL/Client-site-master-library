@@ -1,50 +1,101 @@
 ---
 import site from "../../content/site.json";
+import navigation from "../../content/navigation.json";
 ---
 
-<header class="border-bottom bg-white sticky-top">
-  <nav class="navbar navbar-expand-lg container py-3">
-    <a class="navbar-brand fw-bold fs-4" href="/">
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label={`${site.businessName} home`}>
       {site.businessName}
     </a>
 
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#mainNavigation"
-      aria-controls="mainNavigation"
-      aria-expanded="false"
-      aria-label="Open navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <nav class="main-nav" aria-label="Primary navigation">
+      {navigation.main.map((item) => (
+        <a href={item.href}>{item.label}</a>
+      ))}
+    </nav>
 
-    <div class="collapse navbar-collapse" id="mainNavigation">
-      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
-        <li class="nav-item">
-          <a class="nav-link" href="/">Home</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/services">Services</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/about">About</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/contact">Contact</a>
-        </li>
-
-        <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
-          <a class="btn btn-primary" href={`tel:${site.phoneLink}`}>
-            <i class="bi bi-telephone-fill me-2"></i>
-            {site.phoneDisplay}
-          </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+    <a class="header-cta" href={site.primaryCta.href}>
+      {site.primaryCta.label}
+    </a>
+  </div>
 </header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    border-bottom: 1px solid var(--color-border);
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(12px);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    min-height: 76px;
+  }
+
+  .brand {
+    color: var(--color-primary);
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+  }
+
+  .main-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+  }
+
+  .main-nav a {
+    color: var(--color-text);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .main-nav a:hover {
+    color: var(--color-primary);
+  }
+
+  .header-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0.7rem 1rem;
+    border-radius: var(--radius-md);
+    background: var(--color-primary);
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .header-cta:hover {
+    background: var(--color-primary-dark);
+  }
+
+  @media (max-width: 720px) {
+    .header-inner {
+      flex-wrap: wrap;
+      padding-block: var(--space-3);
+    }
+
+    .main-nav {
+      order: 3;
+      width: 100%;
+      justify-content: space-between;
+      gap: var(--space-2);
+      overflow-x: auto;
+    }
+
+    .header-cta {
+      font-size: 0.9rem;
+    }
+  }
+</style>

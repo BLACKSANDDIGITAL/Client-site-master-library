@@ -1,0 +1,175 @@
+[
+  {
+    "number": "40",
+    "slug": "home-service",
+    "name": "Home Services and Trades",
+    "goal": "Generate calls and estimate requests.",
+    "bestFor": "Plumbers, electricians, HVAC companies, roofers, painters, repair companies, and other local trades.",
+    "components": [
+      "HeaderService",
+      "HeroService",
+      "TrustBar",
+      "ServicesGrid",
+      "ProcessSteps",
+      "Testimonials",
+      "FAQ",
+      "ContactCTA",
+      "MobileCTA"
+    ],
+    "caution": "Only display verified licensing, insurance, emergency availability, warranties, service areas, reviews, and response-time claims."
+  },
+  {
+    "number": "41",
+    "slug": "cleaning",
+    "name": "Cleaning Services",
+    "goal": "Generate quote requests.",
+    "bestFor": "Residential cleaning, commercial cleaning, move-out cleaning, janitorial, and specialty cleaning businesses.",
+    "components": [
+      "HeaderService",
+      "HeroLocalProof",
+      "ServicesGrid",
+      "BeforeAfter",
+      "ProcessSteps",
+      "Testimonials",
+      "QuoteForm",
+      "ContactCTA"
+    ],
+    "caution": "Do not claim fixed prices, background checks, green products, or satisfaction guarantees unless the client confirms them."
+  },
+  {
+    "number": "42",
+    "slug": "landscaping",
+    "name": "Landscaping",
+    "goal": "Generate project estimate requests.",
+    "bestFor": "Landscapers, lawn-care businesses, garden designers, hardscape companies, and outdoor-maintenance providers.",
+    "components": [
+      "HeroLocalProof",
+      "ServicesGrid",
+      "GalleryGrid",
+      "BeforeAfter",
+      "ServiceArea",
+      "Testimonials",
+      "QuoteForm",
+      "ContactCTA"
+    ],
+    "caution": "Use real project images with approval. Do not promise plant survival, maintenance schedules, or warranties without clear client terms."
+  },
+  {
+    "number": "43",
+    "slug": "professional-service",
+    "name": "Professional Services",
+    "goal": "Book a consultation or discovery call.",
+    "bestFor": "Consultants, accountants, attorneys, financial professionals, business advisors, and B2B firms.",
+    "components": [
+      "HeaderProfessional",
+      "HeroProfessional",
+      "TrustBar",
+      "ServicesListDetailed",
+      "ProcessSteps",
+      "ProjectHighlight",
+      "FAQ",
+      "BookingCTA"
+    ],
+    "caution": "Credentials, case-study outcomes, logos, financial statements, and legal claims must be accurate and approved."
+  },
+  {
+    "number": "44",
+    "slug": "healthcare-wellness",
+    "name": "Healthcare and Wellness",
+    "goal": "Encourage appointment requests.",
+    "bestFor": "Clinics, therapists, chiropractors, dentists, med spas, fitness studios, and wellness providers.",
+    "components": [
+      "HeroProfessional",
+      "TeamGrid",
+      "ServicesGrid",
+      "ProcessSteps",
+      "OpeningHours",
+      "FAQ",
+      "BookingCTA"
+    ],
+    "caution": "Avoid outcome guarantees, inaccurate medical claims, and assumptions about insurance, emergency care, availability, or patient eligibility."
+  },
+  {
+    "number": "45",
+    "slug": "restaurant-cafe",
+    "name": "Restaurant and Café",
+    "goal": "Drive visits, reservations, or food orders.",
+    "bestFor": "Restaurants, cafés, bakeries, bars, food trucks, and catering businesses.",
+    "components": [
+      "HeroRestaurant",
+      "MenuPreview",
+      "OpeningHours",
+      "GalleryGrid",
+      "Testimonials",
+      "BookingCTA"
+    ],
+    "caution": "Menu details, prices, allergens, hours, reservation links, and delivery options must be current and client-approved."
+  },
+  {
+    "number": "46",
+    "slug": "salon-beauty",
+    "name": "Salon and Beauty",
+    "goal": "Generate appointment bookings.",
+    "bestFor": "Hair salons, barbers, nail studios, estheticians, makeup artists, and beauty services.",
+    "components": [
+      "HeroPortfolio",
+      "ServicesGrid",
+      "PricingCards",
+      "GalleryGrid",
+      "TeamGrid",
+      "Testimonials",
+      "BookingCTA"
+    ],
+    "caution": "Use consented client photos. Do not promise results, claim availability, or publish pricing and cancellation policies without verification."
+  },
+  {
+    "number": "47",
+    "slug": "real-estate",
+    "name": "Real Estate",
+    "goal": "Generate property and agent inquiries.",
+    "bestFor": "Individual agents, brokerages, property managers, and real-estate teams.",
+    "components": [
+      "HeroRealEstate",
+      "PropertyGrid",
+      "TrustBar",
+      "ServiceArea",
+      "Testimonials",
+      "PropertyInquiryForm",
+      "ContactCTA"
+    ],
+    "caution": "Listings, prices, availability, sales records, licenses, awards, and market claims must be up to date and permitted for publication."
+  },
+  {
+    "number": "48",
+    "slug": "agency-portfolio",
+    "name": "Agency and Portfolio",
+    "goal": "Book discovery calls.",
+    "bestFor": "Creative agencies, web studios, photographers, freelancers, designers, and production companies.",
+    "components": [
+      "HeroPortfolio",
+      "ServicesListDetailed",
+      "GalleryGrid",
+      "ProjectHighlight",
+      "ProcessSteps",
+      "Testimonials",
+      "BookingCTA"
+    ],
+    "caution": "Only show work, logos, testimonials, results, and client names that the owner has permission to publish."
+  },
+  {
+    "number": "49",
+    "slug": "ecommerce-lite",
+    "name": "Ecommerce Lite",
+    "goal": "Drive product inquiries or purchases.",
+    "bestFor": "Small product businesses, makers, specialty retail, and businesses using an external checkout or shop platform.",
+    "components": [
+      "HeroPortfolio",
+      "ServicesGrid",
+      "TrustBar",
+      "Testimonials",
+      "FAQ",
+      "ContactCTA"
+    ],
+    "caution": "Do not publish inaccurate prices, inventory, shipping times, returns, ingredients, safety information, or payment claims."
+  }
+]

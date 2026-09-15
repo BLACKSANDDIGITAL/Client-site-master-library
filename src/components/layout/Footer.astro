@@ -1,89 +1,93 @@
 ---
 import site from "../../content/site.json";
+import navigation from "../../content/navigation.json";
 
 const year = new Date().getFullYear();
-const serviceAreas = site.serviceAreas.join(", ");
 ---
 
-<footer class="bg-dark text-white pt-5 pb-4">
-  <div class="container">
-    <div class="row g-4">
-      <div class="col-lg-5">
-        <h2 class="h4">{site.businessName}</h2>
-
-        <p class="text-white-50 mb-0">
-          {site.tagline}
-        </p>
-      </div>
-
-      <div class="col-6 col-lg-3">
-        <h3 class="h6 text-uppercase text-white-50">Navigate</h3>
-
-        <ul class="list-unstyled mb-0">
-          <li class="mb-2">
-            <a class="link-light text-decoration-none" href="/">Home</a>
-          </li>
-
-          <li class="mb-2">
-            <a class="link-light text-decoration-none" href="/services">
-              Services
-            </a>
-          </li>
-
-          <li class="mb-2">
-            <a class="link-light text-decoration-none" href="/about">
-              About
-            </a>
-          </li>
-
-          <li>
-            <a class="link-light text-decoration-none" href="/contact">
-              Contact
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="col-6 col-lg-4">
-        <h3 class="h6 text-uppercase text-white-50">Contact</h3>
-
-        <p class="mb-2">
-          <a
-            class="link-light text-decoration-none"
-            href={`tel:${site.phoneLink}`}
-          >
-            {site.phoneDisplay}
-          </a>
-        </p>
-
-        <p class="mb-2">
-          <a
-            class="link-light text-decoration-none"
-            href={`mailto:${site.email}`}
-          >
-            {site.email}
-          </a>
-        </p>
-
-        <p class="text-white-50 mb-2">
-          {site.address.street}<br />
-          {site.address.city}, {site.address.state} {site.address.zip}
-        </p>
-
-        <p class="text-white-50 mb-0">
-          Serving {serviceAreas}
-        </p>
-      </div>
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <a class="brand" href="/">{site.businessName}</a>
+      <p>{site.description}</p>
+      <p>Serving {site.serviceAreas.join(", ")}.</p>
     </div>
 
-    <hr class="border-secondary my-4" />
+    <div>
+      <h2>Contact</h2>
+      <p><a href={`tel:${site.phoneLink}`}>{site.phoneDisplay}</a></p>
+      <p><a href={`mailto:${site.email}`}>{site.email}</a></p>
+      <p>{site.hours}</p>
+    </div>
 
-    <div class="d-flex flex-column flex-md-row justify-content-between gap-2 small text-white-50">
-      <span>© {year} {site.businessName}. All rights reserved.</span>
-
-      <a class="link-light text-decoration-none" href="/privacy">
-        Privacy Policy
-      </a>
+    <div>
+      <h2>Information</h2>
+      <nav aria-label="Footer navigation">
+        {navigation.footer.map((item) => (
+          <a href={item.href}>{item.label}</a>
+        ))}
+      </nav>
     </div>
   </div>
+
+  <div class="container footer-bottom">
+    <p>© {year} {site.legalBusinessName || site.businessName}. All rights reserved.</p>
+  </div>
 </footer>
+
+<style>
+  .site-footer {
+    padding-top: var(--space-8);
+    background: var(--color-text);
+    color: white;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    gap: var(--space-7);
+  }
+
+  .brand {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  h2 {
+    margin-top: 0;
+    font-size: 1rem;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.78);
+  }
+
+  a {
+    color: white;
+  }
+
+  nav {
+    display: grid;
+    gap: var(--space-2);
+  }
+
+  .footer-bottom {
+    margin-top: var(--space-7);
+    padding-block: var(--space-4);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .footer-bottom p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 720px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+    }
+  }
+</style>

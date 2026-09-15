@@ -1,51 +1,88 @@
 ---
-interface Service {
-  icon: string;
-  title: string;
-  description: string;
-}
+import services from "../../content/services.json";
+import SectionHeading from "../ui/SectionHeading.astro";
 
 interface Props {
-  services: Service[];
+  title?: string;
+  description?: string;
 }
 
-const { services } = Astro.props;
+const {
+  title = "Our services",
+  description = "Straightforward help for the work that matters most."
+} = Astro.props;
 ---
 
-<section class="section">
+<section class="section" aria-labelledby="services-heading">
   <div class="container">
-    <div class="row justify-content-center text-center mb-5">
-      <div class="col-lg-8">
-        <p class="text-uppercase text-accent fw-bold small mb-3">
-          What We Offer
-        </p>
+    <SectionHeading
+      title={title}
+      description={description}
+    />
 
-        <h2 class="display-6">Services built around your needs.</h2>
-
-        <p class="lead text-secondary mb-0">
-          Professional service with straightforward communication.
-        </p>
-      </div>
-    </div>
-
-    <div class="row g-4">
-      {
+    <div class="services-grid">
+      {services.length > 0 ? (
         services.map((service) => (
-          <div class="col-md-6 col-lg-4">
-            <article class="card h-100 p-4">
-              <div class="fs-2 text-primary mb-4">
-                <i class={`bi ${service.icon}`}></i>
-              </div>
-
-              <h3 class="h4">{service.title}</h3>
-
-              <p class="text-secondary mb-0">
-                {service.description}
-              </p>
-            </article>
-          </div>
+          <article class="service-card">
+            <h3>{service.name}</h3>
+            <p>{service.shortDescription}</p>
+            <a href={`/services/${service.slug}`}>Learn about {service.name}</a>
+          </article>
         ))
-      }
+      ) : (
+        <p class="empty-state">
+          Add services in <code>src/content/services.json</code>.
+        </p>
+      )}
     </div>
   </div>
 </section>
+
+<style>
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+
+  .service-card {
+    padding: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+  }
+
+  h3 {
+    margin-top: 0;
+    font-size: 1.3rem;
+  }
+
+  p {
+    color: var(--color-muted);
+  }
+
+  a {
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  .empty-state {
+    grid-column: 1 / -1;
+    padding: var(--space-5);
+    border: 1px dashed var(--color-border);
+    border-radius: var(--radius-md);
+  }
+
+  @media (max-width: 860px) {
+    .services-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

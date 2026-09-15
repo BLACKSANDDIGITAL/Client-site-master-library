@@ -2,213 +2,140 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/layout/Header.astro";
 import Footer from "../components/layout/Footer.astro";
-import HeroSplit from "../components/heroes/HeroSplit.astro";
+import Button from "../components/ui/Button.astro";
+import PhoneCTA from "../components/ui/PhoneCTA.astro";
 import ServicesGrid from "../components/sections/ServicesGrid.astro";
-import services from "../content/services.json";
-import Testimonials from "../components/sections/Testimonials.astro";
-import testimonials from "../content/testimonials.json";
-import FAQ from "../components/sections/FAQ.astro";
-import faq from "../content/faq.json";
-
-const services = [
-  {
-    icon: "bi-tools",
-    title: "Repairs & Maintenance",
-    description: "Fast, dependable support to keep your home or business running smoothly."
-  },
-  {
-    icon: "bi-house-check",
-    title: "Professional Installation",
-    description: "Careful installation, clear communication, and quality workmanship."
-  },
-  {
-    icon: "bi-shield-check",
-    title: "Inspections & Advice",
-    description: "Clear guidance that helps you understand your options and make confident decisions."
-  }
-];
+import WhyChooseUs from "../components/sections/WhyChooseUs.astro";
+import ContactCTA from "../components/sections/ContactCTA.astro";
+import site from "../content/site.json";
 ---
 
 <BaseLayout
-  title="Demo Local Business | Trusted Service in San Jose"
-  description="Reliable local service for homes and businesses in San Jose and nearby communities."
+  title={`${site.businessName} | ${site.tagline}`}
+  description={site.description}
 >
   <Header />
 
   <main>
-   <HeroSplit
-  title="Dependable service for your home and business."
-  description="Clear pricing, responsive communication, and quality work from a local team you can trust."
-/>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Serving {site.serviceAreas[0]} and nearby areas</p>
+          <h1>{site.tagline}</h1>
+          <p class="hero-description">{site.description}</p>
 
-    <ServicesGrid services={services} />
+          <div class="hero-actions">
+            <Button href={site.primaryCta.href}>
+              {site.primaryCta.label}
+            </Button>
 
-<Testimonials testimonials={testimonials} />
-
-<FAQ items={faq} />
-
-    <section class="section section-muted">
-      <div class="container">
-        <div class="row align-items-center g-5">
-          <div class="col-lg-6">
-            <p class="text-uppercase text-accent fw-bold small mb-3">
-              Why Choose Us
-            </p>
-
-            <h2 class="display-6 mb-4">
-              Straightforward service from people who care.
-            </h2>
-
-            <p class="lead text-secondary mb-4">
-              We make it easy to get reliable help with clear communication,
-              quality work, and a service experience built around your needs.
-            </p>
-
-            <a class="btn btn-primary" href="/about">
-              Learn About Our Team
-            </a>
-          </div>
-
-          <div class="col-lg-6">
-            <div class="row g-3">
-              <div class="col-sm-6">
-                <article class="bg-white rounded-4 p-4 h-100 shadow-sm">
-                  <i class="bi bi-star-fill text-accent fs-3"></i>
-                  <h3 class="h5 mt-3">Trusted Quality</h3>
-                  <p class="text-secondary mb-0">
-                    Clear standards and work customers can rely on.
-                  </p>
-                </article>
-              </div>
-
-              <div class="col-sm-6">
-                <article class="bg-white rounded-4 p-4 h-100 shadow-sm">
-                  <i class="bi bi-clock-fill text-accent fs-3"></i>
-                  <h3 class="h5 mt-3">Responsive</h3>
-                  <p class="text-secondary mb-0">
-                    Easy communication before, during, and after service.
-                  </p>
-                </article>
-              </div>
-
-              <div class="col-sm-6">
-                <article class="bg-white rounded-4 p-4 h-100 shadow-sm">
-                  <i class="bi bi-cash-coin text-accent fs-3"></i>
-                  <h3 class="h5 mt-3">Clear Pricing</h3>
-                  <p class="text-secondary mb-0">
-                    Honest estimates with no confusing surprises.
-                  </p>
-                </article>
-              </div>
-
-              <div class="col-sm-6">
-                <article class="bg-white rounded-4 p-4 h-100 shadow-sm">
-                  <i class="bi bi-geo-alt-fill text-accent fs-3"></i>
-                  <h3 class="h5 mt-3">Local Team</h3>
-                  <p class="text-secondary mb-0">
-                    Proudly serving San Jose and surrounding communities.
-                  </p>
-                </article>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="row justify-content-center text-center mb-5">
-          <div class="col-lg-8">
-            <p class="text-uppercase text-accent fw-bold small mb-3">
-              Our Process
-            </p>
-
-            <h2 class="display-6">
-              Getting started is simple.
-            </h2>
-
-            <p class="lead text-secondary mb-0">
-              This is another reusable homepage section for future clients.
-            </p>
+            <PhoneCTA />
           </div>
         </div>
 
-        <div class="row g-4">
-          <div class="col-md-4">
-            <article class="text-center p-3">
-              <div
-                class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold fs-4 mb-4"
-                style="width: 58px; height: 58px;"
-              >
-                1
-              </div>
-
-              <h3 class="h4">Get in Touch</h3>
-
-              <p class="text-secondary mb-0">
-                Call, email, or send a request with a few details about what you need.
-              </p>
-            </article>
-          </div>
-
-          <div class="col-md-4">
-            <article class="text-center p-3">
-              <div
-                class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold fs-4 mb-4"
-                style="width: 58px; height: 58px;"
-              >
-                2
-              </div>
-
-              <h3 class="h4">Receive a Clear Plan</h3>
-
-              <p class="text-secondary mb-0">
-                We discuss the right next steps, timing, and a straightforward estimate.
-              </p>
-            </article>
-          </div>
-
-          <div class="col-md-4">
-            <article class="text-center p-3">
-              <div
-                class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center fw-bold fs-4 mb-4"
-                style="width: 58px; height: 58px;"
-              >
-                3
-              </div>
-
-              <h3 class="h4">Get It Done</h3>
-
-              <p class="text-secondary mb-0">
-                We complete the work professionally and keep you informed along the way.
-              </p>
-            </article>
-          </div>
-        </div>
+        <aside class="hero-card" aria-label="Business contact details">
+          <p class="hero-card-label">Get in touch</p>
+          <p><strong>{site.phoneDisplay}</strong></p>
+          <p>{site.hours}</p>
+          <p>Serving {site.serviceAreas.join(", ")}</p>
+        </aside>
       </div>
     </section>
 
-    <section class="section bg-dark text-white">
-      <div class="container text-center">
-        <p class="text-uppercase text-warning fw-bold small mb-3">
-          Ready to Get Started?
-        </p>
+    <ServicesGrid
+      title="Services built around your needs"
+      description="Explore the core services offered by this local business."
+    />
 
-        <h2 class="display-6 mb-4">
-          Tell us what you need, and we’ll be in touch.
-        </h2>
+    <WhyChooseUs />
 
-        <p class="lead text-white-50 mb-4">
-          Reach out today for friendly, dependable local service.
-        </p>
-
-        <a class="btn btn-light btn-lg" href="/contact">
-          Request a Free Estimate
-        </a>
-      </div>
-    </section>
+    <ContactCTA
+      title="Let’s talk about your project"
+      description="Request an estimate or call now to discuss the service you need."
+    />
   </main>
 
   <Footer />
 </BaseLayout>
+
+<style>
+  .hero {
+    padding-block: var(--space-9);
+    background:
+      radial-gradient(circle at top right, rgba(244, 162, 97, 0.26), transparent 35%),
+      linear-gradient(135deg, var(--color-secondary), var(--color-surface));
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.7fr);
+    align-items: center;
+    gap: var(--space-7);
+  }
+
+  .eyebrow {
+    margin: 0 0 var(--space-3);
+    color: var(--color-primary);
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    max-width: 12ch;
+    margin: 0;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+  }
+
+  .hero-description {
+    max-width: 650px;
+    margin: var(--space-5) 0 0;
+    color: var(--color-muted);
+    font-size: 1.15rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+
+  .hero-card {
+    padding: var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: var(--shadow-md);
+  }
+
+  .hero-card-label {
+    margin-top: 0;
+    color: var(--color-primary);
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .hero-card p {
+    color: var(--color-muted);
+  }
+
+  .hero-card strong {
+    color: var(--color-text);
+    font-size: 1.3rem;
+  }
+
+  @media (max-width: 760px) {
+    .hero {
+      padding-block: var(--space-8);
+    }
+
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+  }
+</style>

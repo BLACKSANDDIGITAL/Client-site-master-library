@@ -1,0 +1,225 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/layout/Header.astro";
+import Footer from "../../components/layout/Footer.astro";
+import Button from "../../components/ui/Button.astro";
+import PhoneCTA from "../../components/ui/PhoneCTA.astro";
+import ServicesGrid from "../../components/sections/ServicesGrid.astro";
+import WhyChooseUs from "../../components/sections/WhyChooseUs.astro";
+import Testimonials from "../../components/sections/Testimonials.astro";
+import FAQ from "../../components/sections/FAQ.astro";
+import ContactCTA from "../../components/sections/ContactCTA.astro";
+import site from "../../content/site.json";
+
+const recipe = [
+  "HeaderService or Header",
+  "HeroService or HeroSplit",
+  "TrustBar when verified proof exists",
+  "ServicesGrid",
+  "WhyChooseUs",
+  "Testimonials with genuine reviews only",
+  "FAQ",
+  "ContactCTA",
+  "MobileCTA for phone-first businesses"
+];
+---
+
+<BaseLayout
+  title={`Home Services Example | ${site.businessName}`}
+  description="Internal example for a home-services website layout."
+>
+  <Header />
+
+  <main>
+    <section class="template-guide">
+      <div class="container">
+        <p class="eyebrow">Industry example 40</p>
+        <h1>Home Services and Trades</h1>
+        <p>
+          A high-intent layout for local service businesses that need calls and
+          estimate requests. Use it for plumbers, HVAC companies, electricians,
+          roofers, painters, repair companies, and similar service providers.
+        </p>
+
+        <div class="template-guide__grid">
+          <div>
+            <h2>Primary goal</h2>
+            <p>Make it easy for visitors to call or request an estimate.</p>
+          </div>
+
+          <div>
+            <h2>Recommended section order</h2>
+            <ol>
+              {recipe.map((item) => <li>{item}</li>)}
+            </ol>
+          </div>
+
+          <div>
+            <h2>Before launch</h2>
+            <p>
+              Verify business details, service area, phone line, form delivery,
+              reviews, credentials, response times, and every business claim.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero">
+      <div class="container hero__grid">
+        <div>
+          <p class="eyebrow">Local service you can count on</p>
+          <h2>Clear help for the work that cannot wait.</h2>
+          <p>
+            This is example hero copy. Replace it with a specific client promise
+            and only verified business details.
+          </p>
+
+          <div class="hero__actions">
+            <Button href="/contact">Request an estimate</Button>
+            <PhoneCTA label={`Call ${site.phoneDisplay}`} />
+          </div>
+        </div>
+
+        <div class="hero__image" role="img" aria-label="Placeholder for client service photo">
+          Replace with approved client work or team photo
+        </div>
+      </div>
+    </section>
+
+    <ServicesGrid
+      title="Services built around the job"
+      description="Keep service categories clear and link each card to an accurate detail page."
+    />
+
+    <WhyChooseUs />
+
+    <Testimonials
+      title="Proof from real customers"
+      description="Use reviews only after the client verifies the wording, reviewer attribution, and source."
+    />
+
+    <FAQ />
+
+    <ContactCTA
+      title="Need help with a project or repair?"
+      description="Call today or request an estimate. Confirm the real response expectation before publishing this message."
+    />
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .template-guide {
+    padding-block: var(--space-7);
+    background: #101828;
+    color: white;
+  }
+
+  .template-guide h1 {
+    margin: 0;
+    font-size: clamp(2.4rem, 5vw, 4.5rem);
+    line-height: 1.05;
+  }
+
+  .template-guide > div > p:not(.eyebrow) {
+    max-width: 760px;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 1.1rem;
+  }
+
+  .eyebrow {
+    margin: 0 0 var(--space-3);
+    color: var(--color-accent);
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .template-guide__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+    margin-top: var(--space-6);
+  }
+
+  .template-guide__grid > div {
+    padding: var(--space-5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-md);
+  }
+
+  .template-guide__grid h2 {
+    margin-top: 0;
+    font-size: 1.05rem;
+  }
+
+  .template-guide__grid p,
+  .template-guide__grid li {
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .template-guide__grid ol {
+    display: grid;
+    gap: var(--space-2);
+    margin-bottom: 0;
+    padding-left: 1.25rem;
+  }
+
+  .hero {
+    padding-block: var(--space-9);
+    background: var(--color-secondary);
+  }
+
+  .hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+    align-items: center;
+    gap: var(--space-7);
+  }
+
+  .hero h2 {
+    max-width: 13ch;
+    margin: 0;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+  }
+
+  .hero p:not(.eyebrow) {
+    max-width: 640px;
+    color: var(--color-muted);
+    font-size: 1.1rem;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+  }
+
+  .hero__image {
+    display: grid;
+    min-height: 350px;
+    place-items: center;
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, #0d5c45, #0f8174);
+    color: rgba(255, 255, 255, 0.85);
+    text-align: center;
+  }
+
+  @media (max-width: 800px) {
+    .template-guide__grid,
+    .hero__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero__image {
+      min-height: 230px;
+    }
+  }
+</style>

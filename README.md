@@ -1,43 +1,63 @@
-# Astro Starter Kit: Minimal
+# Client Website Master Library
 
-```sh
-npm create astro@latest -- --template minimal
+Reusable Astro website system for small-business marketing sites.
+
+## What this project is
+
+This repository is the internal master template used to create client-specific
+marketing websites. It contains reusable components, example page patterns,
+structured content files, visual library documentation, and delivery checklists.
+
+Do not give the master repository to a client. Create a private client-specific
+copy or repository when a project is approved.
+
+## Start locally
+
+```bash
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Open the local address shown in Terminal.
 
-## 🚀 Project Structure
+## Important routes
 
-Inside of your Astro project, you'll see the following folders and files:
+- `/` — Demo homepage
+- `/services` — Demo services page
+- `/contact` — Demo contact page
+- `/library` — Internal visual component and industry example library
+- `/examples/home-service` — Full home-services example
+- `/examples/professional-service` — Full professional-services example
+
+## New client process
+
+1. Duplicate this repository into a private client repository.
+2. Replace verified data in `src/content/site.json`.
+3. Replace service, FAQ, testimonial, process, and image data.
+4. Update brand values in `src/styles/theme.css`.
+5. Choose components and page recipes from `/library`.
+6. Connect the approved form, booking, analytics, or CRM tool.
+7. Test mobile layout, all links, contact routes, and form delivery.
+8. Run `npm run build`.
+9. Deploy a preview for review and get written launch approval.
+
+## Key rules
+
+- Use JSON data files for normal content updates.
+- Do not hard-code business name, phone, email, or address repeatedly.
+- Do not publish demo images, fake testimonials, invented ratings, unsupported claims, or unapproved logos.
+- Client owns their domain and paid third-party service accounts.
+- Add a component to the master library only if it is generic, useful for future projects, and tested.
+
+## Production command
+
+```bash
+npm run build
+```
+
+Cloudflare Pages settings:
 
 ```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+Build command: npm run build
+Build output directory: dist
 ```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

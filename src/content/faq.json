@@ -1,18 +1,18 @@
 [
   {
-    "question": "What areas do you serve?",
-    "answer": "We serve San Jose and surrounding communities. Contact us to confirm availability for your location."
-  },
-  {
     "question": "How do I request an estimate?",
-    "answer": "Call us, email us, or use the contact form to tell us what you need. We will follow up with the next steps."
+    "answer": "Use the contact form, call the business directly, or choose the primary call to action on any page."
   },
   {
-    "question": "Do you offer same-day service?",
-    "answer": "Availability depends on the service and current schedule. Contact us directly for the fastest answer."
+    "question": "How quickly will someone respond?",
+    "answer": "Replace this answer with the client’s real response-time expectation. Do not promise same-day or 24-hour replies unless the business can reliably provide them."
   },
   {
-    "question": "What should I expect after I contact you?",
-    "answer": "We will review your request, ask any needed questions, explain the next steps, and provide clear communication about scheduling."
+    "question": "Which areas do you serve?",
+    "answer": "Use the service-area information from the client’s verified business details."
+  },
+  {
+    "question": "What should I include in my request?",
+    "answer": "Ask visitors to share the service they need, the location, relevant timing, and a short description of the project or issue."
   }
 ]

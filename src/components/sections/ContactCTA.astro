@@ -1,0 +1,73 @@
+---
+import site from "../../content/site.json";
+import Button from "../ui/Button.astro";
+import PhoneCTA from "../ui/PhoneCTA.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Ready to get started?",
+  description = "Tell us what you need and we will help you take the next step."
+} = Astro.props;
+---
+
+<section class="contact-cta">
+  <div class="container cta-inner">
+    <div>
+      <h2>{title}</h2>
+      <p>{description}</p>
+    </div>
+
+    <div class="cta-actions">
+      <Button href={site.primaryCta.href}>{site.primaryCta.label}</Button>
+      <PhoneCTA />
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-cta {
+    padding-block: var(--space-8);
+    background: var(--color-primary);
+    color: white;
+  }
+
+  .cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+  }
+
+  h2 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+
+  p {
+    max-width: 650px;
+    margin-bottom: 0;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .phone-cta {
+    border-color: white;
+    color: white;
+  }
+
+  @media (max-width: 720px) {
+    .cta-inner {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+</style>

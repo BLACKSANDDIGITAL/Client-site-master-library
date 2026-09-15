@@ -1,80 +1,41 @@
-/*----bs-primary: #0a4b78;
---brand-accent: #e66a2c;
---font-heading: "Poppins", sans-serif;
---font-body: "Open Sans", sans-serif; */ 
 :root {
-  --bs-primary: #14532d;
-  --bs-primary-rgb: 20, 83, 45;
+  --color-primary: #0f4c5c;
+  --color-primary-dark: #083642;
+  --color-secondary: #e8f3f5;
+  --color-accent: #f4a261;
+  --color-text: #1f2933;
+  --color-muted: #52606d;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f7fafc;
+  --color-border: #d9e2ec;
+  --color-success: #1f7a4d;
+  --color-danger: #b42318;
 
-  --bs-secondary: #1f2937;
-  --bs-secondary-rgb: 31, 41, 55;
+  --font-sans: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-heading: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
-  --bs-success: #15803d;
-  --bs-body-color: #172033;
-  --bs-body-bg: #ffffff;
+  --container-width: 1200px;
+  --content-width: 760px;
 
-  --brand-accent: #f59e0b;
-  --brand-muted: #667085;
-  --brand-surface: #f7f8fa;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --space-9: 6rem;
 
-  --font-heading: "DM Sans", Arial, sans-serif;
-  --font-body: "Inter", Arial, sans-serif;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+  --radius-pill: 999px;
 
-  --section-space: clamp(4rem, 8vw, 7rem);
-}
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.08);
+  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.12);
+  --shadow-lg: 0 18px 48px rgba(15, 23, 42, 0.16);
 
-body {
-  color: var(--bs-body-color);
-  font-family: var(--font-body);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-}
-
-.section {
-  padding-block: var(--section-space);
-}
-
-.section-muted {
-  background: var(--brand-surface);
-}
-
-.btn {
-  border-radius: 999px;
-  font-weight: 700;
-  padding: 0.8rem 1.3rem;
-}
-
-.btn-primary {
-  background-color: var(--bs-primary);
-  border-color: var(--bs-primary);
-}
-
-.btn-primary:hover,
-.btn-primary:focus {
-  background-color: #0f3d21;
-  border-color: #0f3d21;
-}
-
-.card {
-  border: 0;
-  border-radius: 1rem;
-  box-shadow: 0 12px 30px rgba(19, 33, 68, 0.08);
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  transition: transform 180ms ease;
-}
-
-.text-accent {
-  color: var(--brand-accent);
+  --transition-fast: 160ms ease;
+  --transition-base: 240ms ease;
 }

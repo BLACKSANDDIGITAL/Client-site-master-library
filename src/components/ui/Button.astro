@@ -1,0 +1,78 @@
+---
+interface Props {
+  href?: string;
+  variant?: "primary" | "secondary" | "outline" | "text";
+  type?: "button" | "submit" | "reset";
+  class?: string;
+}
+
+const {
+  href,
+  variant = "primary",
+  type = "button",
+  class: className = ""
+} = Astro.props;
+---
+
+{
+  href ? (
+    <a class={`button button--${variant} ${className}`} href={href}>
+      <slot />
+    </a>
+  ) : (
+    <button class={`button button--${variant} ${className}`} type={type}>
+      <slot />
+    </button>
+  )
+}
+
+<style>
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0.75rem 1.1rem;
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    transition: transform var(--transition-fast), background var(--transition-fast);
+  }
+
+  .button:hover {
+    transform: translateY(-1px);
+  }
+
+  .button--primary {
+    background: var(--color-primary);
+    color: white;
+  }
+
+  .button--primary:hover {
+    background: var(--color-primary-dark);
+  }
+
+  .button--secondary {
+    background: var(--color-accent);
+    color: var(--color-text);
+  }
+
+  .button--outline {
+    border-color: var(--color-primary);
+    background: transparent;
+    color: var(--color-primary);
+  }
+
+  .button--text {
+    min-height: auto;
+    padding: 0;
+    background: transparent;
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+</style>

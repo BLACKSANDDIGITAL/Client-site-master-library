@@ -2,111 +2,76 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/layout/Header.astro";
 import Footer from "../components/layout/Footer.astro";
+import ContactCTA from "../components/sections/ContactCTA.astro";
 import site from "../content/site.json";
 ---
 
 <BaseLayout
   title={`About | ${site.businessName}`}
-  description={`Learn about ${site.businessName} and how we serve our local community.`}
+  description={`Learn about ${site.businessName}.`}
 >
   <Header />
 
   <main>
-    <section class="section section-muted">
-      <div class="container">
-        <div class="row align-items-center g-5">
-          <div class="col-lg-6">
-            <p class="text-uppercase text-accent fw-bold small mb-3">
-              About Us
-            </p>
-
-            <h1 class="display-4 mb-4">
-              A local team focused on dependable service.
-            </h1>
-
-            <p class="lead text-secondary mb-0">
-              Replace this demo content with the business owner’s real story,
-              experience, credentials, approach, and connection to the community.
-            </p>
-          </div>
-
-          <div class="col-lg-6">
-            <div
-              class="rounded-4 shadow-lg d-flex align-items-center justify-content-center text-white"
-              style="min-height: 360px; background: linear-gradient(135deg, #14532d, #0f766e);"
-            >
-              <div class="text-center p-5">
-                <i class="bi bi-people-fill display-1"></i>
-                <p class="mt-3 mb-0 fs-5">
-                  Replace with a team or owner photo
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+    <section class="page-hero">
+      <div class="content-container">
+        <p class="eyebrow">About us</p>
+        <h1>Local service, clear communication, dependable support</h1>
+        <p>
+          This is placeholder content for your master library. Replace it with the
+          real business story, experience, credentials, values, and team information.
+        </p>
       </div>
     </section>
 
     <section class="section">
-      <div class="container">
-        <div class="row justify-content-center text-center mb-5">
-          <div class="col-lg-8">
-            <p class="text-uppercase text-accent fw-bold small mb-3">
-              Our Commitment
-            </p>
+      <div class="content-container">
+        <h2>Our approach</h2>
+        <p>
+          Keep this page honest and specific. Use real facts: when the business
+          started, who runs it, which areas it serves, how customers are supported,
+          and which licenses or certifications can be verified.
+        </p>
 
-            <h2 class="display-6">
-              The standards clients should expect.
-            </h2>
-          </div>
-        </div>
-
-        <div class="row g-4">
-          <div class="col-md-4">
-            <article class="card h-100 p-4">
-              <i class="bi bi-chat-square-text fs-2 text-primary mb-4"></i>
-              <h2 class="h4">Clear Communication</h2>
-              <p class="text-secondary mb-0">
-                Explain the process, answer questions, and keep clients informed.
-              </p>
-            </article>
-          </div>
-
-          <div class="col-md-4">
-            <article class="card h-100 p-4">
-              <i class="bi bi-award fs-2 text-primary mb-4"></i>
-              <h2 class="h4">Quality Work</h2>
-              <p class="text-secondary mb-0">
-                Take pride in details and deliver work that is built to last.
-              </p>
-            </article>
-          </div>
-
-          <div class="col-md-4">
-            <article class="card h-100 p-4">
-              <i class="bi bi-heart fs-2 text-primary mb-4"></i>
-              <h2 class="h4">Respect for Clients</h2>
-              <p class="text-secondary mb-0">
-                Treat people, homes, businesses, and time with care.
-              </p>
-            </article>
-          </div>
-        </div>
+        <h2>Areas we serve</h2>
+        <p>{site.serviceAreas.join(", ")}.</p>
       </div>
     </section>
 
-    <section class="section bg-dark text-white">
-      <div class="container text-center">
-        <h2 class="display-6 mb-4">
-          Let’s talk about what you need.
-        </h2>
-
-        <a class="btn btn-light btn-lg" href="/contact">
-          Contact {site.businessName}
-        </a>
-      </div>
-    </section>
+    <ContactCTA />
   </main>
 
   <Footer />
 </BaseLayout>
+
+<style>
+  .page-hero {
+    padding-block: var(--space-8);
+    background: var(--color-secondary);
+  }
+
+  .eyebrow {
+    margin: 0 0 var(--space-3);
+    color: var(--color-primary);
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.05;
+  }
+
+  h2 {
+    margin-top: var(--space-7);
+    font-size: clamp(1.8rem, 4vw, 2.75rem);
+  }
+
+  p {
+    color: var(--color-muted);
+    font-size: 1.1rem;
+  }
+</style>
