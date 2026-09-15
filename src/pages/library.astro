@@ -1,7 +1,5 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Header from "../components/layout/Header.astro";
-import Footer from "../components/layout/Footer.astro";
+import LibraryLayout from "../layouts/LibraryLayout.astro";
 import HeroSplit from "../components/heroes/HeroSplit.astro";
 import ServicesGrid from "../components/sections/ServicesGrid.astro";
 import Testimonials from "../components/sections/Testimonials.astro";
@@ -12,48 +10,40 @@ import testimonials from "../content/testimonials.json";
 import faq from "../content/faq.json";
 ---
 
-<BaseLayout
+<LibraryLayout
   title="Component Library | Demo Local Business"
   description="Internal preview of reusable website components."
 >
-  <Header />
-
   <main>
-    <section class="py-5 bg-dark text-white">
-      <div class="container">
-        <p class="text-uppercase text-warning fw-bold small mb-3">
-          Internal Design System
-        </p>
+    <section id="overview" class="library-intro">
+      <div class="container-fluid px-4 px-lg-5 py-5">
+        <div class="row">
+          <div class="col-xl-9">
+            <p class="text-uppercase text-accent fw-bold small mb-3">
+              Internal Design System
+            </p>
 
-        <h1 class="display-4 mb-3">
-          Client Website Component Library
-        </h1>
+            <h1 class="display-4 mb-3">
+              Client Website Component Library
+            </h1>
 
-        <p class="lead text-white-50 mb-0">
-          Preview reusable sections here before choosing a page layout for a client.
-        </p>
-      </div>
-    </section>
-
-    <section class="py-4 border-bottom bg-white sticky-top">
-      <div class="container">
-        <div class="d-flex flex-wrap gap-2">
-          <a class="btn btn-outline-dark btn-sm" href="#heroes">Heroes</a>
-          <a class="btn btn-outline-dark btn-sm" href="#services">Services</a>
-          <a class="btn btn-outline-dark btn-sm" href="#testimonials">Testimonials</a>
-          <a class="btn btn-outline-dark btn-sm" href="#faq">FAQ</a>
-          <a class="btn btn-outline-dark btn-sm" href="#cta">CTA</a>
+            <p class="lead text-secondary mb-0">
+              Preview, compare, and select reusable website sections before
+              building a client project.
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="heroes" class="border-bottom">
-      <div class="container py-4">
-        <p class="text-uppercase text-accent fw-bold small mb-2">
-          Hero option 1
-        </p>
+    <section id="heroes" class="library-preview-section">
+      <div class="library-section-label">
+        <div>
+          <p>01 — Heroes</p>
+          <h2>Split Hero</h2>
+        </div>
 
-        <h2 class="h3 mb-0">Split Hero</h2>
+        <span>Component: <code>HeroSplit.astro</code></span>
       </div>
 
       <HeroSplit
@@ -67,63 +57,140 @@ import faq from "../content/faq.json";
       />
     </section>
 
-    <section id="services" class="border-bottom">
-      <div class="container py-4">
-        <p class="text-uppercase text-accent fw-bold small mb-2">
-          Service option 1
-        </p>
+    <section id="services" class="library-preview-section">
+      <div class="library-section-label">
+        <div>
+          <p>02 — Services</p>
+          <h2>Three-Card Services Grid</h2>
+        </div>
 
-        <h2 class="h3 mb-0">Three-Card Services Grid</h2>
+        <span>Component: <code>ServicesGrid.astro</code></span>
       </div>
 
       <ServicesGrid services={services} />
     </section>
 
-    <section id="testimonials" class="border-bottom">
-      <div class="container py-4">
-        <p class="text-uppercase text-accent fw-bold small mb-2">
-          Social proof option 1
-        </p>
+    <section id="testimonials" class="library-preview-section">
+      <div class="library-section-label">
+        <div>
+          <p>03 — Testimonials</p>
+          <h2>Testimonial Cards</h2>
+        </div>
 
-        <h2 class="h3 mb-0">Testimonial Cards</h2>
+        <span>Component: <code>Testimonials.astro</code></span>
       </div>
 
       <Testimonials testimonials={testimonials} />
     </section>
 
-    <section id="faq" class="border-bottom">
-      <div class="container py-4">
-        <p class="text-uppercase text-accent fw-bold small mb-2">
-          FAQ option 1
-        </p>
+    <section id="faq" class="library-preview-section">
+      <div class="library-section-label">
+        <div>
+          <p>04 — FAQs</p>
+          <h2>Bootstrap Accordion</h2>
+        </div>
 
-        <h2 class="h3 mb-0">Bootstrap Accordion</h2>
+        <span>Component: <code>FAQ.astro</code></span>
       </div>
 
       <FAQ items={faq} />
     </section>
 
-    <section id="cta" class="section bg-dark text-white">
-      <div class="container text-center">
-        <p class="text-uppercase text-warning fw-bold small mb-3">
-          CTA option 1
-        </p>
+    <section id="cta" class="library-preview-section">
+      <div class="library-section-label">
+        <div>
+          <p>05 — Calls to Action</p>
+          <h2>High-Contrast Final CTA</h2>
+        </div>
 
-        <h2 class="display-6 mb-4">
-          A simple, high-contrast final call to action.
-        </h2>
-
-        <p class="lead text-white-50 mb-4">
-          Use this near the bottom of a page to move visitors toward calling,
-          booking, requesting an estimate, or starting a conversation.
-        </p>
-
-        <a class="btn btn-light btn-lg" href="/contact">
-          Request an Estimate
-        </a>
+        <span>Inline section — make reusable next</span>
       </div>
+
+      <section class="section bg-dark text-white">
+        <div class="container text-center">
+          <p class="text-uppercase text-warning fw-bold small mb-3">
+            CTA Option One
+          </p>
+
+          <h2 class="display-6 mb-4">
+            A simple, high-contrast final call to action.
+          </h2>
+
+          <p class="lead text-white-50 mb-4">
+            Use it near the bottom of a page to move visitors toward calling,
+            booking, requesting an estimate, or starting a conversation.
+          </p>
+
+          <a class="btn btn-light btn-lg" href="/contact">
+            Request an Estimate
+          </a>
+        </div>
+      </section>
     </section>
   </main>
+</LibraryLayout>
 
-  <Footer />
-</BaseLayout>
+<style>
+  .library-intro {
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .library-preview-section {
+    scroll-margin-top: 1rem;
+  }
+
+  .library-preview-section + .library-preview-section {
+    border-top: 1px solid #dfe3e8;
+  }
+
+  .library-section-label {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 2.5rem clamp(1.5rem, 5vw, 4rem) 1.25rem;
+    background: #fff;
+  }
+
+  .library-section-label p {
+    margin: 0 0 0.35rem;
+    color: #667085;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .library-section-label h2 {
+    margin: 0;
+    color: #172033;
+    font-size: clamp(1.25rem, 2vw, 1.65rem);
+  }
+
+  .library-section-label span {
+    color: #667085;
+    font-size: 0.8rem;
+    text-align: right;
+  }
+
+  .library-section-label code {
+    padding: 0.2rem 0.35rem;
+    border-radius: 0.25rem;
+    color: #14532d;
+    background: #eef5f0;
+  }
+
+  @media (max-width: 767.98px) {
+    .library-section-label {
+      align-items: start;
+      flex-direction: column;
+      gap: 0.7rem;
+      padding: 1.75rem 1rem 1rem;
+    }
+
+    .library-section-label span {
+      text-align: left;
+    }
+  }
+</style>
