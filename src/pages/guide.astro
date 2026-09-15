@@ -1,3 +1,4 @@
+
 ---
 import "../styles/library.css";
 
@@ -19,162 +20,6 @@ const guideNav = [
   { number: "15", label: "Checklists", href: "#checklists" },
   { number: "16", label: "Changelog", href: "#changelog" }
 ];
-
-const doneWhen = [
-  "Client information is accurate and approved.",
-  "The change appears correctly in the local browser preview.",
-  "Mobile and desktop layouts are checked.",
-  "npm run build completes successfully.",
-  "The change is committed with a meaningful Git message.",
-  "Cloudflare deployment succeeds.",
-  "The preview or live site has been checked after deployment."
-];
-
-const updateTypes = [
-  {
-    request: "Business fact or content",
-    where: "src/content/*.json",
-    examples: "Phone, hours, services, FAQs, reviews, address, service areas"
-  },
-  {
-    request: "Brand-wide visual style",
-    where: "src/styles/theme.css",
-    examples: "Colors, fonts, buttons, spacing, radius values"
-  },
-  {
-    request: "Page order or selected content blocks",
-    where: "src/pages/*.astro",
-    examples: "Add, remove, or reorder sections on a page"
-  },
-  {
-    request: "Reusable layout or function",
-    where: "src/components/",
-    examples: "New hero format, service layout, gallery, form component"
-  },
-  {
-    request: "Hosting or domain",
-    where: "Cloudflare Pages / domain registrar",
-    examples: "DNS, redirects, deployment status, custom domain"
-  },
-  {
-    request: "Third-party integration",
-    where: "Client-owned service account",
-    examples: "Forms, booking, CRM, analytics, ecommerce, payments"
-  }
-];
-
-const troubleshooting = [
-  {
-    symptom: "Could not import ../styles/bootstrap.scss",
-    cause: "A file is missing, the import path is wrong, the filename differs, or a hidden .txt extension was added.",
-    fix: "Confirm src/styles/bootstrap.scss exists exactly and contains the Bootstrap Sass import.",
-    escalate: "The file exists, the path and capitalization match, and the build still fails."
-  },
-  {
-    symptom: "Unexpected token",
-    cause: "Pasted Markdown fences, extra words such as text or q tags, a missing JSON comma, a missing Astro frontmatter marker, or invalid syntax.",
-    fix: "Read the named file and line. Remove pasted formatting and compare the nearby code with a known working example.",
-    escalate: "The file looks correct after checking the exact named line and the error remains."
-  },
-  {
-    symptom: "Failed to resolve import",
-    cause: "A component is missing, the path is incorrect, or capitalization differs from the real filename.",
-    fix: "Confirm the exact component path and filename capitalization with find src/components -type f | sort.",
-    escalate: "The file and import path match exactly but Astro still cannot resolve it."
-  },
-  {
-    symptom: "Service cards do not show",
-    cause: "Services were not imported, JSON is invalid, or the component was not given the data it expects.",
-    fix: "Check src/content/services.json, then verify the page imports services and passes it to the service component.",
-    escalate: "The JSON, import, and component props are correct but the section still renders empty."
-  },
-  {
-    symptom: "FAQ does not open",
-    cause: "The component may rely on Bootstrap JavaScript that is not loaded, or accordion IDs conflict.",
-    fix: "If using Bootstrap accordion JavaScript, confirm the Bootstrap bundle is imported in BaseLayout.astro and each accordion ID is unique. Prefer native details and summary where possible.",
-    escalate: "The required JavaScript and unique IDs are confirmed but interaction still fails."
-  },
-  {
-    symptom: "Update works locally but not online",
-    cause: "Files were not committed or pushed, the Cloudflare build failed, the wrong branch deployed, or the browser cached an old page.",
-    fix: "Run git status, commit and push the intended files, inspect the Cloudflare deployment log, confirm the production branch, then hard refresh the browser.",
-    escalate: "Cloudflare shows a successful deployment from the correct commit but the correct update never appears."
-  },
-  {
-    symptom: "Demo content still appears",
-    cause: "The wrong JSON file was edited, content is hard-coded in a component/page, or a second copy exists.",
-    fix: "Search the project for the visible demo text, then update the source file or move repeated business facts into JSON.",
-    escalate: "Search cannot find the displayed text or the component output is unclear."
-  },
-  {
-    symptom: "npm run build fails",
-    cause: "Invalid syntax, a missing import, invalid JSON, an empty dynamic route, or a missing package.",
-    fix: "Fix the first useful error near the top of the output. Do not chase later stack-trace lines until the first named file and line are resolved.",
-    escalate: "The first named error is resolved but the build keeps failing with an unclear new error."
-  }
-];
-
-const cloneCommand = `git clone https://github.com/YOUR-ACCOUNT/client-business-name-website.git
-cd client-business-name-website
-npm install
-npm run dev`;
-
-const setupCommand = `node --version
-npm --version
-git --version`;
-
-const publishCommand = `git status
-git add .
-git commit -m "Update business hours and service area"
-git push`;
-
-const buildCommand = `npm run build
-npm run preview`;
-
-const businessBefore = `{
-  "businessName": "Demo Local Business",
-  "phoneDisplay": "(408) 555-0198",
-  "phoneLink": "+14085550198"
-}`;
-
-const businessAfter = `{
-  "businessName": "Acme Plumbing",
-  "phoneDisplay": "(408) 555-0142",
-  "phoneLink": "+14085550142"
-}`;
-
-const serviceExample = `{
-  "icon": "bi-droplet-fill",
-  "title": "Drain Cleaning",
-  "description": "Professional removal of clogs and drainage issues."
-}`;
-
-const testimonialExample = `{
-  "quote": "The team was responsive, professional, and easy to work with from the first call through completion.",
-  "name": "Jordan M.",
-  "role": "Verified client review"
-}`;
-
-const faqExample = `---
-import FAQ from "../components/sections/FAQ.astro";
-import faq from "../content/faq.json";
----
-
-<FAQ items={faq} />`;
-
-const themeBefore = `:root {
-  --bs-primary: #14532d;
-  --brand-accent: #f59e0b;
-  --font-heading: Arial, sans-serif;
-  --font-body: Arial, sans-serif;
-}`;
-
-const themeAfter = `:root {
-  --bs-primary: #0a4b78;
-  --brand-accent: #e66a2c;
-  --font-heading: "Poppins", sans-serif;
-  --font-body: "Open Sans", sans-serif;
-}`;
 ---
 
 <!doctype html>
@@ -183,10 +28,6 @@ const themeAfter = `:root {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow" />
-    <meta
-      name="description"
-      content="Internal operating manual for building and maintaining client websites."
-    />
     <title>How to Use | Client Website Master Library</title>
   </head>
 
@@ -230,11 +71,6 @@ const themeAfter = `:root {
             ))}
           </nav>
         </div>
-
-        <div class="library-sidebar-footer">
-          <p>Guide = instruction + action + verification.</p>
-          <p><a href="/library">Browse visual components</a></p>
-        </div>
       </aside>
 
       <div class="library-main">
@@ -248,141 +84,59 @@ const themeAfter = `:root {
             <div class="library-intro-inner">
               <p class="library-kicker">Start here</p>
 
-              <h1>Build client sites with confidence, even if you are new to the stack.</h1>
+              <h1>Client Website Operating Manual</h1>
 
               <p class="library-intro-description">
-                This guide explains why each task matters, exactly where to make the
-                change, what to edit or run, how to confirm it worked, and what to do
-                when something fails.
+                Use this guide to create, update, test, deploy, and maintain client
+                websites built from the master library.
               </p>
 
               <div class="library-intro-actions">
-                <a class="library-quick-link" href="#new-client">Start a New Client Site →</a>
-                <a class="library-quick-link" href="#update-decision">Make an Update →</a>
-                <a class="library-quick-link" href="/library">Browse Visual Library</a>
-              </div>
+                <a class="library-quick-link" href="#new-client">
+                  Start a New Client Site →
+                </a>
 
-              <div class="library-mobile-contents">
-                <strong>Jump to a guide section</strong>
+                <a class="library-quick-link" href="#content-updates">
+                  Make an Update →
+                </a>
 
-                <nav aria-label="Mobile operating manual navigation">
-                  {guideNav.map((item) => (
-                    <a href={item.href}>{item.number} {item.label}</a>
-                  ))}
-                </nav>
+                <a class="library-quick-link" href="/library">
+                  Browse Visual Library
+                </a>
               </div>
             </div>
           </section>
 
           <div class="library-content">
-            <section class="library-section">
-              <div class="library-section-heading">
-                <div>
-                  <p class="library-section-number">Quickstart outcome</p>
-                  <h2>Create a branded private client preview</h2>
-                </div>
-
-                <span class="library-badge">Start here</span>
-              </div>
-
-              <div class="library-preview library-preview--white">
-                <div class="guide-meta-grid">
-                  <article class="guide-meta-card">
-                    <span>Goal</span>
-                    <strong>Create a private, branded client website from the master library and publish a Cloudflare Pages preview link.</strong>
-                  </article>
-
-                  <article class="guide-meta-card">
-                    <span>Expected output</span>
-                    <strong>A working .pages.dev preview URL ready for review before connecting a custom domain.</strong>
-                  </article>
-
-                  <article class="guide-meta-card">
-                    <span>Typical time</span>
-                    <strong>2–6 hours for a standard starter website after approved content is received.</strong>
-                  </article>
-
-                  <article class="guide-meta-card">
-                    <span>Owner</span>
-                    <strong>Assigned website builder, with client approval at review and launch stages.</strong>
-                  </article>
-                </div>
-              </div>
-
-              <div class="library-docs">
-                <div>
-                  <h3>Before starting, collect</h3>
-
-                  <ul>
-                    <li>Approved business name and short description</li>
-                    <li>Logo, colors, fonts, and brand assets</li>
-                    <li>Phone, email, address, hours, and service areas</li>
-                    <li>Services and service descriptions</li>
-                    <li>Genuine reviews approved for publication</li>
-                    <li>Approved pages and primary call to action</li>
-                    <li>Images, permissions, and relevant licenses</li>
-                    <li>Domain and account ownership status</li>
-                    <li>Required form, booking, CRM, analytics, ecommerce, or payment tools</li>
-                  </ul>
-                </div>
-
-                <aside class="library-note library-note--warning">
-                  <strong>Do not start from guesses:</strong> confirm business facts,
-                  claims, reviews, photos, service coverage, pricing, booking links,
-                  and legal requirements before launch.
-                </aside>
-              </div>
-            </section>
-
             <section id="computer-setup" class="library-section">
               <div class="library-section-heading">
                 <div>
                   <p class="library-section-number">02 — Set up your computer</p>
-                  <h2>Install the few tools you need</h2>
+                  <h2>Check your local tools</h2>
                 </div>
 
                 <p class="library-component-file">
-                  Output: <code>working local development environment</code>
+                  Goal: <code>run Astro locally</code>
                 </p>
               </div>
 
               <div class="library-preview library-preview--white">
-                <div class="guide-step-grid">
-                  <article class="guide-step-card">
-                    <span class="guide-step-number">1</span>
-                    <h3>Install Node.js</h3>
-                    <p>Node.js runs the project tools. npm is included with it and installs project packages.</p>
-                    <pre class="library-code-block"><code set:text={setupCommand}></code></pre>
-                  </article>
-
-                  <article class="guide-step-card">
-                    <span class="guide-step-number">2</span>
-                    <h3>Install Git</h3>
-                    <p>Git tracks file history and sends your work to GitHub.</p>
-                    <pre class="library-code-block"><code>git --version</code></pre>
-                  </article>
-
-                  <article class="guide-step-card">
-                    <span class="guide-step-number">3</span>
-                    <h3>Install an editor</h3>
-                    <p>Use VS Code or another code editor. Open the project folder, not individual files.</p>
-                    <pre class="library-code-block"><code>code .</code></pre>
-                  </article>
-                </div>
+                <pre class="library-code-block"><code>node --version
+npm --version
+git --version</code></pre>
               </div>
 
               <div class="library-docs">
                 <div>
-                  <h3>Verify it worked</h3>
+                  <h3>Why</h3>
                   <p>
-                    Each terminal command should return a version number. If <code>code .</code>
-                    does not work, open VS Code manually and choose <code>File → Open Folder</code>.
+                    Node.js runs Astro tools, npm installs dependencies, and Git tracks
+                    your work and sends it to GitHub.
                   </p>
                 </div>
 
                 <aside class="library-note">
-                  <strong>Plain language:</strong> Terminal is a text-based way to run
-                  commands. It does not change anything until you run a command.
+                  <strong>Done when:</strong> each command returns a version number.
                 </aside>
               </div>
             </section>
@@ -391,77 +145,41 @@ const themeAfter = `:root {
               <div class="library-section-heading">
                 <div>
                   <p class="library-section-number">03 — Understand the project</p>
-                  <h2>Know where each kind of change belongs</h2>
+                  <h2>Know where to make changes</h2>
                 </div>
 
-                <p class="library-component-file">Start here before editing files</p>
+                <p class="library-component-file">
+                  Rule: <code>content first, components second, pages third</code>
+                </p>
               </div>
 
               <div class="library-preview library-preview--white">
-                <div class="system-flow" aria-label="Website project workflow">
+                <div class="system-flow">
                   <div>MASTER LIBRARY</div>
                   <span>↓ duplicate for each signed client</span>
                   <div>CLIENT-SPECIFIC PRIVATE REPOSITORY</div>
-                  <span>↓ edit content, branding, and page selection</span>
+                  <span>↓ update content, branding, and page selection</span>
                   <div>GITHUB</div>
                   <span>↓ push changes</span>
                   <div>CLOUDFLARE PAGES</div>
-                  <span>↓ automatic build and hosting</span>
+                  <span>↓ build and publish preview</span>
                   <div>PREVIEW URL → CLIENT REVIEW → CLIENT DOMAIN → LIVE WEBSITE</div>
-                </div>
-
-                <div id="update-decision" class="decision-tree">
-                  <h3>Where should I make this change?</h3>
-
-                  <div class="decision-tree__question">
-                    A client wants a website change
-                  </div>
-
-                  <div class="decision-tree__branch">
-                    <article>
-                      <h4>Is it factual content?</h4>
-                      <p>Name, phone, email, hours, services, FAQ, testimonial, copy, or service area.</p>
-                      <strong>Yes → Edit a JSON file in <code>src/content/</code></strong>
-                    </article>
-
-                    <article>
-                      <h4>Is it brand-wide appearance?</h4>
-                      <p>Colors, fonts, spacing, button style, or shared visual tokens.</p>
-                      <strong>Yes → Edit <code>src/styles/theme.css</code></strong>
-                    </article>
-
-                    <article>
-                      <h4>Is it page order?</h4>
-                      <p>Add, remove, or reorder selected sections for one page.</p>
-                      <strong>Yes → Edit the relevant file in <code>src/pages/</code></strong>
-                    </article>
-
-                    <article>
-                      <h4>Is a reusable layout needed?</h4>
-                      <p>A new section, hero format, interaction, or shared function.</p>
-                      <strong>Yes → Build in <code>src/components/</code>; only add to master after testing.</strong>
-                    </article>
-                  </div>
                 </div>
               </div>
 
               <div class="library-docs">
                 <div>
-                  <h3>Plain-language model</h3>
-
+                  <h3>Where changes belong</h3>
                   <ul>
-                    <li><strong>JSON:</strong> factual client content and structured data.</li>
-                    <li><strong>theme.css:</strong> brand-wide appearance such as colors, typography, spacing, and shapes.</li>
-                    <li><strong>Components:</strong> reusable layouts and interface behavior.</li>
-                    <li><strong>Pages:</strong> selected component order and page structure.</li>
-                    <li><strong>Master library:</strong> team-owned, reusable, tested improvements only.</li>
-                    <li><strong>Client repository:</strong> private, client-specific website work.</li>
+                    <li><code>src/content/</code> — business facts, services, reviews, FAQs, and service areas</li>
+                    <li><code>src/styles/theme.css</code> — colors, fonts, spacing, and shared brand styling</li>
+                    <li><code>src/components/</code> — reusable layouts and interactions</li>
+                    <li><code>src/pages/</code> — page structure and component order</li>
                   </ul>
                 </div>
 
                 <aside class="library-note library-note--success">
-                  <strong>Default rule:</strong> normal content changes should be made
-                  in JSON before editing components.
+                  <strong>Default:</strong> change JSON first when a client changes a fact.
                 </aside>
               </div>
             </section>
@@ -470,7 +188,7 @@ const themeAfter = `:root {
               <div class="library-section-heading">
                 <div>
                   <p class="library-section-number">04 — Start a new client website</p>
-                  <h2>Follow the 10 milestones in order</h2>
+                  <h2>Start from a private client repository</h2>
                 </div>
 
                 <p class="library-component-file">
@@ -479,111 +197,24 @@ const themeAfter = `:root {
               </div>
 
               <div class="library-preview library-preview--white">
-                <div class="milestone-list">
-                  <article class="milestone-card">
-                    <span class="guide-step-number">1</span>
-                    <h3>Duplicate the master repository</h3>
-                    <p><strong>Purpose:</strong> create a private client-specific copy while protecting the reusable master library.</p>
-                    <p><strong>What you need:</strong> approved client project name and private GitHub repository access.</p>
-                    <pre class="library-code-block"><code set:text={cloneCommand}></code></pre>
-                    <p><strong>Verify:</strong> Terminal shows a local development URL, usually <code>http://localhost:4321</code>.</p>
-                    <p><strong>Common problem:</strong> repository not found. First check the GitHub URL, account access, and repository privacy settings.</p>
-                  </article>
-
-                  <article class="milestone-card">
-                    <span class="guide-step-number">2</span>
-                    <h3>Run the site locally</h3>
-                    <p><strong>Purpose:</strong> preview changes safely on your computer before anyone else sees them.</p>
-                    <p><strong>Action:</strong> keep <code>npm run dev</code> running, then open the local address in your browser.</p>
-                    <p><strong>Verify:</strong> the homepage opens and the terminal shows no errors.</p>
-                    <p><strong>Done when:</strong> you can view <code>/</code>, <code>/services</code>, <code>/contact</code>, and <code>/library</code> locally.</p>
-                  </article>
-
-                  <article class="milestone-card">
-                    <span class="guide-step-number">3</span>
-                    <h3>Update client business details</h3>
-                    <p><strong>Purpose:</strong> replace demo identity and contact information across the site from one central location.</p>
-                    <p><strong>File:</strong> <code>src/content/site.json</code></p>
-                    <p><strong>Verify:</strong> check header, hero, footer, contact page, and phone link.</p>
-                    <p><strong>First fix:</strong> if changes do not appear, confirm you saved the file and edited the client repository rather than the master library.</p>
-                  </article>
-
-                  <article class="milestone-card">
-                    <span class="guide-step-number">4</span>
-                    <h3>Apply client branding</h3>
-                    <p><strong>Purpose:</strong> make the reusable system visually belong to the client without rewriting every component.</p>
-                    <p><strong>File:</strong> <code>src/styles/theme.css</code></p>
-                    <p><strong>Verify:</strong> inspect buttons, headings, cards, navigation, dark sections, and mobile views.</p>
-                    <p><strong>First fix:</strong> if a color does not change, search for a hard-coded color in the affected component.</p>
-                  </article>
-
-                  <article class="milestone-card">
-                    <span class="guide-step-number">5</span>
-                    <h3>Replace services, reviews, FAQs, and images</h3>
-                    <p><strong>Purpose:</strong> turn the starter into an accurate client site.</p>
-                    <p><strong>Files:</strong> <code>src/content/services.json</code>, <code>testimonials.json</code>, <code>faq.json</code>, and approved assets.</p>
-                    <p><strong>Verify:</strong> no demo text, placeholder images, or sample logos remain.</p>
-                    <p><strong>First fix:</strong> search the project for visible demo wording if you cannot find where it comes from.</p>
-                  </article>
-
-                  <article class="milestone-card">
-                    <span class="guide-step-number">6</span>
-                    <h3>Assemble client pages</h3>
-                    <p><strong>Purpose:</strong> select the best components for the client’s business goal and visitor needs.</p>
-                    <p><strong>Files:</strong> normally <code>src/pages/index.astro</code>, <code>services.astro</code>, <code>about.astro</code>, and <code>contact.astro</code>.</p>
-                    <p><strong>Verify:</strong> headings are logical, sections are useful, and each page has one clear action.</p>
-                    <p><strong>First fix:</strong> use an industry example in <code>/library</code> instead of inventing a page structure from scratch.</p>
-                  </article>
-
-                  <article class="milestone-card">
-                    <span class="guide-step-number">7</span>
-                    <h3>Test locally</h3>
-                    <p><strong>Purpose:</strong> catch content, layout, link, and build failures before client review.</p>
-                    <pre class="library-code-block"><code>npm run build</code></pre>
-                    <p><strong>Verify:</strong> the command finishes successfully and creates a production build.</p>
-                    <p><strong>First fix:</strong> resolve the first named file and line in the error output.</p>
-                  </article>
-
-                  <article class="milestone-card">
-                    <span class="guide-step-number">8</span>
-                    <h3>Push to GitHub and deploy preview</h3>
-                    <p><strong>Purpose:</strong> create a shareable review URL.</p>
-                    <pre class="library-code-block"><code set:text={publishCommand}></code></pre>
-                    <p><strong>Verify:</strong> Cloudflare Pages shows a successful deployment and provides a <code>.pages.dev</code> URL.</p>
-                    <p><strong>First fix:</strong> inspect the Cloudflare build log if deployment fails.</p>
-                  </article>
-
-                  <article class="milestone-card">
-                    <span class="guide-step-number">9</span>
-                    <h3>Collect feedback and revisions</h3>
-                    <p><strong>Purpose:</strong> keep review organized and avoid accidental scope changes.</p>
-                    <p><strong>Action:</strong> collect feedback in one written list, classify each request, confirm scope, then update and redeploy.</p>
-                    <p><strong>Verify:</strong> client can see revisions at the preview URL and confirms outstanding decisions.</p>
-                  </article>
-
-                  <article class="milestone-card">
-                    <span class="guide-step-number">10</span>
-                    <h3>Get launch approval and connect domain</h3>
-                    <p><strong>Purpose:</strong> publish only after the client approves the exact version and account ownership is clear.</p>
-                    <p><strong>Verify:</strong> written approval exists, custom domain works with HTTPS, and every critical action is retested live.</p>
-                    <p><strong>First fix:</strong> do not change DNS until the client confirms account ownership and gives written approval.</p>
-                  </article>
-                </div>
+                <pre class="library-code-block"><code>git clone https://github.com/YOUR-ACCOUNT/client-business-name-website.git
+cd client-business-name-website
+npm install
+npm run dev</code></pre>
               </div>
 
               <div class="library-docs">
                 <div>
-                  <h3>Important local-preview note</h3>
+                  <h3>Verify</h3>
                   <p>
-                    The local development address is normally <code>http://localhost:4321</code>.
-                    It is visible only on your computer until you deploy a preview.
+                    Open the local URL printed in Terminal. It is usually
+                    <code>http://localhost:4321</code> and is visible only on your computer.
                   </p>
                 </div>
 
                 <aside class="library-note">
-                  <strong>Placeholder reminder:</strong> replace <code>YOUR-ACCOUNT</code>
-                  and <code>client-business-name-website</code> in the clone command with the
-                  actual GitHub account and repository name.
+                  <strong>Replace placeholders:</strong> substitute YOUR-ACCOUNT and
+                  client-business-name-website with the real private GitHub repository.
                 </aside>
               </div>
             </section>
@@ -592,253 +223,35 @@ const themeAfter = `:root {
               <div class="library-section-heading">
                 <div>
                   <p class="library-section-number">05 — Update client content</p>
-                  <h2>Edit facts in JSON, not repeated page markup</h2>
+                  <h2>Business details belong in JSON</h2>
                 </div>
 
                 <p class="library-component-file">
-                  Folder: <code>src/content/</code>
+                  File: <code>src/content/site.json</code>
                 </p>
               </div>
 
-              <div class="library-preview library-preview--white">
-                <article class="recipe-card">
-                  <div class="recipe-card__heading">
-                    <div>
-                      <span class="library-badge">Content recipe</span>
-                      <h3>Update client business details</h3>
-                    </div>
+            <div class="library-preview library-preview--white">
+  <pre class="library-code-block"><code set:text={`{
+  "businessName": "Acme Plumbing",
+  "phoneDisplay": "(408) 555-0142",
+  "phoneLink": "+14085550142"
+}`}></code></pre>
+</div>
 
-                    <code>src/content/site.json</code>
-                  </div>
+              <div class="library-docs">
+                <div>
+                  <h3>Verify</h3>
+                  <p>
+                    Check the name and number in Header, Hero, Footer, and Contact page.
+                    Click the phone link in a narrow browser view.
+                  </p>
+                </div>
 
-                  <div class="recipe-columns">
-                    <div>
-                      <h4>Use this when</h4>
-                      <p>The business name, phone, email, address, hours, service area, social links, primary CTA, or legal name changes.</p>
-
-                      <h4>Do not use this when</h4>
-                      <p>The request changes visual design, layout, or the order of page sections.</p>
-
-                      <h4>What it controls</h4>
-                      <p>Shared factual business data used in header, hero, footer, contact routes, SEO, and other reused components.</p>
-                    </div>
-
-                    <div>
-                      <h4>Before</h4>
-                      <pre class="library-code-block"><code set:text={businessBefore}></code></pre>
-
-                      <h4>After</h4>
-                      <pre class="library-code-block"><code set:text={businessAfter}></code></pre>
-                    </div>
-                  </div>
-
-                  <div class="recipe-actions">
-                    <div>
-                      <h4>Exact steps</h4>
-
-                      <ol>
-                        <li>Open <code>src/content/site.json</code>.</li>
-                        <li>Replace only approved factual values.</li>
-                        <li>Save the file.</li>
-                        <li>Run <code>npm run dev</code> and inspect affected pages.</li>
-                        <li>Click the phone link in a narrow/mobile browser view.</li>
-                        <li>Run <code>npm run build</code> before publishing.</li>
-                      </ol>
-                    </div>
-
-                    <div>
-                      <h4>Important rules</h4>
-
-                      <ul>
-                        <li><code>phoneDisplay</code> is shown to visitors.</li>
-                        <li><code>phoneLink</code> uses country code and numbers only.</li>
-                        <li>JSON requires double quotes.</li>
-                        <li>JSON does not allow comments.</li>
-                        <li>Never leave a trailing comma after the final item.</li>
-                      </ul>
-                    </div>
-                  </div>
-                </article>
-
-                <article class="recipe-card">
-                  <div class="recipe-card__heading">
-                    <div>
-                      <span class="library-badge">Content recipe</span>
-                      <h3>Add, remove, or update a service</h3>
-                    </div>
-
-                    <code>src/content/services.json</code>
-                  </div>
-
-                  <div class="recipe-columns">
-                    <div>
-                      <h4>Use this when</h4>
-                      <p>A client adds, removes, renames, reprioritizes, or clarifies a service offering.</p>
-
-                      <h4>What it controls</h4>
-                      <p>The Services Grid creates one card for each service object. Do not duplicate cards manually in homepage HTML.</p>
-                    </div>
-
-                    <div>
-                      <h4>Service object</h4>
-                      <pre class="library-code-block"><code set:text={serviceExample}></code></pre>
-                    </div>
-                  </div>
-
-                  <div class="recipe-actions">
-                    <div>
-                      <h4>Exact steps</h4>
-
-                      <ol>
-                        <li>Open <code>src/content/services.json</code>.</li>
-                        <li>Edit an existing object or add a new object inside the surrounding <code>[ ... ]</code> list.</li>
-                        <li>Add a comma after the preceding object, never after the final object.</li>
-                        <li>Use a real Bootstrap icon class beginning with <code>bi-</code> only if Bootstrap Icons are installed and loaded.</li>
-                        <li>Keep titles concise and descriptions focused on the client benefit.</li>
-                        <li>Add a URL only when the destination page exists.</li>
-                      </ol>
-                    </div>
-
-                    <div>
-                      <h4>Test and recover</h4>
-                      <p>
-                        Check every service card appears, wraps correctly on mobile, and
-                        points to a working destination. If cards disappear, validate JSON
-                        syntax first, then verify the services data import and component prop.
-                      </p>
-                    </div>
-                  </div>
-                </article>
-
-                <article class="recipe-card">
-                  <div class="recipe-card__heading">
-                    <div>
-                      <span class="library-badge library-badge--draft">Approval required</span>
-                      <h3>Add an approved testimonial</h3>
-                    </div>
-
-                    <code>src/content/testimonials.json</code>
-                  </div>
-
-                  <div class="recipe-columns">
-                    <div>
-                      <h4>Use this when</h4>
-                      <p>The client supplies a genuine review and confirms it may be used on the website.</p>
-
-                      <h4>Do not use this when</h4>
-                      <p>You only have an informal claim, do not know the source, or lack permission to publish the reviewer name.</p>
-                    </div>
-
-                    <div>
-                      <h4>Testimonial object</h4>
-                      <pre class="library-code-block"><code set:text={testimonialExample}></code></pre>
-                    </div>
-                  </div>
-
-                  <div class="recipe-actions">
-                    <div>
-                      <h4>Important ethics rules</h4>
-
-                      <ul>
-                        <li>Never invent reviews, names, star ratings, review-source badges, or client logos.</li>
-                        <li>Use real, approved content and allowed attribution only.</li>
-                        <li>Do not publish a full reviewer name without appropriate permission.</li>
-                        <li>Do not imply a platform source unless the review is genuinely from that source and display is permitted.</li>
-                      </ul>
-                    </div>
-
-                    <div>
-                      <h4>Verify</h4>
-                      <p>
-                        Confirm exact quote, attribution, spelling, permission, responsive
-                        layout, and contrast. Run a production build before deployment.
-                      </p>
-                    </div>
-                  </div>
-                </article>
-
-                <article class="recipe-card">
-                  <div class="recipe-card__heading">
-                    <div>
-                      <span class="library-badge">Content recipe</span>
-                      <h3>Update FAQs</h3>
-                    </div>
-
-                    <code>src/content/faq.json</code>
-                  </div>
-
-                  <div class="recipe-columns">
-                    <div>
-                      <h4>Use this when</h4>
-                      <p>You need to clarify real customer questions about process, timing, preparation, service areas, availability, or next steps.</p>
-
-                      <h4>Do not use this when</h4>
-                      <p>You are changing the accordion layout or behavior. That is a component task.</p>
-                    </div>
-
-                    <div>
-                      <h4>Import and usage pattern</h4>
-                      <pre class="library-code-block"><code set:text={faqExample}></code></pre>
-                    </div>
-                  </div>
-
-                  <div class="recipe-actions">
-                    <div>
-                      <h4>Exact steps</h4>
-
-                      <ol>
-                        <li>Edit questions and answers in <code>src/content/faq.json</code>.</li>
-                        <li>Do not edit accordion markup for normal factual changes.</li>
-                        <li>Keep each question short and answer it directly.</li>
-                        <li>Keep a nearby contact CTA for visitors with an unanswered question.</li>
-                      </ol>
-                    </div>
-
-                    <div>
-                      <h4>Test and recover</h4>
-                      <p>
-                        Check opening and closing, keyboard access, mobile layout, and factual
-                        accuracy. If it does not open, check whether the component uses native
-                        details/summary or Bootstrap JavaScript.
-                      </p>
-                    </div>
-                  </div>
-                </article>
-
-                <article class="recipe-card">
-                  <div class="recipe-card__heading">
-                    <div>
-                      <span class="library-badge">Asset recipe</span>
-                      <h3>Replace images and logo</h3>
-                    </div>
-
-                    <code>src/assets/ · public/images/ · public/favicon.svg</code>
-                  </div>
-
-                  <div class="recipe-actions">
-                    <div>
-                      <h4>Where files belong</h4>
-
-                      <ul>
-                        <li><code>src/assets/</code>: images imported into components and processed by the build workflow where applicable.</li>
-                        <li><code>public/</code>: files served directly at fixed URLs, such as favicons, robots.txt, downloads, and other stable static files.</li>
-                        <li><code>public/favicon.svg</code>: browser icon shown in tabs.</li>
-                      </ul>
-                    </div>
-
-                    <div>
-                      <h4>Rules and verification</h4>
-
-                      <ul>
-                        <li>Use meaningful names: <code>acme-plumbing-technician.jpg</code>, not <code>IMG_0029.jpg</code>.</li>
-                        <li>Never put secrets, contracts, raw intake forms, private photos, API keys, or unlicensed images in <code>public/</code>.</li>
-                        <li>Replace every demo image and placeholder before launch.</li>
-                        <li>Add accurate alt text when an image conveys useful information.</li>
-                        <li>Check crop, distortion, loading, mobile layout, and permission status.</li>
-                      </ul>
-                    </div>
-                  </div>
-                </article>
+                <aside class="library-note library-note--warning">
+                  <strong>JSON rule:</strong> use double quotes and do not leave a comma
+                  after the final item in a list or object.
+                </aside>
               </div>
             </section>
 
@@ -846,7 +259,7 @@ const themeAfter = `:root {
               <div class="library-section-heading">
                 <div>
                   <p class="library-section-number">06 — Change brand and design tokens</p>
-                  <h2>Change shared styling once, then verify everywhere</h2>
+                  <h2>Update shared design values</h2>
                 </div>
 
                 <p class="library-component-file">
@@ -854,70 +267,23 @@ const themeAfter = `:root {
                 </p>
               </div>
 
-              <div class="library-preview library-preview--white">
-                <article class="recipe-card">
-                  <div class="recipe-columns">
-                    <div>
-                      <h3>Why this matters</h3>
-                      <p>
-                        Theme tokens are reusable named values. They let one approved
-                        change update many components consistently, instead of creating
-                        one-off colors or fonts inside every component.
-                      </p>
-
-                      <h4>Use this when</h4>
-                      <p>Changing brand colors, typography, spacing, radius, shared button styling, or visual rhythm.</p>
-                    </div>
-
-                    <div>
-                      <h4>Before</h4>
-                      <pre class="library-code-block"><code set:text={themeBefore}></code></pre>
-
-                      <h4>After</h4>
-                      <pre class="library-code-block"><code set:text={themeAfter}></code></pre>
-                    </div>
-                  </div>
-
-                  <div class="recipe-actions">
-                    <div>
-                      <h4>Exact steps</h4>
-
-                      <ol>
-                        <li>Open <code>src/styles/theme.css</code>.</li>
-                        <li>Change values, not token names, unless deliberately improving the master library.</li>
-                        <li>Confirm a selected font is actually imported or loaded before naming it in CSS.</li>
-                        <li>Run <code>npm run dev</code> and inspect major page patterns.</li>
-                        <li>Run <code>npm run build</code> before deployment.</li>
-                      </ol>
-                    </div>
-
-                    <div>
-                      <h4>Test before publishing</h4>
-
-                      <ul>
-                        <li>Text contrast and readability</li>
-                        <li>Buttons, links, headings, cards, and dark sections</li>
-                        <li>Mobile navigation and focus states</li>
-                        <li>Any Bootstrap colors overridden by the custom theme</li>
-                      </ul>
-                    </div>
-                  </div>
-                </article>
-              </div>
-
+          <div class="library-preview library-preview--white">
+  <pre class="library-code-block"><code set:text={`:root {
+  --color-primary: #0a4b78;
+  --color-accent: #e66a2c;
+}`}></code></pre>
+</div>
               <div class="library-docs">
                 <div>
-                  <h3>Do not</h3>
+                  <h3>Verify</h3>
                   <p>
-                    Do not create arbitrary one-off colors in each component without a
-                    documented reason. Start with the theme file; only use component-level
-                    styling for genuine component-specific needs.
+                    Review buttons, headings, links, cards, dark sections, and mobile
+                    navigation after any brand-wide token change.
                   </p>
                 </div>
 
-                <aside class="library-note library-note--warning">
-                  <strong>Font warning:</strong> CSS does not download a font by itself.
-                  Do not claim a font is in use unless the project actually imports or loads it.
+                <aside class="library-note">
+                  <strong>Rule:</strong> change token values before adding one-off component colors.
                 </aside>
               </div>
             </section>
@@ -926,122 +292,37 @@ const themeAfter = `:root {
               <div class="library-section-heading">
                 <div>
                   <p class="library-section-number">07 — Build pages from components</p>
-                  <h2>Choose a recipe, then assemble only what is useful</h2>
+                  <h2>Use the visual library to choose sections</h2>
                 </div>
 
                 <p class="library-component-file">
-                  Reference: <code>/library#industry-examples</code>
+                  Visual tool: <code>/library</code>
                 </p>
               </div>
 
               <div class="library-preview library-preview--white">
-                <div class="recipe-grid">
-                  <article class="website-recipe">
-                    <span class="library-badge">Website recipe</span>
-                    <h3>Local Service Business Homepage</h3>
-                    <p><strong>Best for:</strong> plumbers, electricians, HVAC teams, cleaners, landscapers, painters, roofers, contractors, and trades.</p>
-                    <p><strong>Primary conversion:</strong> calls and quote/estimate requests.</p>
-                    <p><strong>Required content:</strong> clear promise, service area, 3–6 services, contact route, verified proof, approved reviews, FAQs, and permitted real photos.</p>
-
-                    <ol>
-                      <li>Header</li>
-                      <li>HeroSplit</li>
-                      <li>Trust/credentials section</li>
-                      <li>ServicesGrid</li>
-                      <li>WhyChooseUs</li>
-                      <li>Testimonials</li>
-                      <li>ProcessSteps</li>
-                      <li>FAQ</li>
-                      <li>ContactCTA</li>
-                      <li>Footer</li>
-                    </ol>
-
-                    <p><strong>Build:</strong> update site.json, theme, service/review/FAQ data, replace demo assets, assemble in src/pages/index.astro, test call and quote routes, then build.</p>
-                    <p><strong>Avoid:</strong> unverified emergency availability, licensing, insurance, guarantees, pricing, or response-time claims.</p>
-                  </article>
-
-                  <article class="website-recipe">
-                    <span class="library-badge">Website recipe</span>
-                    <h3>Professional Services Homepage</h3>
-                    <p><strong>Best for:</strong> consultants, accountants, legal offices, agencies, coaches, advisors, and B2B services.</p>
-                    <p><strong>Primary conversion:</strong> consultation or discovery-call requests.</p>
-                    <p><strong>Required content:</strong> expertise statement, approved credentials, clear services, process, permitted proof, consultation route, and FAQs.</p>
-
-                    <ol>
-                      <li>Professional header</li>
-                      <li>Centered or split hero</li>
-                      <li>Credentials/proof</li>
-                      <li>Service detail grid</li>
-                      <li>ProcessSteps</li>
-                      <li>Case study or approved proof</li>
-                      <li>FAQ</li>
-                      <li>Booking CTA</li>
-                      <li>Footer</li>
-                    </ol>
-
-                    <p><strong>Avoid:</strong> fabricated outcomes, client logos without permission, unverified credentials, or legal/financial promises.</p>
-                  </article>
-
-                  <article class="website-recipe">
-                    <span class="library-badge">Website recipe</span>
-                    <h3>Salon and Beauty Homepage</h3>
-                    <p><strong>Best for:</strong> salons, barbers, estheticians, nail studios, makeup artists, and wellness providers.</p>
-                    <p><strong>Primary conversion:</strong> appointment or consultation requests.</p>
-                    <p><strong>Required content:</strong> booking link, approved service list/pricing, consented gallery images, policies, team/stylist details, reviews, and service area.</p>
-
-                    <ol>
-                      <li>Portfolio hero</li>
-                      <li>Services/pricing</li>
-                      <li>Gallery</li>
-                      <li>Team/stylists</li>
-                      <li>Testimonials</li>
-                      <li>Policies/FAQ</li>
-                      <li>Booking CTA</li>
-                      <li>Footer</li>
-                    </ol>
-
-                    <p><strong>Avoid:</strong> result guarantees, inaccurate availability, unverified prices, or client photos without consent.</p>
-                  </article>
-
-                  <article class="website-recipe">
-                    <span class="library-badge">Website recipe</span>
-                    <h3>Restaurant and Café Homepage</h3>
-                    <p><strong>Best for:</strong> restaurants, cafés, bakeries, caterers, food trucks, bars, and similar venues.</p>
-                    <p><strong>Primary conversion:</strong> visits, reservations, orders, or catering inquiries.</p>
-                    <p><strong>Required content:</strong> current hours, address/map link, menu information, dietary/allergen details where relevant, reservation/order URL, approved food photos, and contact route.</p>
-
-                    <ol>
-                      <li>Restaurant hero</li>
-                      <li>Menu preview</li>
-                      <li>Hours and location</li>
-                      <li>Gallery</li>
-                      <li>Testimonials</li>
-                      <li>Reservation/order CTA</li>
-                      <li>Footer</li>
-                    </ol>
-
-                    <p><strong>Avoid:</strong> stale menus, inaccurate prices, unverified allergen claims, or outdated reservation/delivery links.</p>
-                  </article>
-                </div>
+                <ol class="library-checklist">
+                  <li>Choose the closest industry example.</li>
+                  <li>Update approved content and brand data first.</li>
+                  <li>Open the page file, such as <code>src/pages/index.astro</code>.</li>
+                  <li>Import the needed reusable components.</li>
+                  <li>Arrange components around one primary visitor action.</li>
+                  <li>Test desktop, tablet, and mobile layouts.</li>
+                </ol>
               </div>
 
               <div class="library-docs">
                 <div>
-                  <h3>Exact assembly steps</h3>
-
-                  <ol>
-                    <li>Open the closest full example from the visual library.</li>
-                    <li>Open the page file to build, such as <code>src/pages/index.astro</code>.</li>
-                    <li>Import selected components at the top of the file.</li>
-                    <li>Place components inside the page in the recommended order.</li>
-                    <li>Pass only approved data through JSON or component props.</li>
-                    <li>Preview locally, check headings and CTAs, then build.</li>
-                  </ol>
+                  <h3>Recommended service homepage order</h3>
+                  <p>
+                    Header → Hero → Trust proof → Services → Why choose us →
+                    Testimonials → Process → FAQ → Contact CTA → Footer.
+                  </p>
                 </div>
 
                 <aside class="library-note">
-                  <strong>Starting point only:</strong> an industry recipe is not a mandatory
-                  collection of sections. Choose components based on business goal and visitor need.
+                  <strong>Do not overbuild:</strong> choose only sections that support a real
+                  business goal and visitor decision.
                 </aside>
               </div>
             </section>
@@ -1049,51 +330,38 @@ const themeAfter = `:root {
             <section id="integrations" class="library-section">
               <div class="library-section-heading">
                 <div>
-                  <p class="library-section-number">08 — Images, forms, booking, and links</p>
-                  <h2>Connect real actions and test them end to end</h2>
+                  <p class="library-section-number">08 — Add images, forms, booking, and links</p>
+                  <h2>Test real actions end to end</h2>
                 </div>
 
                 <p class="library-component-file">
-                  Files: <code>src/components/forms/</code> · <code>src/content/site.json</code>
+                  Assets: <code>src/assets/</code> · <code>public/</code>
                 </p>
               </div>
 
               <div class="library-preview library-preview--white">
-                <div class="guide-step-grid">
-                  <article class="guide-step-card">
-                    <h3>Images</h3>
-                    <p>Use supplied, licensed, or permission-cleared images only. Put imported build assets in src/assets/; use public/ for fixed direct URLs.</p>
-                    <p><strong>Verify:</strong> image appears, is not distorted, has meaningful alt text where needed, and is permitted for web use.</p>
-                  </article>
-
-                  <article class="guide-step-card">
-                    <h3>Forms</h3>
-                    <p>Connect the approved client-owned provider or scoped service. A form is not working until a real submission reaches the correct recipient.</p>
-                    <p><strong>Verify:</strong> submit a test, confirm receipt, check spam handling, success state, error state, and mobile usability.</p>
-                  </article>
-
-                  <article class="guide-step-card">
-                    <h3>Booking, CRM, analytics, payments</h3>
-                    <p>Use client-owned accounts whenever possible. Store only necessary public IDs or configuration; never commit private keys or passwords.</p>
-                    <p><strong>Verify:</strong> click through the live integration and confirm the expected action occurs in the client-owned system.</p>
-                  </article>
-                </div>
+                <ol class="library-checklist">
+                  <li>Use only client-supplied, licensed, or permission-cleared images.</li>
+                  <li>Use meaningful image names such as <code>acme-plumbing-technician.jpg</code>.</li>
+                  <li>Use client-owned accounts for booking, CRM, analytics, ecommerce, and payments where possible.</li>
+                  <li>Submit a real form test and confirm it reaches the intended recipient.</li>
+                  <li>Test every phone, email, map, booking, payment, social, and download link.</li>
+                </ol>
               </div>
 
               <div class="library-docs">
                 <div>
-                  <h3>Link checks</h3>
+                  <h3>Security rule</h3>
                   <p>
-                    Test calls, email links, maps, social links, booking, downloads,
-                    payments, and every external CTA. Do not claim an integration works
-                    until it has been tested.
+                    Never place API keys, passwords, contracts, client intake forms,
+                    credentials, or private data in public repositories or the
+                    <code>public/</code> directory.
                   </p>
                 </div>
 
                 <aside class="library-note library-note--warning">
-                  <strong>Security rule:</strong> never place API keys, passwords,
-                  contracts, private intake forms, credentials, or client data in public
-                  repositories or in the <code>public/</code> folder.
+                  <strong>Do not claim:</strong> a form or integration works until it has been
+                  tested using the client’s real destination.
                 </aside>
               </div>
             </section>
@@ -1102,77 +370,34 @@ const themeAfter = `:root {
               <div class="library-section-heading">
                 <div>
                   <p class="library-section-number">09 — Test before client review</p>
-                  <h2>Check accuracy, functionality, design, and technical health</h2>
+                  <h2>Verify the production build</h2>
                 </div>
 
-                <span class="library-badge library-badge--draft">Required before review</span>
+                <p class="library-component-file">
+                  Commands: <code>npm run build</code> · <code>npm run preview</code>
+                </p>
               </div>
 
               <div class="library-preview library-preview--white">
-                <div class="qa-grid">
-                  <article class="qa-card">
-                    <h3>Content accuracy</h3>
-
-                    <ul>
-                      <li>Business name, phone, email, address, hours, and service area are correct</li>
-                      <li>Service descriptions, pricing, claims, and guarantees are accurate where applicable</li>
-                      <li>Testimonials are real, approved, and attributed appropriately</li>
-                      <li>No demo copy, placeholder images, sample logos, fake reviews, or unfinished pages remain</li>
-                    </ul>
-                  </article>
-
-                  <article class="qa-card">
-                    <h3>Functionality</h3>
-
-                    <ul>
-                      <li>Navigation, CTA, phone, email, map, social, booking, and download links work</li>
-                      <li>Form delivery reaches the intended recipient</li>
-                      <li>Spam protection is configured where appropriate</li>
-                      <li>Mobile menu and FAQ work</li>
-                      <li>No broken URLs or obvious browser-console errors appear</li>
-                    </ul>
-                  </article>
-
-                  <article class="qa-card">
-                    <h3>Design and responsiveness</h3>
-
-                    <ul>
-                      <li>Phone, tablet, and desktop layouts are checked</li>
-                      <li>No horizontal overflow appears</li>
-                      <li>Tap targets are usable and text is readable</li>
-                      <li>Images are relevant and not distorted</li>
-                      <li>Headings follow a logical hierarchy and contrast is acceptable</li>
-                    </ul>
-                  </article>
-
-                  <article class="qa-card">
-                    <h3>Technical</h3>
-
-                    <ul>
-                      <li>Page titles and meta descriptions are appropriate</li>
-                      <li>Favicon and appropriate legal/privacy pages exist</li>
-                      <li>robots.txt is accurate for the production domain when used</li>
-                      <li>No secret keys are present in code or public files</li>
-                      <li>npm run build succeeds</li>
-                    </ul>
-                  </article>
-                </div>
+                <pre class="library-code-block"><code>npm run build
+npm run preview</code></pre>
               </div>
 
               <div class="library-docs">
                 <div>
-                  <h3>Run the production test</h3>
-                  <pre class="library-code-block"><code set:text={buildCommand}></code></pre>
-
-                  <p>
-                    npm run build creates the production version; npm run preview
-                    lets you inspect that built version locally.
-                  </p>
+                  <h3>Done when</h3>
+                  <ul>
+                    <li>Business facts are accurate and approved.</li>
+                    <li>Desktop and mobile layouts are checked.</li>
+                    <li>Links, phone actions, forms, and CTAs work.</li>
+                    <li>No demo copy, placeholder images, fake reviews, or unfinished pages remain.</li>
+                    <li>The production build succeeds.</li>
+                  </ul>
                 </div>
 
                 <aside class="library-note library-note--success">
-                  <strong>Definition of Done:</strong> use the shared completion checklist
-                  below before marking any major guide task complete.
+                  <strong>Definition of done:</strong> a saved file is not complete until its
+                  visible result is tested locally and after deployment.
                 </aside>
               </div>
             </section>
@@ -1181,86 +406,34 @@ const themeAfter = `:root {
               <div class="library-section-heading">
                 <div>
                   <p class="library-section-number">10 — Publish a preview</p>
-                  <h2>Push approved work to GitHub and Cloudflare Pages</h2>
+                  <h2>Commit, push, and verify deployment</h2>
                 </div>
 
                 <p class="library-component-file">
-                  Output: <code>preview deployment</code>
+                  Output: <code>.pages.dev preview</code>
                 </p>
               </div>
 
               <div class="library-preview library-preview--white">
-                <article class="recipe-card">
-                  <h3>Publish a client update</h3>
-
-                  <div class="recipe-columns">
-                    <div>
-                      <h4>Before publishing</h4>
-
-                      <ul>
-                        <li>Client approval is confirmed if the workflow requires it</li>
-                        <li>Local browser test is complete with <code>npm run dev</code></li>
-                        <li>Production build succeeds with <code>npm run build</code></li>
-                        <li>Important contact, conversion, and form paths are tested</li>
-                      </ul>
-                    </div>
-
-                    <div>
-                      <h4>Commands</h4>
-                      <pre class="library-code-block"><code set:text={publishCommand}></code></pre>
-                    </div>
-                  </div>
-
-                  <div class="recipe-actions">
-                    <div>
-                      <h4>What happens next</h4>
-
-                      <ol>
-                        <li>GitHub receives the updated source files.</li>
-                        <li>Cloudflare Pages detects the push to its connected branch.</li>
-                        <li>Cloudflare runs the build command, normally <code>npm run build</code>.</li>
-                        <li>The built static site is generated in <code>dist/</code>.</li>
-                        <li>Cloudflare publishes the deployment URL or live version.</li>
-                        <li>The team verifies relevant pages and interactions.</li>
-                      </ol>
-                    </div>
-
-                    <div>
-                      <h4>Use clear commit messages</h4>
-
-                      <ul>
-                        <li><code>Add client logo and brand colors</code></li>
-                        <li><code>Update service areas and business hours</code></li>
-                        <li><code>Add approved customer reviews</code></li>
-                        <li><code>Create contact page and lead form</code></li>
-                        <li><code>Fix mobile navigation spacing</code></li>
-                      </ul>
-
-                      <p><strong>Avoid:</strong> <code>update</code>, <code>changes</code>, or <code>fix stuff</code>.</p>
-                    </div>
-                  </div>
-                </article>
+                <pre class="library-code-block"><code>git status
+git add .
+git commit -m "Update business hours and service area"
+git push</code></pre>
               </div>
 
               <div class="library-docs">
                 <div>
-                  <h3>Post-deployment verification</h3>
-
-                  <ul>
-                    <li>Cloudflare deployment status succeeded</li>
-                    <li>Correct page opens and requested change is visible</li>
-                    <li>Phone/contact actions work</li>
-                    <li>Form delivery works when relevant</li>
-                    <li>Mobile layout works</li>
-                    <li>No demo content remains</li>
-                    <li>Client is informed if required by workflow</li>
-                  </ul>
+                  <h3>What happens</h3>
+                  <p>
+                    GitHub receives your files. Cloudflare Pages detects the push,
+                    runs the build, creates the site in <code>dist</code>, and publishes
+                    the deployment.
+                  </p>
                 </div>
 
                 <aside class="library-note">
-                  <strong>Cloudflare setup:</strong> for a standard Astro static project,
-                  use <code>npm run build</code> and <code>dist</code> as the output
-                  directory in Cloudflare Pages.
+                  <strong>Verify:</strong> confirm Cloudflare reports success, open the target
+                  page, check the requested update, then test the relevant call to action.
                 </aside>
               </div>
             </section>
@@ -1269,42 +442,38 @@ const themeAfter = `:root {
               <div class="library-section-heading">
                 <div>
                   <p class="library-section-number">11 — Launch on client domain</p>
-                  <h2>Publish with clear ownership and written approval</h2>
+                  <h2>Launch only with ownership and approval clear</h2>
                 </div>
 
-                <span class="library-badge library-badge--draft">Approval required</span>
+                <p class="library-component-file">
+                  Owner: <code>client domain and paid accounts</code>
+                </p>
               </div>
 
               <div class="library-preview library-preview--white">
                 <ol class="library-checklist">
-                  <li>Obtain written approval to launch the exact reviewed version.</li>
-                  <li>Add or connect the custom domain in Cloudflare Pages.</li>
-                  <li>Configure DNS in the correct client-owned registrar or Cloudflare account.</li>
-                  <li>Confirm HTTPS/SSL is active.</li>
-                  <li>Confirm root domain and www behavior intentionally.</li>
-                  <li>Re-test every critical page, CTA, form, and link on the custom domain.</li>
-                  <li>Send client handoff information.</li>
-                  <li>Record launch date, deployment, access owner, and recurring third-party costs.</li>
+                  <li>Get written approval to launch the reviewed version.</li>
+                  <li>Connect the custom domain in Cloudflare Pages.</li>
+                  <li>Configure DNS in the client-owned account.</li>
+                  <li>Confirm HTTPS and intended root/www behavior.</li>
+                  <li>Re-test every critical page, CTA, form, and link on the live domain.</li>
+                  <li>Record launch date, access owner, deployment, and recurring tool costs.</li>
                 </ol>
               </div>
 
               <div class="library-docs">
                 <div>
                   <h3>Ownership rules</h3>
-
-                  <ul>
-                    <li>The client should own the domain registrar account.</li>
-                    <li>Prefer client ownership of Cloudflare and paid third-party accounts.</li>
-                    <li>The team receives required collaborator/admin access rather than taking ownership.</li>
-                    <li>The team-owned master library is never transferred to clients.</li>
-                    <li>Client repository ownership and access follow the contract and handoff plan.</li>
-                  </ul>
+                  <p>
+                    The client should own the domain registrar and relevant paid services.
+                    The team receives needed collaborator access. The reusable master
+                    library remains team-owned.
+                  </p>
                 </div>
 
                 <aside class="library-note library-note--warning">
-                  <strong>Never store credentials:</strong> do not put account passwords,
-                  API secrets, recovery codes, or access tokens in the guide, repository,
-                  JSON files, or project assets.
+                  <strong>Never store credentials:</strong> do not commit passwords, API secrets,
+                  recovery codes, or access tokens into the repository.
                 </aside>
               </div>
             </section>
@@ -1313,11 +482,11 @@ const themeAfter = `:root {
               <div class="library-section-heading">
                 <div>
                   <p class="library-section-number">12 — Make maintenance updates</p>
-                  <h2>Classify the request before touching code</h2>
+                  <h2>Classify, edit, test, publish, verify</h2>
                 </div>
 
                 <p class="library-component-file">
-                  Flow: <code>request → classify → test → deploy → verify</code>
+                  Rule: <code>content first</code>
                 </p>
               </div>
 
@@ -1333,13 +502,35 @@ const themeAfter = `:root {
                     </thead>
 
                     <tbody>
-                      {updateTypes.map((item) => (
-                        <tr>
-                          <td>{item.request}</td>
-                          <td><code>{item.where}</code></td>
-                          <td>{item.examples}</td>
-                        </tr>
-                      ))}
+                      <tr>
+                        <td>Business fact or content</td>
+                        <td><code>src/content/*.json</code></td>
+                        <td>Phone, hours, services, FAQs, reviews</td>
+                      </tr>
+
+                      <tr>
+                        <td>Brand-wide visual style</td>
+                        <td><code>src/styles/theme.css</code></td>
+                        <td>Colors, fonts, buttons, spacing</td>
+                      </tr>
+
+                      <tr>
+                        <td>Page order or blocks</td>
+                        <td><code>src/pages/*.astro</code></td>
+                        <td>Add, remove, reorder sections</td>
+                      </tr>
+
+                      <tr>
+                        <td>Reusable layout or feature</td>
+                        <td><code>src/components/</code></td>
+                        <td>New hero, gallery, form section</td>
+                      </tr>
+
+                      <tr>
+                        <td>Hosting or domain</td>
+                        <td>Cloudflare / registrar</td>
+                        <td>DNS, redirects, deployment status</td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -1347,18 +538,17 @@ const themeAfter = `:root {
 
               <div class="library-docs">
                 <div>
-                  <h3>Maintenance update flow</h3>
+                  <h3>Maintenance flow</h3>
                   <p>
-                    Request received → classify → confirm scope and approval → edit →
+                    Request received → classify → confirm scope/approval → edit →
                     local test → production build → Git commit/push → Cloudflare deploy →
                     live verification → client notification → document result.
                   </p>
                 </div>
 
                 <aside class="library-note">
-                  <strong>First question:</strong> is this a content change, brand change,
-                  page-assembly change, reusable component need, deployment issue, or
-                  third-party integration request?
+                  <strong>First question:</strong> what kind of request is this? Do not edit
+                  components until you know JSON or theme.css is not the correct location.
                 </aside>
               </div>
             </section>
@@ -1367,7 +557,7 @@ const themeAfter = `:root {
               <div class="library-section-heading">
                 <div>
                   <p class="library-section-number">13 — Add a reusable component</p>
-                  <h2>Protect the master library from client-specific clutter</h2>
+                  <h2>Improve the master deliberately</h2>
                 </div>
 
                 <p class="library-component-file">
@@ -1376,41 +566,15 @@ const themeAfter = `:root {
               </div>
 
               <div class="library-preview library-preview--white">
-                <div class="qa-grid">
-                  <article class="qa-card">
-                    <h3>Ask before adding</h3>
-
-                    <ul>
-                      <li>Will multiple future clients likely need this?</li>
-                      <li>Is it generic enough to avoid client-specific branding or facts?</li>
-                      <li>Can it accept content through props or JSON?</li>
-                      <li>Has it been tested on desktop and mobile?</li>
-                    </ul>
-                  </article>
-
-                  <article class="qa-card">
-                    <h3>Quality checks</h3>
-
-                    <ul>
-                      <li>Does it meet accessibility and visual quality requirements?</li>
-                      <li>Is it documented in the visual catalog and how-to guide?</li>
-                      <li>Does it need sample data, tests, or industry-recipe updates?</li>
-                      <li>Can existing clients adopt it safely, without forced upgrades?</li>
-                    </ul>
-                  </article>
-                </div>
-
                 <ol class="library-checklist">
-                  <li>Identify a repeated reusable need.</li>
-                  <li>Build and test it in a client branch or safe prototype.</li>
-                  <li>Remove client-specific names, copy, branding, images, and private logic.</li>
-                  <li>Add flexible props or a JSON data structure.</li>
-                  <li>Add a visual preview to /library.</li>
-                  <li>Add Best for, Avoid when, Required content, and usage instructions.</li>
+                  <li>Confirm multiple future clients will likely need the component.</li>
+                  <li>Build and test it in a client branch or safe prototype first.</li>
+                  <li>Remove client names, branding, images, private logic, and hard-coded facts.</li>
+                  <li>Use props or JSON for flexible content.</li>
+                  <li>Add a preview and clear documentation to the visual library.</li>
+                  <li>Test desktop, mobile, accessibility, and production build behavior.</li>
                   <li>Update the changelog.</li>
-                  <li>Test build and visual behavior.</li>
-                  <li>Merge deliberately into the master library.</li>
-                  <li>Decide separately whether existing client sites should be upgraded.</li>
+                  <li>Merge deliberately and decide separately whether existing clients should upgrade.</li>
                 </ol>
               </div>
 
@@ -1419,13 +583,13 @@ const themeAfter = `:root {
                   <h3>Protection rule</h3>
                   <p>
                     Do not copy every client-specific request into the master library.
-                    The master library contains only reusable, generic, tested improvements.
+                    The master holds only reusable, generic, tested improvements.
                   </p>
                 </div>
 
                 <aside class="library-note library-note--warning">
-                  <strong>Do not force upgrades:</strong> an improvement to the master
-                  does not automatically justify changing existing client websites.
+                  <strong>Do not force upgrades:</strong> a better master component does not
+                  automatically require changes to every existing client website.
                 </aside>
               </div>
             </section>
@@ -1434,42 +598,67 @@ const themeAfter = `:root {
               <div class="library-section-heading">
                 <div>
                   <p class="library-section-number">14 — Troubleshoot common errors</p>
-                  <h2>Read the first useful error, fix one thing, then retry</h2>
+                  <h2>Fix the first useful error first</h2>
                 </div>
 
-                <span class="library-badge library-badge--draft">Recovery guide</span>
+                <p class="library-component-file">
+                  Rule: <code>read file path + line number</code>
+                </p>
               </div>
 
               <div class="library-preview library-preview--white">
-                <p class="troubleshooting-intro">
-                  The first useful error is usually near the top of the terminal output.
-                  Copy the file path, line number, and 10 lines around the error before
-                  asking for help.
-                </p>
-
                 <div class="library-table-wrap">
                   <table class="library-table">
                     <thead>
                       <tr>
-                        <th>Error or symptom</th>
-                        <th>Likely cause</th>
+                        <th>Symptom</th>
                         <th>First fix</th>
-                        <th>Escalate when</th>
                       </tr>
                     </thead>
 
                     <tbody>
-                      {troubleshooting.map((item) => (
-                        <tr>
-                          <td><code>{item.symptom}</code></td>
-                          <td>{item.cause}</td>
-                          <td>{item.fix}</td>
-                          <td>{item.escalate}</td>
-                        </tr>
-                      ))}
+                      <tr>
+                        <td><code>Unexpected token</code></td>
+                        <td>Check the named file and line for copied Markdown fences, missing JSON commas, missing Astro frontmatter markers, or pasted non-code words.</td>
+                      </tr>
+
+                      <tr>
+                        <td><code>Failed to resolve import</code></td>
+                        <td>Confirm the component exists and the import path and capitalization match exactly.</td>
+                      </tr>
+
+                      <tr>
+                        <td>Service cards are missing</td>
+                        <td>Validate services JSON, then confirm the data import and component usage.</td>
+                      </tr>
+
+                      <tr>
+                        <td>Works locally, not online</td>
+                        <td>Run git status, commit/push changes, inspect Cloudflare build logs, confirm correct branch, then hard refresh.</td>
+                      </tr>
+
+                      <tr>
+                        <td><code>npm run build</code> fails</td>
+                        <td>Fix the first named error. Ignore later stack-trace lines until the first file and line are resolved.</td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
+              </div>
+
+              <div class="library-docs">
+                <div>
+                  <h3>When asking for help</h3>
+                  <p>
+                    Copy the first error message, the file path, the line number, and
+                    about ten lines around the error. This gives enough information to
+                    identify the actual problem.
+                  </p>
+                </div>
+
+                <aside class="library-note library-note--success">
+                  <strong>Good habit:</strong> change one thing, test again, then continue.
+                </aside>
               </div>
             </section>
 
@@ -1477,35 +666,39 @@ const themeAfter = `:root {
               <div class="library-section-heading">
                 <div>
                   <p class="library-section-number">15 — Checklists</p>
-                  <h2>Definition of Done</h2>
+                  <h2>Definition of done for major tasks</h2>
                 </div>
 
-                <span class="library-badge library-badge--success">Use for major tasks</span>
+                <p class="library-component-file">
+                  Files: <code>docs/qa-checklist.md</code> · <code>docs/launch-checklist.md</code>
+                </p>
               </div>
 
               <div class="library-preview library-preview--white">
-                <p class="troubleshooting-intro">A task is done only when:</p>
-
                 <ul class="library-checklist">
-                  {doneWhen.map((item) => <li>{item}</li>)}
+                  <li>Client information is accurate and approved.</li>
+                  <li>The change appears correctly in the local browser preview.</li>
+                  <li>Mobile and desktop layouts are checked.</li>
+                  <li>npm run build completes successfully.</li>
+                  <li>The change is committed with a meaningful Git message.</li>
+                  <li>Cloudflare deployment succeeds.</li>
+                  <li>The preview or live site has been checked after deployment.</li>
                 </ul>
               </div>
 
               <div class="library-docs">
                 <div>
-                  <h3>Use these project checklists</h3>
-
-                  <ul>
-                    <li><code>docs/qa-checklist.md</code> — review before client preview</li>
-                    <li><code>docs/launch-checklist.md</code> — review before custom-domain launch</li>
-                    <li><code>docs/client-handoff.md</code> — access, ownership, and support handoff</li>
-                    <li><code>docs/maintenance-policy.md</code> — maintenance scope and process</li>
-                  </ul>
+                  <h3>Use supporting documents</h3>
+                  <p>
+                    Use docs/qa-checklist.md before review, docs/launch-checklist.md
+                    before custom-domain launch, and docs/client-handoff.md for ownership
+                    and support handoff.
+                  </p>
                 </div>
 
-                <aside class="library-note library-note--success">
+                <aside class="library-note">
                   <strong>Completion means verified:</strong> changing a file is not the
-                  same as confirming the correct change is live and tested.
+                  same as confirming the correct update is visible and working.
                 </aside>
               </div>
             </section>
@@ -1514,7 +707,7 @@ const themeAfter = `:root {
               <div class="library-section-heading">
                 <div>
                   <p class="library-section-number">16 — Changelog</p>
-                  <h2>Record deliberate master-library upgrades</h2>
+                  <h2>Document deliberate master-library upgrades</h2>
                 </div>
 
                 <p class="library-component-file">
@@ -1528,9 +721,8 @@ const themeAfter = `:root {
                     <thead>
                       <tr>
                         <th>Date</th>
-                        <th>Change</th>
+                        <th>Change summary</th>
                         <th>Affected files</th>
-                        <th>Upgrade instruction</th>
                         <th>Status</th>
                       </tr>
                     </thead>
@@ -1538,18 +730,16 @@ const themeAfter = `:root {
                     <tbody>
                       <tr>
                         <td>2026-09-15</td>
-                        <td>Added internal operating manual alongside the visual component catalog.</td>
-                        <td><code>src/pages/guide.astro</code>, <code>src/styles/library.css</code></td>
-                        <td>Link the visual library overview to /guide; keep existing component previews unchanged.</td>
+                        <td>Added a separate operating manual while retaining the visual component library.</td>
+                        <td><code>src/pages/guide.astro</code></td>
                         <td><span class="library-badge">Documented</span></td>
                       </tr>
 
                       <tr>
                         <td>YYYY-MM-DD</td>
-                        <td>Describe the reusable improvement.</td>
-                        <td><code>affected/path.astro</code></td>
-                        <td>Explain if and how existing client sites can adopt it.</td>
-                        <td><span class="library-badge library-badge--draft">Add test result</span></td>
+                        <td>Describe reusable improvement and upgrade instructions.</td>
+                        <td><code>affected/file.astro</code></td>
+                        <td><span class="library-badge library-badge--draft">Add test status</span></td>
                       </tr>
                     </tbody>
                   </table>
@@ -1558,20 +748,17 @@ const themeAfter = `:root {
 
               <div class="library-docs">
                 <div>
-                  <h3>Every master-library entry should include</h3>
-
-                  <ul>
-                    <li>Date and short change summary</li>
-                    <li>Affected files or components</li>
-                    <li>Upgrade instructions</li>
-                    <li>Tested status and known limitations</li>
-                    <li>Decision about existing-client upgrades</li>
-                  </ul>
+                  <h3>Include every time</h3>
+                  <p>
+                    Record the date, change summary, exact files affected, upgrade
+                    instructions, tested status, limitations, and whether existing client
+                    websites should consider adopting the improvement.
+                  </p>
                 </div>
 
                 <aside class="library-note">
-                  <strong>Why record changes:</strong> teammates need to know what changed,
-                  whether it is safe to use, and whether an existing client should adopt it.
+                  <strong>Master-only:</strong> do not put normal client-specific updates in
+                  the master-library changelog.
                 </aside>
               </div>
             </section>

@@ -1,0 +1,19 @@
+---
+import site from "../../content/site.json";
+
+const socialLinks = Object.values(site.social || {}).filter(Boolean);
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: site.businessName,
+  legalName: site.legalBusinessName || undefined,
+  description: site.description,
+  email: site.email,
+  telephone: site.phoneLink,
+  url: Astro.site ? Astro.site.toString() : undefined,
+  sameAs: socialLinks.length ? socialLinks : undefined
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

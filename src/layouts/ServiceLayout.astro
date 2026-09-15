@@ -1,0 +1,82 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import ServiceSchema from "../components/seo/ServiceSchema.astro";
+import BreadcrumbSchema from "../components/seo/BreadcrumbSchema.astro";
+import Breadcrumbs from "../components/ui/Breadcrumbs.astro";
+import site from "../content/site.json";
+
+interface Props {
+  serviceName: string;
+  description: string;
+  slug: string;
+  image?: string;
+}
+
+const {
+  serviceName,
+  description,
+  slug,
+  image = "/og-default.jpg"
+} = Astro.props;
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, "") || Astro.url.origin;
+
+const breadcrumbSchemaItems = [
+  {
+    name: "Home",
+    url: `${siteUrl}/`
+  },
+  {
+    name: "Services",
+    url: `${siteUrl}/services`
+  },
+  {
+    name: serviceName,
+    url: `${siteUrl}/services/${slug}`
+  }
+];
+
+const breadcrumbItems = [
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: serviceName }
+];
+---
+
+<BaseLayout
+  title={`${serviceName} | ${site.businessName}`}
+  description={description}
+  image={image}
+>
+  <ServiceSchema
+    slot="head"
+    name={serviceName}
+    description={description}
+    url={`${siteUrl}/services/${slug}`}
+  />
+
+  <BreadcrumbSchema
+    slot="head"
+    items={breadcrumbSchemaItems}
+  />
+
+  <Header />
+
+  <main>
+    <div class="service-layout-breadcrumbs container">
+      <Breadcrumbs items={breadcrumbItems} />
+    </div>
+
+    <slot />
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .service-layout-breadcrumbs {
+    padding-top: var(--space-5);
+  }
+</style>

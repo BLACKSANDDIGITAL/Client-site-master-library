@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "name": "San Jose",
+    "slug": "san-jose",
+    "description": "Replace this with accurate, client-approved information about services available in San Jose."
+  },
+  {
+    "name": "Santa Clara",
+    "slug": "santa-clara",
+    "description": "Replace this with accurate, client-approved information about services available in Santa Clara."
+  },
+  {
+    "name": "Campbell",
+    "slug": "campbell",
+    "description": "Replace this with accurate, client-approved information about services available in Campbell."
+  },
+  {
+    "name": "Sunnyvale",
+    "slug": "sunnyvale",
+    "description": "Replace this with accurate, client-approved information about services available in Sunnyvale."
+  }
+]

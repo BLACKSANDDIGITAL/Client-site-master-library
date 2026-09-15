@@ -1,1 +1,8 @@
-[]
+[
+  {
+    "name": "San Jose",
+    "slug": "san-jose",
+    "description": "Use genuinely distinct, accurate service information for this location. Do not create thin pages that only replace the city name.",
+    "serviceAreaNote": "Contact the business to confirm service availability for a specific address."
+  }
+]

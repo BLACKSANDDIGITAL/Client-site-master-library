@@ -2,11 +2,20 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/layout/Header.astro";
 import Footer from "../components/layout/Footer.astro";
+
 import Button from "../components/ui/Button.astro";
 import PhoneCTA from "../components/ui/PhoneCTA.astro";
+
 import ServicesGrid from "../components/sections/ServicesGrid.astro";
 import WhyChooseUs from "../components/sections/WhyChooseUs.astro";
+import TrustBar from "../components/sections/TrustBar.astro";
+import ProcessSteps from "../components/sections/ProcessSteps.astro";
+import ImageText from "../components/sections/ImageText.astro";
+import Testimonials from "../components/sections/Testimonials.astro";
+import ServiceArea from "../components/sections/ServiceArea.astro";
+import FAQ from "../components/sections/FAQ.astro";
 import ContactCTA from "../components/sections/ContactCTA.astro";
+
 import site from "../content/site.json";
 ---
 
@@ -17,6 +26,32 @@ import site from "../content/site.json";
   <Header />
 
   <main>
+  <TrustBar />
+
+<ServicesGrid
+  title="Services built around your needs"
+  description="Explore the core services offered by this local business."
+/>
+
+<ImageText
+  eyebrow="Why work with us"
+  title="Clear service from first contact to final follow-up"
+  description="Use this section to present the real, client-approved reasons someone should choose this business."
+  ctaLabel="Learn more"
+  ctaHref="/about"
+/>
+
+<WhyChooseUs />
+
+<ProcessSteps />
+
+<Testimonials />
+
+<ServiceArea />
+
+<FAQ />
+
+<ContactCTA />
     <section class="hero">
       <div class="container hero-grid">
         <div>

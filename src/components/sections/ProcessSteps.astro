@@ -1,7 +1,7 @@
 ---
 import SectionHeading from "../ui/SectionHeading.astro";
 
-interface Step {
+interface ProcessStep {
   number: string;
   title: string;
   description: string;
@@ -11,23 +11,23 @@ interface Props {
   eyebrow?: string;
   title?: string;
   description?: string;
-  steps?: Step[];
+  steps?: ProcessStep[];
 }
 
 const {
   eyebrow = "How it works",
-  title = "A simple process from first contact to completion",
-  description = "Replace these demo steps with the client’s real process.",
+  title = "A clear path from first contact to completion",
+  description = "Replace these demo steps with the client’s real customer process.",
   steps = [
     {
       number: "01",
       title: "Get in touch",
-      description: "Call, submit a request, or use the preferred booking method."
+      description: "Call, request an estimate, or use the preferred booking method."
     },
     {
       number: "02",
-      title: "Review the details",
-      description: "Confirm the service, timing, scope, and next best step."
+      title: "Confirm details",
+      description: "Review the service need, scope, timing, and next best step."
     },
     {
       number: "03",
@@ -46,10 +46,10 @@ const {
       description={description}
     />
 
-    <ol class="process-grid">
+    <ol class="process-steps">
       {steps.map((step) => (
-        <li class="process-card">
-          <span class="process-number">{step.number}</span>
+        <li class="process-step">
+          <span class="process-step__number">{step.number}</span>
           <h3>{step.title}</h3>
           <p>{step.description}</p>
         </li>
@@ -59,7 +59,7 @@ const {
 </section>
 
 <style>
-  .process-grid {
+  .process-steps {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: var(--space-5);
@@ -68,7 +68,7 @@ const {
     list-style: none;
   }
 
-  .process-card {
+  .process-step {
     padding: var(--space-5);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
@@ -76,15 +76,16 @@ const {
     box-shadow: var(--shadow-sm);
   }
 
-  .process-number {
+  .process-step__number {
     color: var(--color-primary);
-    font-size: 0.8rem;
+    font-size: 0.82rem;
     font-weight: 900;
     letter-spacing: 0.1em;
   }
 
   h3 {
     margin: var(--space-4) 0 var(--space-2);
+    color: var(--color-text);
     font-size: 1.25rem;
   }
 
@@ -94,7 +95,7 @@ const {
   }
 
   @media (max-width: 760px) {
-    .process-grid {
+    .process-steps {
       grid-template-columns: 1fr;
     }
   }

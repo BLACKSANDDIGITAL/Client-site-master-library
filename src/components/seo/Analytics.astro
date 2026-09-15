@@ -1,0 +1,22 @@
+---
+import site from "../../content/site.json";
+
+const measurementId = site.analytics?.googleAnalyticsId || "";
+const isValidId = /^G-[A-Z0-9]+$/i.test(measurementId);
+---
+
+{
+  isValidId && (
+    <>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}></script>
+      <script define:vars={{ measurementId }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          window.dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", measurementId);
+      </script>
+    </>
+  )
+}

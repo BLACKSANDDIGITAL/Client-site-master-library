@@ -1,0 +1,22 @@
+<div class="honeypot" aria-hidden="true">
+  <label for="website-url">Leave this field empty</label>
+
+  <input
+    id="website-url"
+    name="website-url"
+    type="text"
+    tabindex="-1"
+    autocomplete="off"
+  />
+</div>
+
+<style>
+  .honeypot {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+</style>

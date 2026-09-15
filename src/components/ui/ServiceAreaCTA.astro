@@ -1,0 +1,40 @@
+---
+import site from "../../content/site.json";
+
+interface Props {
+  label?: string;
+  href?: string;
+}
+
+const {
+  label = `Serving ${site.serviceAreas[0]} and nearby areas`,
+  href = "/contact"
+} = Astro.props;
+---
+
+<a class="service-area-cta" href={href}>
+  <span aria-hidden="true">⌖</span>
+  <span>{label}</span>
+</a>
+
+<style>
+  .service-area-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    padding: 0.65rem 0.85rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    color: var(--color-primary);
+    font-size: 0.88rem;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .service-area-cta:hover {
+    border-color: var(--color-primary);
+    background: var(--color-secondary);
+  }
+</style>

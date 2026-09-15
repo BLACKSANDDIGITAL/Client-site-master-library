@@ -1,0 +1,116 @@
+---
+import SectionHeading from "../ui/SectionHeading.astro";
+
+interface ImageItem {
+  src?: string;
+  alt: string;
+  caption?: string;
+}
+
+interface Props {
+  title?: string;
+  description?: string;
+  images?: ImageItem[];
+}
+
+const {
+  title = "Recent work",
+  description = "Replace placeholders with approved client work, team, product, or location images.",
+  images = [
+    { alt: "Placeholder for approved client image one", caption: "Project or image caption" },
+    { alt: "Placeholder for approved client image two", caption: "Project or image caption" },
+    { alt: "Placeholder for approved client image three", caption: "Project or image caption" },
+    { alt: "Placeholder for approved client image four", caption: "Project or image caption" },
+    { alt: "Placeholder for approved client image five", caption: "Project or image caption" },
+    { alt: "Placeholder for approved client image six", caption: "Project or image caption" }
+  ]
+} = Astro.props;
+---
+
+<section class="section">
+  <div class="container">
+    <SectionHeading title={title} description={description} />
+
+    <div class="gallery-grid">
+      {images.map((image, index) => (
+        <figure class={`gallery-item gallery-item--${index + 1}`}>
+          {
+            image.src ? (
+              <img src={image.src} alt={image.alt} loading="lazy" />
+            ) : (
+              <div class="gallery-placeholder" role="img" aria-label={image.alt}>
+                Replace with client image
+              </div>
+            )
+          }
+
+          {image.caption && <figcaption>{image.caption}</figcaption>}
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 190px;
+    gap: var(--space-3);
+  }
+
+  .gallery-item {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background: var(--color-secondary);
+  }
+
+  .gallery-item--1 {
+    grid-row: span 2;
+  }
+
+  .gallery-item--4 {
+    grid-column: span 2;
+  }
+
+  img,
+  .gallery-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .gallery-placeholder {
+    display: grid;
+    place-items: center;
+    padding: var(--space-4);
+    background: linear-gradient(135deg, #0f4c5c, #0f8174);
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 0.85rem;
+    text-align: center;
+  }
+
+  figcaption {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0.65rem 0.8rem;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.72));
+    color: white;
+    font-size: 0.82rem;
+  }
+
+  @media (max-width: 700px) {
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 160px;
+    }
+
+    .gallery-item--4 {
+      grid-column: span 1;
+    }
+  }
+</style>

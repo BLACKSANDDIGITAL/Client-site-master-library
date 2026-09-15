@@ -1,0 +1,91 @@
+---
+interface Props {
+  formId?: string;
+  title?: string;
+  height?: number;
+}
+
+const {
+  formId = "",
+  title = "Online inquiry form",
+  height = 620
+} = Astro.props;
+
+const embedUrl = formId
+  ? `https://tally.so/r/${formId}`
+  : "";
+---
+
+<section class="tally-form" aria-labelledby="tally-form-heading">
+  <h2 id="tally-form-heading">{title}</h2>
+
+  {
+    embedUrl ? (
+      <iframe
+        src={embedUrl}
+        title={title}
+        width="100%"
+        height={height}
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+      >
+        Loading form…
+      </iframe>
+    ) : (
+      <div class="tally-form__placeholder">
+        <p>
+          Add a client-owned Tally form ID to display an embedded contact, quote,
+          booking, or discovery form.
+        </p>
+
+        <code>{'<TallyForm formId="your-form-id" />'}</code>
+      </div>
+    )
+  }
+</section>
+
+<style>
+  .tally-form {
+    padding: var(--space-6);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+  }
+
+  h2 {
+    margin: 0 0 var(--space-4);
+  }
+
+  iframe {
+    display: block;
+    border: 0;
+  }
+
+  .tally-form__placeholder {
+    display: grid;
+    gap: var(--space-3);
+    min-height: 180px;
+    place-content: center;
+    padding: var(--space-5);
+    border: 1px dashed var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface-alt);
+    text-align: center;
+  }
+
+  .tally-form__placeholder p {
+    max-width: 520px;
+    margin: 0;
+    color: var(--color-muted);
+  }
+
+  code {
+    padding: 0.4rem 0.55rem;
+    border-radius: var(--radius-sm);
+    background: #edf7f1;
+    color: #067647;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.82rem;
+  }
+</style>

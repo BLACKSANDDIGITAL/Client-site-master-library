@@ -1,0 +1,22 @@
+[
+  {
+    "category": "Featured items",
+    "items": [
+      {
+        "name": "Menu Item One",
+        "description": "Replace with current client-approved menu description.",
+        "price": "Market price"
+      },
+      {
+        "name": "Menu Item Two",
+        "description": "Replace with current client-approved menu description.",
+        "price": "Market price"
+      },
+      {
+        "name": "Menu Item Three",
+        "description": "Replace with current client-approved menu description.",
+        "price": "Market price"
+      }
+    ]
+  }
+]

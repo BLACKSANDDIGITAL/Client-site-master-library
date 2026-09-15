@@ -1,0 +1,59 @@
+---
+import site from "../../content/site.json";
+
+interface Props {
+  primaryLabel?: string;
+  primaryHref?: string;
+}
+
+const {
+  primaryLabel = site.primaryCta.label,
+  primaryHref = site.primaryCta.href
+} = Astro.props;
+---
+
+<div class="mobile-cta" aria-label="Quick contact actions">
+  <a href={`tel:${site.phoneLink}`}>Call</a>
+  <a class="mobile-cta__primary" href={primaryHref}>{primaryLabel}</a>
+</div>
+
+<style>
+  .mobile-cta {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 50;
+    display: none;
+    grid-template-columns: 0.7fr 1.3fr;
+    padding: var(--space-2);
+    gap: var(--space-2);
+    border-top: 1px solid var(--color-border);
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(12px);
+  }
+
+  a {
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-primary);
+    border-radius: var(--radius-sm);
+    color: var(--color-primary);
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .mobile-cta__primary {
+    background: var(--color-primary);
+    color: white;
+  }
+
+  @media (max-width: 700px) {
+    .mobile-cta {
+      display: grid;
+    }
+  }
+</style>

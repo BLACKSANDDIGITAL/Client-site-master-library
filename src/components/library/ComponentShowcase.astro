@@ -1,0 +1,219 @@
+---
+interface Props {
+  id: string;
+  number: string;
+  category: string;
+  title: string;
+  file: string;
+  bestFor?: string;
+  dataSource?: string;
+  status?: "draft" | "ready" | "client-tested";
+  fullBleed?: boolean;
+}
+
+const {
+  id,
+  number,
+  category,
+  title,
+  file,
+  bestFor = "Choose this variation according to the client’s content, industry, and conversion goal.",
+  dataSource = "Component props and/or structured JSON data.",
+  status = "draft",
+  fullBleed = false
+} = Astro.props;
+
+const statusLabel = status === "client-tested"
+  ? "Client tested"
+  : status === "ready"
+    ? "Ready"
+    : "Draft";
+---
+
+<section id={id} class="component-showcase">
+  <header class="component-showcase__header">
+    <div>
+      <p class="component-showcase__eyebrow">
+        {number} — {category}
+      </p>
+
+      <h2>{title}</h2>
+    </div>
+
+    <div class="component-showcase__meta">
+      <span class={`component-status component-status--${status}`}>
+        {statusLabel}
+      </span>
+
+      <code>{file}</code>
+    </div>
+  </header>
+
+  <div
+    class:list={[
+      "component-showcase__preview",
+      { "component-showcase__preview--full": fullBleed }
+    ]}
+  >
+    <slot />
+  </div>
+
+  <footer class="component-showcase__docs">
+    <div>
+      <h3>Best for</h3>
+      <p>{bestFor}</p>
+    </div>
+
+    <div>
+      <h3>Data needed</h3>
+      <p><code>{dataSource}</code></p>
+    </div>
+
+    <aside class="component-showcase__notes">
+      <slot name="notes">
+        <p>
+          Add a short implementation note, content requirement, or launch check
+          when using this component.
+        </p>
+      </slot>
+    </aside>
+  </footer>
+</section>
+
+<style>
+  .component-showcase {
+    scroll-margin-top: 5.5rem;
+    margin-top: 4rem;
+  }
+
+  .component-showcase__header {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.5rem 2rem;
+    border: 1px solid var(--library-line, var(--color-border));
+    border-radius: 16px 16px 0 0;
+    background: white;
+  }
+
+  .component-showcase__eyebrow {
+    margin: 0 0 0.45rem;
+    color: #667085;
+    font-size: 0.7rem;
+    font-weight: 850;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 0;
+    color: var(--color-text);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+  }
+
+  .component-showcase__meta {
+    display: grid;
+    justify-items: end;
+    gap: 0.55rem;
+  }
+
+  .component-showcase__meta code,
+  .component-showcase__docs code {
+    padding: 0.22rem 0.4rem;
+    border-radius: 5px;
+    background: #edf7f1;
+    color: #067647;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.76rem;
+  }
+
+  .component-status {
+    display: inline-flex;
+    min-height: 24px;
+    align-items: center;
+    padding: 0.22rem 0.55rem;
+    border-radius: 999px;
+    background: #fffaeb;
+    color: #b54708;
+    font-size: 0.72rem;
+    font-weight: 850;
+  }
+
+  .component-status--ready {
+    background: #ecfdf3;
+    color: #067647;
+  }
+
+  .component-status--client-tested {
+    background: #eff8ff;
+    color: #175cd3;
+  }
+
+  .component-showcase__preview {
+    padding: clamp(1rem, 3vw, 3rem);
+    border-inline: 1px solid var(--library-line, var(--color-border));
+    background: #f4f6f9;
+  }
+
+  .component-showcase__preview--full {
+    padding: 0;
+  }
+
+  .component-showcase__docs {
+    display: grid;
+    grid-template-columns: 1fr 1fr minmax(240px, 0.8fr);
+    gap: 1.25rem;
+    padding: 1.4rem 2rem;
+    border: 1px solid var(--library-line, var(--color-border));
+    border-radius: 0 0 16px 16px;
+    background: white;
+  }
+
+  h3 {
+    margin: 0 0 0.5rem;
+    color: #344054;
+    font-size: 0.84rem;
+  }
+
+  .component-showcase__docs p {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+
+  .component-showcase__notes {
+    padding: 0.85rem;
+    border: 1px solid #b2ddff;
+    border-radius: 9px;
+    background: #eff8ff;
+    color: #344054;
+    font-size: 0.84rem;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 800px) {
+    .component-showcase__header {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .component-showcase__meta {
+      justify-items: start;
+    }
+
+    .component-showcase__docs {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .component-showcase__header,
+    .component-showcase__docs {
+      padding: 1.2rem;
+    }
+  }
+</style>

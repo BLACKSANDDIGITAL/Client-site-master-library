@@ -1,0 +1,90 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import site from "../content/site.json";
+---
+
+<BaseLayout
+  title={`Accessibility | ${site.businessName}`}
+  description={`Accessibility information for ${site.businessName}.`}
+>
+  <Header />
+
+  <main>
+    <section class="page-hero">
+      <div class="content-container">
+        <p class="eyebrow">Accessibility</p>
+        <h1>Accessibility statement</h1>
+        <p>
+          {site.businessName} is committed to making this website usable for as many
+          visitors as possible.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="content-container prose">
+        <h2>Our approach</h2>
+        <p>
+          We work to support clear structure, readable content, keyboard access,
+          visible focus indicators, and meaningful text alternatives for informative images.
+        </p>
+
+        <h2>Need assistance?</h2>
+        <p>
+          If you have difficulty using this website or need information in another format,
+          contact us at <a href={`mailto:${site.email}`}>{site.email}</a> or call
+          <a href={`tel:${site.phoneLink}`}> {site.phoneDisplay}</a>.
+        </p>
+
+        <h2>Feedback</h2>
+        <p>
+          Please tell us about any accessibility barriers you encounter. We will review
+          your feedback and work to provide an appropriate response.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding-block: var(--space-8);
+    background: var(--color-secondary);
+  }
+
+  .eyebrow {
+    margin: 0 0 var(--space-3);
+    color: var(--color-primary);
+    font-size: 0.84rem;
+    font-weight: 850;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+  }
+
+  .page-hero p:last-child,
+  .prose p {
+    color: var(--color-muted);
+    font-size: 1.05rem;
+  }
+
+  .prose h2 {
+    margin-top: var(--space-7);
+    font-size: clamp(1.6rem, 3vw, 2.25rem);
+  }
+
+  .prose a {
+    color: var(--color-primary);
+    font-weight: 800;
+  }
+</style>

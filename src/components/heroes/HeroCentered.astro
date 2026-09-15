@@ -1,0 +1,76 @@
+---
+import Button from "../ui/Button.astro";
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+}
+
+const {
+  eyebrow = "Clear next steps",
+  title = "A focused, centered hero for a clear offer.",
+  description = "Use this variation when the message and primary action matter more than showcasing a large image.",
+  primaryLabel = "Get started",
+  primaryHref = "/contact",
+  secondaryLabel = "Learn more",
+  secondaryHref = "/services"
+} = Astro.props;
+---
+
+<section class="hero-centered">
+  <div class="content-container">
+    <p class="eyebrow">{eyebrow}</p>
+    <h1>{title}</h1>
+    <p class="description">{description}</p>
+
+    <div class="actions">
+      <Button href={primaryHref}>{primaryLabel}</Button>
+      <Button href={secondaryHref} variant="outline">{secondaryLabel}</Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-centered {
+    padding-block: var(--space-9);
+    background:
+      radial-gradient(circle at top center, rgba(244, 162, 97, 0.2), transparent 38%),
+      var(--color-secondary);
+    text-align: center;
+  }
+
+  .eyebrow {
+    margin: 0 0 var(--space-3);
+    color: var(--color-primary);
+    font-size: 0.85rem;
+    font-weight: 850;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1.04;
+    letter-spacing: -0.05em;
+  }
+
+  .description {
+    margin: var(--space-5) auto 0;
+    color: var(--color-muted);
+    font-size: 1.1rem;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+</style>

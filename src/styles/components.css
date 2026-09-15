@@ -1,0 +1,29 @@
+.button-reset {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--color-primary);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.link-arrow:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.prose {
+  max-width: var(--content-width);
+}
+
+.prose > * + * {
+  margin-top: var(--space-4);
+}

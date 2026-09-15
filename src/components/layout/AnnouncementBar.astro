@@ -1,0 +1,65 @@
+---
+interface Props {
+  message?: string;
+  href?: string;
+  linkLabel?: string;
+}
+
+const {
+  message = "Use this space for a real temporary update, seasonal offer, closure, or verified service notice.",
+  href = "",
+  linkLabel = "Learn more"
+} = Astro.props;
+---
+
+<div class="announcement-bar" role="status">
+  <div class="container announcement-bar__inner">
+    <p>{message}</p>
+
+    {
+      href && (
+        <a href={href}>
+          {linkLabel} <span aria-hidden="true">→</span>
+        </a>
+      )
+    }
+  </div>
+</div>
+
+<style>
+  .announcement-bar {
+    background: var(--color-text);
+    color: white;
+  }
+
+  .announcement-bar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    min-height: 42px;
+    padding-block: 0.55rem;
+    text-align: center;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.82rem;
+  }
+
+  a {
+    color: var(--color-accent);
+    font-size: 0.82rem;
+    font-weight: 850;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 560px) {
+    .announcement-bar__inner {
+      align-items: center;
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+  }
+</style>

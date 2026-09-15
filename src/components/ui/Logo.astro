@@ -1,0 +1,47 @@
+---
+import site from "../../content/site.json";
+
+interface Props {
+  href?: string;
+  label?: string;
+}
+
+const {
+  href = "/",
+  label = `${site.businessName} home`
+} = Astro.props;
+---
+
+<a class="logo" href={href} aria-label={label}>
+  <span class="logo-mark" aria-hidden="true">
+    {site.businessName.slice(0, 1)}
+  </span>
+
+  <span class="logo-text">{site.businessName}</span>
+</a>
+
+<style>
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--color-primary);
+    font-weight: 850;
+    text-decoration: none;
+  }
+
+  .logo-mark {
+    display: grid;
+    width: 2rem;
+    height: 2rem;
+    place-items: center;
+    border-radius: 0.55rem;
+    background: var(--color-primary);
+    color: white;
+    font-size: 0.8rem;
+  }
+
+  .logo-text {
+    letter-spacing: -0.02em;
+  }
+</style>

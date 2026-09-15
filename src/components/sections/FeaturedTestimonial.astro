@@ -1,0 +1,58 @@
+---
+interface Props {
+  quote?: string;
+  name?: string;
+  detail?: string;
+}
+
+const {
+  quote = "Replace this with a genuine, approved customer review that explains a meaningful client experience.",
+  name = "Client name",
+  detail = "Verified review source"
+} = Astro.props;
+---
+
+<section class="featured-testimonial">
+  <div class="content-container">
+    <figure>
+      <blockquote>“{quote}”</blockquote>
+
+      <figcaption>
+        <strong>{name}</strong>
+        <span>{detail}</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .featured-testimonial {
+    padding-block: var(--space-8);
+    background: var(--color-primary);
+    color: white;
+    text-align: center;
+  }
+
+  figure {
+    margin: 0;
+  }
+
+  blockquote {
+    margin: 0;
+    font-size: clamp(1.6rem, 3.6vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.025em;
+  }
+
+  figcaption {
+    display: grid;
+    gap: var(--space-1);
+    margin-top: var(--space-5);
+  }
+
+  figcaption span {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.88rem;
+  }
+</style>

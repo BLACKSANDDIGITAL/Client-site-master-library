@@ -1,28 +1,77 @@
 ---
+import "../styles/global.css";
 import "../styles/library.css";
 
 import Button from "../components/ui/Button.astro";
+import Card from "../components/ui/Card.astro";
+import Logo from "../components/ui/Logo.astro";
 import PhoneCTA from "../components/ui/PhoneCTA.astro";
+import ResponsiveImage from "../components/ui/ResponsiveImage.astro";
 import SectionHeading from "../components/ui/SectionHeading.astro";
+import ServiceAreaCTA from "../components/ui/ServiceAreaCTA.astro";
+import BeforeAfter from "../components/ui/BeforeAfter.astro";
+import Breadcrumbs from "../components/ui/Breadcrumbs.astro";
+
+import Header from "../components/layout/Header.astro";
+import HeaderSimple from "../components/layout/HeaderSimple.astro";
+import Footer from "../components/layout/Footer.astro";
+import FooterSimple from "../components/layout/FooterSimple.astro";
+import AnnouncementBar from "../components/layout/AnnouncementBar.astro";
+import MobileCTA from "../components/layout/MobileCTA.astro";
+
 import HeroSplit from "../components/heroes/HeroSplit.astro";
+import HeroCentered from "../components/heroes/HeroCentered.astro";
+import HeroOverlay from "../components/heroes/HeroOverlay.astro";
+import ServiceHero from "../components/heroes/ServiceHero.astro";
+
+import Hero from "../components/sections/Hero.astro";
 import ServicesGrid from "../components/sections/ServicesGrid.astro";
+import ServiceOverview from "../components/sections/ServiceOverview.astro";
+import BenefitsGrid from "../components/sections/BenefitsGrid.astro";
+import IncludedList from "../components/sections/IncludedList.astro";
+import ServiceComparison from "../components/sections/ServiceComparison.astro";
+import RelatedServices from "../components/sections/RelatedServices.astro";
+import WhyChooseUs from "../components/sections/WhyChooseUs.astro";
+import TrustBar from "../components/sections/TrustBar.astro";
+import ProcessSteps from "../components/sections/ProcessSteps.astro";
 import Testimonials from "../components/sections/Testimonials.astro";
+import FeaturedTestimonial from "../components/sections/FeaturedTestimonial.astro";
 import FAQ from "../components/sections/FAQ.astro";
+import ImageText from "../components/sections/ImageText.astro";
+import GalleryGrid from "../components/sections/GalleryGrid.astro";
+import TeamGrid from "../components/sections/TeamGrid.astro";
+import ProjectHighlight from "../components/sections/ProjectHighlight.astro";
+import PricingCards from "../components/sections/PricingCards.astro";
+import LogoBar from "../components/sections/LogoBar.astro";
+import ServiceArea from "../components/sections/ServiceArea.astro";
 import ContactCTA from "../components/sections/ContactCTA.astro";
+import EmergencyCTA from "../components/sections/EmergencyCTA.astro";
 import IndustryExamples from "../components/sections/IndustryExamples.astro";
+
+import ContactForm from "../components/forms/ContactForm.astro";
+import CloudflareContactForm from "../components/forms/CloudflareContactForm.astro";
+import TallyForm from "../components/forms/TallyForm.astro";
+import ConsentCheckbox from "../components/forms/ConsentCheckbox.astro";
+import FormStatus from "../components/forms/FormStatus.astro";
+import ComponentShowcase from "../components/library/ComponentShowcase.astro";
 
 const mobileNavItems = [
   { number: "00", label: "Overview", href: "#overview" },
   { number: "01", label: "How to use", href: "#how-to-use" },
   { number: "10", label: "Foundations", href: "#foundations" },
-  { number: "11", label: "Buttons", href: "#ui" },
+  { number: "11", label: "UI", href: "#ui" },
+  { number: "12", label: "Layout", href: "#layout" },
+  { number: "13", label: "Forms", href: "#forms" },
   { number: "20", label: "Heroes", href: "#heroes" },
   { number: "21", label: "Services", href: "#services" },
-  { number: "22", label: "Testimonials", href: "#testimonials" },
-  { number: "23", label: "FAQs", href: "#faqs" },
-  { number: "24", label: "Calls to action", href: "#ctas" },
-  { number: "40", label: "Industry examples", href: "#industry-examples" },
-  { number: "70", label: "Build process", href: "#build-process" }
+  { number: "22", label: "Trust", href: "#trust" },
+  { number: "23", label: "Content", href: "#content" },
+  { number: "24", label: "Testimonials", href: "#testimonials" },
+  { number: "25", label: "FAQs", href: "#faqs" },
+  { number: "26", label: "CTAs", href: "#ctas" },
+  { number: "40", label: "Examples", href: "#examples" },
+  { number: "80", label: "SEO", href: "#seo" },
+  { number: "90", label: "Build process", href: "#build-process" }
 ];
 
 const colors = [
@@ -31,6 +80,39 @@ const colors = [
   { name: "Accent", token: "--color-accent", value: "#f4a261" },
   { name: "Surface alt", token: "--color-surface-alt", value: "#f7fafc" }
 ];
+
+const seoComponents = [
+  {
+    file: "SEOHead.astro",
+    purpose: "Creates page title, description, canonical URL, and social-sharing metadata.",
+    location: "Used by BaseLayout.astro"
+  },
+  {
+    file: "Analytics.astro",
+    purpose: "Loads approved analytics only when a valid client-owned tracking ID exists.",
+    location: "Base layout after client approval"
+  },
+  {
+    file: "LocalBusinessSchema.astro",
+    purpose: "Outputs local-business structured data from verified business information.",
+    location: "Base layout for physical/local businesses"
+  },
+  {
+    file: "OrganizationSchema.astro",
+    purpose: "Outputs organization structured data when LocalBusiness is not appropriate.",
+    location: "Base layout for general organizations"
+  },
+  {
+    file: "ServiceSchema.astro",
+    purpose: "Outputs structured data for an individual service detail page.",
+    location: "src/pages/services/[slug].astro"
+  },
+  {
+    file: "BreadcrumbSchema.astro",
+    purpose: "Outputs breadcrumbs matching visible page breadcrumbs.",
+    location: "Individual page with visible breadcrumb navigation"
+  }
+];
 ---
 
 <!doctype html>
@@ -38,11 +120,11 @@ const colors = [
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="noindex, nofollow" />
     <meta
       name="description"
-      content="Internal visual component library and client-site build system."
+      content="Internal visual component library and website production system."
     />
+    <meta name="robots" content="noindex, nofollow" />
     <title>Client Library | Master Template</title>
   </head>
 
@@ -66,14 +148,15 @@ const colors = [
               <span class="library-nav-number">00</span>
               <span>Overview</span>
             </a>
-<a href="/guide#start-here">
-  <span class="library-nav-number">01</span>
-  <span>How to use</span>
-</a>
+
+            <a href="#how-to-use">
+              <span class="library-nav-number">01</span>
+              <span>How to use</span>
+            </a>
 
             <a href="#build-process">
-              <span class="library-nav-number">02</span>
-              <span>New client setup</span>
+              <span class="library-nav-number">90</span>
+              <span>Build process</span>
             </a>
           </nav>
         </div>
@@ -89,15 +172,25 @@ const colors = [
 
             <a href="#ui">
               <span class="library-nav-number">11</span>
-              <span>Buttons and UI</span>
+              <span>UI components</span>
+            </a>
+
+            <a href="#layout">
+              <span class="library-nav-number">12</span>
+              <span>Layouts</span>
+            </a>
+
+            <a href="#forms">
+              <span class="library-nav-number">13</span>
+              <span>Forms</span>
             </a>
           </nav>
         </div>
 
         <div class="library-nav-group">
-          <p class="library-nav-label">Components</p>
+          <p class="library-nav-label">Website sections</p>
 
-          <nav class="library-nav" aria-label="Components navigation">
+          <nav class="library-nav" aria-label="Website component navigation">
             <a href="#heroes">
               <span class="library-nav-number">20</span>
               <span>Heroes</span>
@@ -108,28 +201,38 @@ const colors = [
               <span>Services</span>
             </a>
 
-            <a href="#testimonials">
+            <a href="#trust">
               <span class="library-nav-number">22</span>
+              <span>Trust and process</span>
+            </a>
+
+            <a href="#content">
+              <span class="library-nav-number">23</span>
+              <span>Content and media</span>
+            </a>
+
+            <a href="#testimonials">
+              <span class="library-nav-number">24</span>
               <span>Testimonials</span>
             </a>
 
             <a href="#faqs">
-              <span class="library-nav-number">23</span>
+              <span class="library-nav-number">25</span>
               <span>FAQs</span>
             </a>
 
             <a href="#ctas">
-              <span class="library-nav-number">24</span>
+              <span class="library-nav-number">26</span>
               <span>Calls to action</span>
             </a>
           </nav>
         </div>
 
         <div class="library-nav-group">
-          <p class="library-nav-label">Full website examples</p>
+          <p class="library-nav-label">Full examples</p>
 
-          <nav class="library-nav" aria-label="Website example navigation">
-            <a href="#industry-examples">
+          <nav class="library-nav" aria-label="Industry example navigation">
+            <a href="#examples">
               <span class="library-nav-number">40</span>
               <span>Industry gallery</span>
             </a>
@@ -143,22 +246,28 @@ const colors = [
               <span class="library-nav-number">42</span>
               <span>Professional services</span>
             </a>
+          </nav>
+        </div>
 
-            <a href="/examples/restaurant-cafe">
-              <span class="library-nav-number">43</span>
-              <span>Restaurant and café</span>
+        <div class="library-nav-group">
+          <p class="library-nav-label">Delivery</p>
+
+          <nav class="library-nav" aria-label="Delivery navigation">
+            <a href="#seo">
+              <span class="library-nav-number">80</span>
+              <span>SEO and schema</span>
             </a>
 
-            <a href="/examples/salon-beauty">
-              <span class="library-nav-number">44</span>
-              <span>Salon and beauty</span>
+            <a href="#build-process">
+              <span class="library-nav-number">90</span>
+              <span>QA and launch</span>
             </a>
           </nav>
         </div>
 
         <div class="library-sidebar-footer">
-          <p>Internal build system.</p>
-          <p><a href="#build-process">Review the build process</a> before beginning a client site.</p>
+          <p>Internal website production system.</p>
+          <p><a href="#build-process">Review the client build process.</a></p>
         </div>
       </aside>
 
@@ -171,33 +280,21 @@ const colors = [
         <main>
           <section id="overview" class="library-intro">
             <div class="library-intro-inner">
-              <p class="library-kicker">Internal design system</p>
+              <p class="library-kicker">Astro master library</p>
 
-              <h1>Client Website Component Library</h1>
+              <h1>Reusable website components, page recipes, and industry examples.</h1>
 
               <p class="library-intro-description">
-                Preview, compare, and select reusable website sections before building
-                a client project. Every preview maps to an Astro component, a structured
-                content file, or a complete industry-oriented website example.
+                Use this internal reference to choose a client-appropriate website
+                structure, preview the real component variations, identify the data
+                source for each section, and build a complete client site consistently.
               </p>
 
               <div class="library-intro-actions">
-  <a class="library-quick-link" href="/guide#new-client">
-    Start a New Client Site →
-  </a>
-
-  <a class="library-quick-link" href="/guide#update-decision">
-    Make an Update →
-  </a>
-
-  <a class="library-quick-link" href="#industry-examples">
-    Browse Industry Examples
-  </a>
-
-  <a class="library-quick-link" href="#foundations">
-    View Design Tokens
-  </a>
-</div>
+                <a class="library-quick-link" href="#how-to-use">How to use this library</a>
+                <a class="library-quick-link" href="#examples">Browse examples</a>
+                <a class="library-quick-link" href="#build-process">View build process</a>
+              </div>
 
               <div class="library-mobile-contents">
                 <strong>Jump to a section</strong>
@@ -210,13 +307,147 @@ const colors = [
               </div>
             </div>
           </section>
+<section id="system-model" class="library-section">
+  <div class="library-section-heading">
+    <div>
+      <p class="library-section-number">00 — System model</p>
+      <h2>How this website production system works</h2>
+    </div>
 
+    <p class="library-component-file">
+      Guide: <code>README.md</code>
+    </p>
+  </div>
+
+  <div class="library-preview library-preview--white">
+    <div class="system-model-grid">
+      <article>
+        <span>01</span>
+        <h3>Components</h3>
+        <p>Reusable layouts and website interface sections.</p>
+        <code>src/components/</code>
+      </article>
+
+      <article>
+        <span>02</span>
+        <h3>JSON content</h3>
+        <p>Client business information and factual structured content.</p>
+        <code>src/content/</code>
+      </article>
+
+      <article>
+        <span>03</span>
+        <h3>Page files</h3>
+        <p>Finished page recipes assembled from reusable components.</p>
+        <code>src/pages/</code>
+      </article>
+
+      <article>
+        <span>04</span>
+        <h3>Theme tokens</h3>
+        <p>Client brand colors, font stack, spacing, shape, and shared style.</p>
+        <code>src/styles/theme.css</code>
+      </article>
+
+      <article>
+        <span>05</span>
+        <h3>Documents</h3>
+        <p>Intake, launch QA, handoff, maintenance, and delivery process.</p>
+        <code>docs/</code>
+      </article>
+    </div>
+  </div>
+
+  <div class="library-docs">
+    <div>
+      <h3>Build sequence</h3>
+      <p>
+        Update client data and theme first. Then choose components from this visual
+        gallery. Finally, arrange those components in page files to create the
+        finished client website.
+      </p>
+    </div>
+
+    <aside class="library-note library-note--success">
+      <strong>Why this matters:</strong> content changes stay centralized, brand
+      changes are fast, and successful layout patterns can be reused without copying
+      and editing old client websites.
+    </aside>
+  </div>
+</section>
           <div class="library-content">
+          <section id="system-model" class="library-section">
+  <div class="library-section-heading">
+    <div>
+      <p class="library-section-number">00 — System model</p>
+      <h2>How the master website system works</h2>
+    </div>
+
+    <p class="library-component-file">
+      Guide: <code>README.md</code>
+    </p>
+  </div>
+
+  <div class="library-preview library-preview--white">
+    <div class="system-model-grid">
+      <article>
+        <span>01</span>
+        <h3>Components</h3>
+        <p>Reusable layouts and interface sections.</p>
+        <code>src/components/</code>
+      </article>
+
+      <article>
+        <span>02</span>
+        <h3>JSON content</h3>
+        <p>Client business details and factual structured content.</p>
+        <code>src/content/</code>
+      </article>
+
+      <article>
+        <span>03</span>
+        <h3>Page files</h3>
+        <p>Finished page recipes assembled from components.</p>
+        <code>src/pages/</code>
+      </article>
+
+      <article>
+        <span>04</span>
+        <h3>Theme tokens</h3>
+        <p>Brand colors, fonts, spacing, shape, and shared styling.</p>
+        <code>src/styles/theme.css</code>
+      </article>
+
+      <article>
+        <span>05</span>
+        <h3>Documents</h3>
+        <p>Intake, QA, handoff, maintenance, and launch process.</p>
+        <code>docs/</code>
+      </article>
+    </div>
+  </div>
+
+  <div class="library-docs">
+    <div>
+      <h3>Build sequence</h3>
+      <p>
+        Update verified client content and brand tokens first. Select components
+        from the visual gallery second. Assemble pages from those components last.
+      </p>
+    </div>
+
+    <aside class="library-note library-note--success">
+      <strong>Why it works:</strong> content stays centralized, styling stays
+      consistent, and proven page sections can be reused without copying an old
+      client website.
+    </aside>
+  </div>
+</section>
             <section id="how-to-use" class="library-section">
               <div class="library-section-heading">
                 <div>
                   <p class="library-section-number">01 — How to use</p>
-                  <h2>Start with the business, then select the right recipe</h2>
+                  <h2>Start with the business goal, not the component list</h2>
                 </div>
 
                 <p class="library-component-file">
@@ -226,31 +457,30 @@ const colors = [
 
               <div class="library-preview library-preview--white">
                 <ol class="library-checklist">
-                  <li>Choose the industry example closest to the client’s actual business model.</li>
-                  <li>Choose a page recipe based on the client’s primary conversion goal: calls, quotes, bookings, inquiries, or sales.</li>
-                  <li>Update verified business details in <code>src/content/site.json</code>.</li>
-                  <li>Set brand colors, fonts, spacing, and shape values in <code>src/styles/theme.css</code>.</li>
-                  <li>Replace demo services, images, reviews, FAQs, proof, and claims with approved client content.</li>
-                  <li>Assemble only the components that make sense for the client’s visitors and scope.</li>
-                  <li>Connect and test every contact, booking, payment, or form action.</li>
-                  <li>Complete the production build and launch checklist before publishing.</li>
+                  <li>Choose the closest industry example and identify the client’s conversion goal.</li>
+                  <li>Update verified business facts in <code>src/content/site.json</code>.</li>
+                  <li>Set colors, fonts, spacing, and visual style in <code>src/styles/theme.css</code>.</li>
+                  <li>Choose a header, hero, service section, proof pattern, FAQ, and conversion CTA.</li>
+                  <li>Replace all placeholder copy, images, testimonials, pricing, ratings, and claims.</li>
+                  <li>Connect and test every form, booking, map, payment, social, and phone link.</li>
+                  <li>Run <code>npm run build</code> before a preview or production deployment.</li>
                 </ol>
               </div>
 
               <div class="library-docs">
                 <div>
-                  <h3>Library rule</h3>
+                  <h3>Core rule</h3>
                   <p>
-                    Treat this as a toolbox, not a checklist. A strong client website
-                    uses the fewest sections needed to explain the offer, establish
-                    trust, answer real questions, and guide the visitor to one clear next step.
+                    This library is a toolbox. Select only the parts that help a visitor
+                    understand the client’s offer, trust the business, and take a useful
+                    next step.
                   </p>
                 </div>
 
                 <aside class="library-note">
-                  <strong>Content first:</strong> normal client updates belong in
-                  <code> src/content/</code>. Change a component only when the client
-                  needs a new reusable layout or interaction.
+                  <strong>Content first:</strong> update normal business information in
+                  <code> src/content/</code>. Update a component only when you are making
+                  a generic, reusable system improvement.
                 </aside>
               </div>
             </section>
@@ -259,7 +489,7 @@ const colors = [
               <div class="library-section-heading">
                 <div>
                   <p class="library-section-number">10 — Foundations</p>
-                  <h2>Theme and design tokens</h2>
+                  <h2>Theme tokens and reusable style decisions</h2>
                 </div>
 
                 <p class="library-component-file">
@@ -286,18 +516,18 @@ const colors = [
 
               <div class="library-docs">
                 <div>
-                  <h3>How to use this</h3>
+                  <h3>Use tokens before one-off CSS</h3>
                   <p>
-                    Start every client project by changing token values in
-                    <code> src/styles/theme.css</code>. This updates reusable components
-                    throughout the website without requiring individual color edits.
+                    Client brand changes belong in <code>theme.css</code>. One token
+                    update should influence buttons, cards, headers, footers, forms,
+                    section backgrounds, and CTA patterns consistently.
                   </p>
                 </div>
 
                 <aside class="library-note">
-                  <strong>Rule:</strong> Keep token names the same. Change values,
-                  not the variable names, unless you are deliberately improving the
-                  master system.
+                  <strong>Keep the system stable:</strong> change token values, not
+                  shared token names, unless you are intentionally changing the master
+                  component library.
                 </aside>
               </div>
             </section>
@@ -305,116 +535,455 @@ const colors = [
             <section id="ui" class="library-section">
               <div class="library-section-heading">
                 <div>
-                  <p class="library-section-number">11 — Buttons and UI</p>
-                  <h2>Buttons and action hierarchy</h2>
+                  <p class="library-section-number">11 — UI</p>
+                  <h2>Small components that keep each site consistent</h2>
                 </div>
 
                 <p class="library-component-file">
-                  File: <code>src/components/ui/Button.astro</code>
+                  Folder: <code>src/components/ui/</code>
                 </p>
               </div>
 
               <div class="library-preview library-preview--white">
                 <SectionHeading
-                  eyebrow="Action system"
-                  title="Use one clear primary action per section"
-                  description="Buttons should describe the next action, such as Request an Estimate, Schedule a Consultation, or Call Now."
+                  eyebrow="Button and UI system"
+                  title="Actions should be obvious and specific"
+                  description="Use labels that tell visitors exactly what happens next."
                 />
 
-                <div style="display:flex; flex-wrap:wrap; gap:0.75rem;">
+                <div class="library-demo-row">
                   <Button href="/contact">Primary action</Button>
                   <Button href="/contact" variant="secondary">Secondary action</Button>
                   <Button href="/contact" variant="outline">Outline action</Button>
-                  <Button href="/contact" variant="text">Text link</Button>
+                  <Button href="/contact" variant="text">Text action</Button>
                   <PhoneCTA />
+                  <ServiceAreaCTA />
+                </div>
+
+                <div class="library-mini-grid">
+                  <Card>
+                    <h3>Reusable Card</h3>
+                    <p>
+                      Use for service summaries, project previews, pricing, reviews,
+                      proof, and small grouped content.
+                    </p>
+                  </Card>
+
+                  <Card>
+                    <Logo />
+                    <p>
+                      Use the Logo component in headers and footers so the business
+                      name and mark stay consistent.
+                    </p>
+                  </Card>
+
+                  <Card>
+                    <Breadcrumbs
+                      items={[
+                        { label: "Home", href: "/" },
+                        { label: "Services", href: "/services" },
+                        { label: "Example service" }
+                      ]}
+                    />
+                    <p>Use breadcrumbs on deep service, location, project, and article pages.</p>
+                  </Card>
                 </div>
               </div>
 
               <div class="library-docs">
                 <div>
-                  <h3>When to use each option</h3>
+                  <h3>Files included</h3>
 
                   <ul>
-                    <li>Primary: the main conversion action for one section.</li>
-                    <li>Secondary: a meaningful alternative action or offer.</li>
-                    <li>Outline: a lower-emphasis option beside a primary action.</li>
-                    <li>Text: inline or lower-priority navigation actions.</li>
-                    <li>Phone CTA: high-intent calls for local service businesses.</li>
+                    <li><code>Button.astro</code> for consistent action styles.</li>
+                    <li><code>Card.astro</code> for grouped content.</li>
+                    <li><code>Logo.astro</code> for a shared business identity.</li>
+                    <li><code>PhoneCTA.astro</code> and <code>ServiceAreaCTA.astro</code> for local conversion paths.</li>
+                    <li><code>Breadcrumbs.astro</code> for page hierarchy.</li>
+                    <li><code>ResponsiveImage.astro</code> for standard responsive image markup.</li>
                   </ul>
                 </div>
 
-                <aside class="library-note">
-                  <strong>Rule:</strong> Do not place several competing primary buttons
-                  together. Make the preferred next step obvious.
+                <aside class="library-note library-note--warning">
+                  <strong>Do not overload pages:</strong> use a single clear primary
+                  action per visual area. Avoid displaying several competing buttons,
+                  cards, or attention-grabbing elements at once.
                 </aside>
               </div>
             </section>
 
-            <section id="heroes" class="library-section">
+            <section id="layout" class="library-section">
               <div class="library-section-heading">
                 <div>
-                  <p class="library-section-number">20 — Heroes</p>
-                  <h2>Split Hero</h2>
+                  <p class="library-section-number">12 — Layout</p>
+                  <h2>Headers, footers, announcements, and mobile conversion</h2>
                 </div>
 
                 <p class="library-component-file">
-                  File: <code>src/components/heroes/HeroSplit.astro</code>
+                  Folder: <code>src/components/layout/</code>
                 </p>
               </div>
 
-              <div class="library-preview">
-                <HeroSplit />
+              <div class="library-preview library-preview--white library-layout-preview">
+                <p class="library-preview-label">Announcement Bar</p>
+                <AnnouncementBar />
+
+                <p class="library-preview-label">Primary Header</p>
+                <Header />
+
+                <p class="library-preview-label">Simple Header</p>
+                <HeaderSimple />
+
+                <p class="library-preview-label">Expanded Footer</p>
+                <Footer />
+
+                <p class="library-preview-label">Simple Footer</p>
+                <FooterSimple />
               </div>
 
               <div class="library-docs">
                 <div>
-                  <h3>Best for</h3>
+                  <h3>Choose one page shell</h3>
 
                   <ul>
-                    <li>Local services, agencies, consultants, and portfolios.</li>
-                    <li>Pages that need both a strong message and a real client image.</li>
-                    <li>Homepages and major service landing pages.</li>
+                    <li><code>Header.astro</code> is the default full client header.</li>
+                    <li><code>HeaderSimple.astro</code> is for lean sites, portfolios, and minimal layouts.</li>
+                    <li><code>Footer.astro</code> is the full local-business footer with contact and legal links.</li>
+                    <li><code>FooterSimple.astro</code> is suitable for a lighter site footer.</li>
+                    <li><code>AnnouncementBar.astro</code> is for a real temporary message, offer, closure, or verified service notice.</li>
+                    <li><code>MobileCTA.astro</code> is designed for mobile-only call or lead actions.</li>
                   </ul>
                 </div>
 
                 <aside class="library-note">
-                  <strong>Before launch:</strong> Replace placeholder imagery and demo
-                  statements with real business-approved content.
+                  <strong>Mobile CTA note:</strong> the sticky mobile CTA is intentionally
+                  hidden at desktop widths. Resize the browser below 700px to test it.
+                  Add it to phone-first service sites only after confirming it does not
+                  cover content or conflict with cookie/form controls.
                 </aside>
               </div>
             </section>
+
+            <section id="forms" class="library-section">
+              <div class="library-section-heading">
+                <div>
+                  <p class="library-section-number">13 — Forms</p>
+                  <h2>Lead-capture patterns and provider options</h2>
+                </div>
+
+                <p class="library-component-file">
+                  Folder: <code>src/components/forms/</code>
+                </p>
+              </div>
+
+              <div class="library-preview library-preview--white">
+                <div class="library-form-grid">
+                  <ContactForm />
+                  <CloudflareContactForm />
+                </div>
+
+                <div class="library-form-wide">
+                  <TallyForm />
+                </div>
+
+                <div class="library-mini-grid">
+                  <Card>
+                    <h3>Consent checkbox</h3>
+                    <ConsentCheckbox />
+                  </Card>
+
+                  <Card>
+                    <h3>Info state</h3>
+                    <FormStatus type="info">
+                      Connect a real form endpoint before production launch.
+                    </FormStatus>
+                  </Card>
+
+                  <Card>
+                    <h3>Success state</h3>
+                    <FormStatus type="success">
+                      Example: Your request has been received.
+                    </FormStatus>
+                  </Card>
+                </div>
+
+                <div class="library-form-statuses">
+                  <FormStatus type="error">
+                    Error example: Enter a valid email address before submitting.
+                  </FormStatus>
+                </div>
+              </div>
+
+              <div class="library-docs">
+                <div>
+                  <h3>Form selection guide</h3>
+
+                  <ul>
+                    <li><code>ContactForm.astro</code>: general service leads and inquiries.</li>
+                    <li><code>CloudflareContactForm.astro</code>: use when the client project is configured to process a Cloudflare-based form workflow.</li>
+                    <li><code>TallyForm.astro</code>: fast embedded intake, quote, or discovery form option.</li>
+                    <li><code>ConsentCheckbox.astro</code>: use only when appropriate for the client’s data-use and marketing requirements.</li>
+                    <li><code>Honeypot.astro</code>: basic spam-reduction field used inside a form.</li>
+                    <li><code>FormStatus.astro</code>: accessible message styling for info, success, and error feedback.</li>
+                  </ul>
+                </div>
+
+                <aside class="library-note library-note--warning">
+                  <strong>Required before launch:</strong> test a live production
+                  submission and confirm it arrives at the intended inbox, CRM, or
+                  provider dashboard. Never assume a visual form sends email.
+                </aside>
+              </div>
+            </section>
+
+            <ComponentShowcase
+  id="hero-split"
+  number="20.01"
+  category="Hero"
+  title="Split Hero"
+  file="src/components/heroes/HeroSplit.astro"
+  bestFor="Default homepage layout for local services, consultants, agencies, and portfolios. Works when a message and visual proof both matter."
+  dataSource="Props: eyebrow, title, description, CTAs. Optional approved client image."
+  status="ready"
+>
+  <HeroSplit />
+
+  <Fragment slot="notes">
+    <p>
+      <strong>Use it when:</strong> the client has a clear service message and a
+      high-quality team, service, product, or project image.
+    </p>
+  </Fragment>
+</ComponentShowcase>
+
+<ComponentShowcase
+  id="hero-centered"
+  number="20.02"
+  category="Hero"
+  title="Centered Conversion Hero"
+  file="src/components/heroes/HeroCentered.astro"
+  bestFor="Consultants, wellness providers, professional services, simple campaigns, and pages with one primary conversion."
+  dataSource="Props: eyebrow, title, description, primary CTA, optional secondary CTA."
+  status="ready"
+>
+  <HeroCentered />
+
+  <Fragment slot="notes">
+    <p>
+      <strong>Use it when:</strong> the headline is more important than a large
+      photo and you want a calm, focused opening.
+    </p>
+  </Fragment>
+</ComponentShowcase>
+
+<ComponentShowcase
+  id="hero-overlay"
+  number="20.03"
+  category="Hero"
+  title="Image Overlay Hero"
+  file="src/components/heroes/HeroOverlay.astro"
+  bestFor="Restaurants, landscaping, salons, hospitality, photography, venues, and businesses with compelling approved photography."
+  dataSource="Props: image URL, alt context, headline, description, CTA."
+  status="ready"
+  fullBleed={true}
+>
+  <HeroOverlay />
+
+  <Fragment slot="notes">
+    <p>
+      <strong>Before launch:</strong> replace the placeholder with a permitted,
+      high-resolution image. Ensure the overlay keeps text readable.
+    </p>
+  </Fragment>
+</ComponentShowcase>
+
+<ComponentShowcase
+  id="hero-service"
+  number="20.04"
+  category="Hero"
+  title="Service Detail Hero"
+  file="src/components/heroes/ServiceHero.astro"
+  bestFor="Individual service pages, detailed landing pages, and service-area pages with genuinely distinct information."
+  dataSource="Service name, description, optional location, and breadcrumb data."
+  status="ready"
+>
+  <ServiceHero
+    serviceName="Example Service"
+    description="Use a focused service page intro to explain the customer need, the service approach, and how to request help."
+    location="Your Local Service Area"
+  />
+
+  <Fragment slot="notes">
+    <p>
+      <strong>Page rule:</strong> match it with visible breadcrumbs, relevant
+      service details, FAQ, and one clear contact or estimate CTA.
+    </p>
+  </Fragment>
+</ComponentShowcase>
 
             <section id="services" class="library-section">
               <div class="library-section-heading">
                 <div>
                   <p class="library-section-number">21 — Services</p>
-                  <h2>Three-card Services Grid</h2>
+                  <h2>Explain offerings without overwhelming visitors</h2>
                 </div>
 
                 <p class="library-component-file">
-                  File: <code>src/components/sections/ServicesGrid.astro</code>
+                  Folder: <code>src/components/sections/</code>
                 </p>
               </div>
 
               <div class="library-preview">
-                <ServicesGrid />
+                <div class="library-variant-stack">
+                  <ServicesGrid
+                    title="Standard Service Grid"
+                    description="Use for two to six core services that each have a clear description and next step."
+                  />
+
+                  <ServiceOverview />
+
+                  <BenefitsGrid />
+
+                  <IncludedList />
+
+                  <ServiceComparison />
+
+                  <RelatedServices currentSlug="service-one" />
+                </div>
               </div>
 
               <div class="library-docs">
                 <div>
-                  <h3>Data source</h3>
+                  <h3>Service-page recipe</h3>
 
-                  <p>
-                    Edit <code>src/content/services.json</code> to change service names,
-                    descriptions, and slug URLs. The same data can also power
-                    <code> src/pages/services/[slug].astro</code>.
-                  </p>
+                  <ul>
+                    <li>Service hero</li>
+                    <li>Service overview</li>
+                    <li>Benefits and included scope</li>
+                    <li>Trust or process proof</li>
+                    <li>Relevant FAQ</li>
+                    <li>Related services</li>
+                    <li>Contact or estimate CTA</li>
+                  </ul>
                 </div>
 
                 <aside class="library-note">
-                  <strong>Use it when:</strong> a client has two to six core services.
-                  If there are many offerings, group them by category instead of making
-                  one oversized grid.
+                  <strong>Data first:</strong> service names, descriptions, and URL
+                  slugs should originate in <code>src/content/services.json</code>.
+                  Avoid duplicating service details in multiple pages.
+                </aside>
+              </div>
+            </section>
+
+            <section id="trust" class="library-section">
+              <div class="library-section-heading">
+                <div>
+                  <p class="library-section-number">22 — Trust and process</p>
+                  <h2>Show proof and clarify what happens next</h2>
+                </div>
+
+                <p class="library-component-file">
+                  Files: <code>TrustBar.astro</code>, <code>WhyChooseUs.astro</code>, and <code>ProcessSteps.astro</code>
+                </p>
+              </div>
+
+              <div class="library-preview library-preview--white">
+                <div class="library-variant-stack">
+                  <TrustBar
+                    items={[
+                      { value: "Local", label: "Use accurate area information" },
+                      { value: "Licensed", label: "Only if verified" },
+                      { value: "Insured", label: "Only if verified" },
+                      { value: "Experienced", label: "Use real approved proof" }
+                    ]}
+                  />
+
+                  <WhyChooseUs />
+
+                  <ProcessSteps
+                    title="A simple client process"
+                    description="Use actual steps so visitors know what happens after they call, submit a request, or book."
+                  />
+                </div>
+              </div>
+
+              <div class="library-docs">
+                <div>
+                  <h3>Placement guide</h3>
+
+                  <ul>
+                    <li>TrustBar: under the hero or directly above the main services block.</li>
+                    <li>WhyChooseUs: after service discovery, when visitors need a reason to choose this business.</li>
+                    <li>ProcessSteps: before testimonials, FAQ, or the final CTA.</li>
+                  </ul>
+                </div>
+
+                <aside class="library-note library-note--warning">
+                  <strong>Proof must be real:</strong> never publish placeholder
+                  licenses, insurance, certifications, awards, review scores, guarantee
+                  terms, response times, or experience claims.
+                </aside>
+              </div>
+            </section>
+
+            <section id="content" class="library-section">
+              <div class="library-section-heading">
+                <div>
+                  <p class="library-section-number">23 — Content and media</p>
+                  <h2>Make the page feel specific to the client</h2>
+                </div>
+
+                <p class="library-component-file">
+                  Files: <code>ImageText.astro</code>, <code>GalleryGrid.astro</code>, <code>TeamGrid.astro</code>, and more
+                </p>
+              </div>
+
+              <div class="library-preview">
+                <div class="library-variant-stack">
+                  <ImageText
+                    eyebrow="About the business"
+                    title="Image and text section"
+                    description="Use for an owner message, service explanation, company story, location detail, or important differentiator."
+                    buttonLabel="Contact us"
+                    buttonHref="/contact"
+                  />
+
+                  <GalleryGrid
+                    title="Gallery grid"
+                    description="Use with real client work, product, venue, team, or location images."
+                  />
+
+                  <TeamGrid />
+
+                  <ProjectHighlight />
+
+                  <BeforeAfter />
+
+                  <LogoBar />
+
+                  <PricingCards />
+
+                  <ServiceArea />
+                </div>
+              </div>
+
+              <div class="library-docs">
+                <div>
+                  <h3>Choose by industry</h3>
+
+                  <ul>
+                    <li>Landscaping, construction, cleaning, design, restaurants, beauty: prioritize GalleryGrid and BeforeAfter where authentic images exist.</li>
+                    <li>Consultants, clinics, salons, law firms, agencies: use TeamGrid and ImageText to introduce people and expertise.</li>
+                    <li>Agencies, contractors, design studios: use ProjectHighlight for a concise real project story.</li>
+                    <li>Package-based services: use PricingCards only for current, approved pricing or transparent “contact for pricing” packages.</li>
+                    <li>Local businesses: use ServiceArea with actual coverage information.</li>
+                  </ul>
+                </div>
+
+                <aside class="library-note">
+                  <strong>Image rights:</strong> only use assets the client owns,
+                  licenses, or has permission to publish. Informative images need useful
+                  alt text; decorative images should use <code>alt=""</code>.
                 </aside>
               </div>
             </section>
@@ -422,33 +991,41 @@ const colors = [
             <section id="testimonials" class="library-section">
               <div class="library-section-heading">
                 <div>
-                  <p class="library-section-number">22 — Testimonials</p>
-                  <h2>Testimonial Cards</h2>
+                  <p class="library-section-number">24 — Testimonials</p>
+                  <h2>Use customer proof carefully and transparently</h2>
                 </div>
 
                 <p class="library-component-file">
-                  File: <code>src/components/sections/Testimonials.astro</code>
+                  Files: <code>Testimonials.astro</code> and <code>FeaturedTestimonial.astro</code>
                 </p>
               </div>
 
               <div class="library-preview">
-                <Testimonials />
+                <div class="library-variant-stack">
+                  <Testimonials
+                    title="Standard testimonial cards"
+                    description="Use multiple genuine reviews when visitors benefit from seeing several customer perspectives."
+                  />
+
+                  <FeaturedTestimonial />
+                </div>
               </div>
 
               <div class="library-docs">
                 <div>
-                  <h3>Data source</h3>
+                  <h3>Use the right pattern</h3>
 
-                  <p>
-                    Edit <code>src/content/testimonials.json</code>. Use only genuine,
-                    client-approved reviews and preserve required attribution or source
-                    information.
-                  </p>
+                  <ul>
+                    <li>Testimonials: multiple short approved reviews from real clients or customers.</li>
+                    <li>FeaturedTestimonial: one strong, detailed review or a key client story.</li>
+                    <li>ProjectHighlight: use when proof is better expressed as a project or case study than as a quote.</li>
+                  </ul>
                 </div>
 
                 <aside class="library-note library-note--warning">
-                  <strong>Never use:</strong> invented reviews, fabricated star ratings,
-                  anonymous claims, or client logos without permission.
+                  <strong>Never invent reviews:</strong> review quotes, names,
+                  attribution, star scores, business logos, and performance claims must
+                  be genuine and approved for publication.
                 </aside>
               </div>
             </section>
@@ -456,8 +1033,8 @@ const colors = [
             <section id="faqs" class="library-section">
               <div class="library-section-heading">
                 <div>
-                  <p class="library-section-number">23 — FAQs</p>
-                  <h2>Native FAQ Accordion</h2>
+                  <p class="library-section-number">25 — FAQs</p>
+                  <h2>Remove the questions that block conversion</h2>
                 </div>
 
                 <p class="library-component-file">
@@ -471,19 +1048,22 @@ const colors = [
 
               <div class="library-docs">
                 <div>
-                  <h3>Data source</h3>
+                  <h3>FAQ topics that matter</h3>
 
-                  <p>
-                    Edit <code>src/content/faq.json</code>. Choose questions that reduce
-                    actual customer uncertainty: process, timing, location, preparation,
-                    coverage, availability, and next steps.
-                  </p>
+                  <ul>
+                    <li>How a client requests service or books.</li>
+                    <li>What happens after first contact.</li>
+                    <li>Where the business serves.</li>
+                    <li>How estimates, pricing, or consultation fees work.</li>
+                    <li>What visitors should prepare or bring.</li>
+                    <li>Accurate policies, timing, availability, or cancellation terms.</li>
+                  </ul>
                 </div>
 
                 <aside class="library-note">
-                  <strong>Accessibility:</strong> This component uses native
-                  <code> details</code> and <code> summary</code> elements, so it does
-                  not need JavaScript to open or close.
+                  <strong>Keep it useful:</strong> do not write FAQ entries only for
+                  keyword repetition. Answer the real objections and questions staff
+                  hear from potential customers.
                 </aside>
               </div>
             </section>
@@ -491,45 +1071,52 @@ const colors = [
             <section id="ctas" class="library-section">
               <div class="library-section-heading">
                 <div>
-                  <p class="library-section-number">24 — Calls to action</p>
-                  <h2>High-contrast Final CTA</h2>
+                  <p class="library-section-number">26 — Calls to action</p>
+                  <h2>End pages with an appropriate next action</h2>
                 </div>
 
                 <p class="library-component-file">
-                  File: <code>src/components/sections/ContactCTA.astro</code>
+                  Files: <code>ContactCTA.astro</code>, <code>EmergencyCTA.astro</code>, and <code>MobileCTA.astro</code>
                 </p>
               </div>
 
               <div class="library-preview">
-                <ContactCTA
-                  title="A simple, high-contrast final call to action"
-                  description="Use it near the bottom of a page to guide visitors toward calling, booking, requesting an estimate, or starting a conversation."
-                />
+                <div class="library-variant-stack">
+                  <ContactCTA
+                    title="High-contrast final CTA"
+                    description="Use after a visitor has learned about services, proof, process, and next steps."
+                  />
+
+                  <EmergencyCTA />
+                </div>
               </div>
 
               <div class="library-docs">
                 <div>
-                  <h3>Where to use it</h3>
+                  <h3>CTA selection guide</h3>
 
                   <ul>
-                    <li>At the end of homepages, service pages, and about pages.</li>
-                    <li>After proof such as testimonials, FAQs, projects, or process steps.</li>
-                    <li>When the next step and contact route are fully working.</li>
+                    <li>ContactCTA: estimate requests, general inquiries, consultations, and standard lead generation.</li>
+                    <li>EmergencyCTA: only when a client genuinely offers urgent/emergency response.</li>
+                    <li>PhoneCTA: high-intent service and local-business pages.</li>
+                    <li>ServiceAreaCTA: reinforce geographic relevance when visitors need to verify coverage.</li>
+                    <li>MobileCTA: smaller-screen conversion support for phone-first sites.</li>
                   </ul>
                 </div>
 
-                <aside class="library-note">
-                  <strong>Check first:</strong> Confirm the destination URL, phone,
-                  form, and response-time wording are accurate before publishing.
+                <aside class="library-note library-note--warning">
+                  <strong>Be accurate:</strong> only use wording such as “emergency,”
+                  “same-day,” “free estimate,” “book now,” or “available today” if the
+                  client confirms they can consistently meet that promise.
                 </aside>
               </div>
             </section>
 
-            <section id="industry-examples" class="library-section">
+            <section id="examples" class="library-section">
               <div class="library-section-heading">
                 <div>
                   <p class="library-section-number">40 — Industry examples</p>
-                  <h2>Build from a complete starting point</h2>
+                  <h2>Start with a full-page business recipe</h2>
                 </div>
 
                 <p class="library-component-file">
@@ -543,19 +1130,75 @@ const colors = [
 
               <div class="library-docs">
                 <div>
-                  <h3>How to use examples</h3>
+                  <h3>How to use the example gallery</h3>
 
                   <p>
-                    Choose the industry closest to the client’s business, open its
-                    complete example, and use its conversion goal and component sequence
-                    as your first page-plan draft. Replace all demo content with verified
-                    client information before launch.
+                    Open the industry closest to the client, identify the conversion
+                    goal and section order, then use that sequence as a starting page
+                    plan. Remove patterns that do not fit the client’s real offer.
                   </p>
                 </div>
 
                 <aside class="library-note">
-                  <strong>Important:</strong> An industry example is a starting recipe,
-                  not a promise that every listed component belongs on every client site.
+                  <strong>Examples are not finished sites:</strong> every sample needs
+                  real client copy, imagery, data, policies, form connections, and
+                  verification before it can be published.
+                </aside>
+              </div>
+            </section>
+
+            <section id="seo" class="library-section">
+              <div class="library-section-heading">
+                <div>
+                  <p class="library-section-number">80 — SEO and schema</p>
+                  <h2>Nonvisual components that support discoverability</h2>
+                </div>
+
+                <p class="library-component-file">
+                  Folder: <code>src/components/seo/</code>
+                </p>
+              </div>
+
+              <div class="library-preview library-preview--white">
+                <div class="library-table-wrap">
+                  <table class="library-table">
+                    <thead>
+                      <tr>
+                        <th>Component</th>
+                        <th>Where it belongs</th>
+                        <th>Purpose</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      {seoComponents.map((component) => (
+                        <tr>
+                          <td><code>{component.file}</code></td>
+                          <td>{component.location}</td>
+                          <td>{component.purpose}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="library-docs">
+                <div>
+                  <h3>SEO rule</h3>
+
+                  <p>
+                    Use page titles, descriptions, canonical URLs, structured data, and
+                    analytics only when their values are accurate, client-approved, and
+                    match visible public content. Schema should describe the page; it
+                    should not create unsupported claims.
+                  </p>
+                </div>
+
+                <aside class="library-note library-note--warning">
+                  <strong>Before launch:</strong> verify the actual domain, favicon,
+                  robots file, sitemap, Open Graph image, privacy disclosures, analytics
+                  settings, and all business-schema information.
                 </aside>
               </div>
             </section>
@@ -563,65 +1206,71 @@ const colors = [
             <section id="build-process" class="library-section">
               <div class="library-section-heading">
                 <div>
-                  <p class="library-section-number">70 — Build process</p>
-                  <h2>How to build a client site</h2>
+                  <p class="library-section-number">90 — Build process</p>
+                  <h2>From master library to client launch</h2>
                 </div>
 
                 <p class="library-component-file">
-                  File: <code>docs/new-client-setup.md</code>
+                  Files: <code>README.md</code> and <code>docs/launch-checklist.md</code>
                 </p>
               </div>
 
               <div class="library-preview library-preview--white">
                 <ol class="library-checklist">
-                  <li>Duplicate the master library into a new private client repository or branch.</li>
-                  <li>Update verified business details in <code>src/content/site.json</code>.</li>
-                  <li>Update brand tokens in <code>src/styles/theme.css</code>.</li>
-                  <li>Add approved logo files and real images under <code>src/assets/</code>.</li>
-                  <li>Replace demo services, reviews, FAQs, process steps, and service areas.</li>
-                  <li>Choose components and industry recipes from this library.</li>
-                  <li>Connect a form provider and submit a successful live form test.</li>
-                  <li>Run accessibility, SEO, mobile, link, and production-build checks.</li>
+                  <li>Duplicate the master library into a new private client project.</li>
+                  <li>Confirm scope, conversion goals, client-provided content, domains, and third-party account ownership.</li>
+                  <li>Update central JSON business data and theme tokens.</li>
+                  <li>Choose a page recipe and component variations from this visual library.</li>
+                  <li>Replace all demo copy, reviews, images, credentials, prices, and placeholders.</li>
+                  <li>Connect and test functional integrations.</li>
+                  <li>Test desktop, tablet, mobile, keyboard interaction, all links, all forms, and the production build.</li>
+                  <li>Deploy preview, obtain client approval, connect the client-owned domain, and complete handoff.</li>
                 </ol>
               </div>
 
               <div class="library-docs">
                 <div>
-                  <h3>Recommended page recipes</h3>
+                  <h3>Suggested page recipes</h3>
 
                   <div class="library-table-wrap">
                     <table class="library-table">
                       <thead>
                         <tr>
                           <th>Page</th>
-                          <th>Suggested sequence</th>
+                          <th>Suggested component sequence</th>
+                          <th>Primary goal</th>
                         </tr>
                       </thead>
 
                       <tbody>
                         <tr>
                           <td>Homepage</td>
-                          <td>Hero → Services → Why choose us → Testimonials → FAQ → Final CTA</td>
+                          <td>Hero → Services → Trust → Process → Testimonials → FAQ → CTA</td>
+                          <td>Explain offer and drive the main conversion.</td>
                         </tr>
 
                         <tr>
                           <td>Service page</td>
-                          <td>Service hero → Benefits → Included items → Process → FAQ → Final CTA</td>
+                          <td>Service hero → Overview → Benefits → Included list → Process → FAQ → Related services → CTA</td>
+                          <td>Explain a single service and generate a qualified lead.</td>
                         </tr>
 
                         <tr>
                           <td>About page</td>
-                          <td>Business story → Team or proof → Service areas → Final CTA</td>
+                          <td>Hero or ImageText → Story → Team or project proof → Service area → CTA</td>
+                          <td>Build trust in people, approach, and business identity.</td>
                         </tr>
 
                         <tr>
                           <td>Contact page</td>
-                          <td>Contact details → Form → Response expectation → Phone backup</td>
+                          <td>Contact details → Correct form type → Response expectations → Phone backup</td>
+                          <td>Make reaching the business simple.</td>
                         </tr>
 
                         <tr>
-                          <td>Location page</td>
-                          <td>Location-specific service context → Areas served → Relevant proof → Contact CTA</td>
+                          <td>Portfolio / gallery</td>
+                          <td>Intro → Gallery → Project highlight → Testimonials → CTA</td>
+                          <td>Prove capability with real work.</td>
                         </tr>
                       </tbody>
                     </table>
@@ -629,14 +1278,17 @@ const colors = [
                 </div>
 
                 <aside class="library-note library-note--success">
-                  <strong>Final rule:</strong> This library is a toolbox, not a list of
-                  sections to force onto every page. Select only the components that serve
-                  the client’s actual offer and the visitor’s decision-making needs.
+                  <strong>Launch standard:</strong> verify facts, claims, reviews,
+                  credentials, links, forms, mobile display, keyboard behavior, SEO
+                  basics, production build success, written client approval, and account
+                  ownership before launch.
                 </aside>
               </div>
             </section>
           </div>
         </main>
+
+        <MobileCTA />
       </div>
     </div>
   </body>

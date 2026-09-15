@@ -1,0 +1,49 @@
+---
+interface Props {
+  id?: string;
+  required?: boolean;
+  label?: string;
+}
+
+const {
+  id = "contact-consent",
+  required = false,
+  label = "I agree to be contacted about my request."
+} = Astro.props;
+---
+
+<div class="consent-checkbox">
+  <input
+    id={id}
+    name={id}
+    type="checkbox"
+    required={required}
+  />
+
+  <label for={id}>
+    {label}
+    {required && <span aria-hidden="true"> *</span>}
+  </label>
+</div>
+
+<style>
+  .consent-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+
+  input {
+    width: 1rem;
+    height: 1rem;
+    flex: 0 0 auto;
+    margin-top: 0.25rem;
+    accent-color: var(--color-primary);
+  }
+
+  label {
+    color: var(--color-muted);
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+</style>

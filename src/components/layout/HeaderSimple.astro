@@ -1,0 +1,56 @@
+---
+import navigation from "../../content/navigation.json";
+import Logo from "../ui/Logo.astro";
+---
+
+<header class="header-simple">
+  <div class="container header-simple__inner">
+    <Logo />
+
+    <nav aria-label="Primary navigation">
+      {navigation.main.map((item) => (
+        <a href={item.href}>{item.label}</a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header-simple {
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+
+  .header-simple__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    min-height: 70px;
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+  }
+
+  nav a {
+    color: var(--color-text);
+    font-size: 0.92rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  nav a:hover {
+    color: var(--color-primary);
+  }
+
+  @media (max-width: 640px) {
+    .header-simple__inner {
+      align-items: flex-start;
+      flex-direction: column;
+      padding-block: var(--space-4);
+    }
+  }
+</style>

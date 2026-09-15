@@ -1,0 +1,89 @@
+---
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  items?: string[];
+}
+
+const {
+  eyebrow = "What is included",
+  title = "Clear scope from the beginning",
+  description = "Use this section to explain what the customer receives and reduce uncertainty about the service.",
+  items = [
+    "Initial conversation or assessment",
+    "Clear recommendation or service plan",
+    "Service delivery or project completion",
+    "Relevant follow-up instructions"
+  ]
+} = Astro.props;
+---
+
+<section class="section section--alt">
+  <div class="content-container">
+    <p class="eyebrow">{eyebrow}</p>
+    <h2>{title}</h2>
+    <p class="description">{description}</p>
+
+    <ul class="included-list">
+      {items.map((item) => (
+        <li>{item}</li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .eyebrow {
+    margin: 0 0 var(--space-3);
+    color: var(--color-primary);
+    font-size: 0.82rem;
+    font-weight: 850;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+  }
+
+  .description {
+    color: var(--color-muted);
+    font-size: 1.08rem;
+  }
+
+  .included-list {
+    display: grid;
+    gap: var(--space-3);
+    margin: var(--space-6) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .included-list li {
+    position: relative;
+    padding: var(--space-4) var(--space-4) var(--space-4) 3rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+  }
+
+  .included-list li::before {
+    content: "✓";
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    display: grid;
+    width: 1.3rem;
+    height: 1.3rem;
+    place-items: center;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background: var(--color-secondary);
+    color: var(--color-primary);
+    font-size: 0.75rem;
+    font-weight: 900;
+  }
+</style>

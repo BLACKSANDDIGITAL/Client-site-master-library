@@ -1,0 +1,104 @@
+---
+import team from "../../content/team.json";
+import SectionHeading from "../ui/SectionHeading.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Meet the team",
+  description = "Use real biographies, roles, and approved photos."
+} = Astro.props;
+---
+
+<section class="section">
+  <div class="container">
+    <SectionHeading
+      eyebrow="Our people"
+      title={title}
+      description={description}
+    />
+
+    <div class="team-grid">
+      {team.map((member) => (
+        <article class="team-card">
+          {
+            member.image ? (
+              <img src={member.image} alt={`Portrait of ${member.name}`} loading="lazy" />
+            ) : (
+              <div class="team-placeholder" role="img" aria-label={`Placeholder portrait for ${member.name}`}>
+                {member.name.slice(0, 1)}
+              </div>
+            )
+          }
+
+          <div class="team-card__content">
+            <h3>{member.name}</h3>
+            <p class="role">{member.role}</p>
+            <p>{member.bio}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+  }
+
+  .team-card {
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+  }
+
+  img,
+  .team-placeholder {
+    width: 100%;
+    aspect-ratio: 1 / 0.85;
+    object-fit: cover;
+  }
+
+  .team-placeholder {
+    display: grid;
+    place-items: center;
+    background: var(--color-secondary);
+    color: var(--color-primary);
+    font-size: 3rem;
+    font-weight: 850;
+  }
+
+  .team-card__content {
+    padding: var(--space-5);
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+
+  .role {
+    margin: var(--space-1) 0 var(--space-3);
+    color: var(--color-primary);
+    font-size: 0.9rem;
+    font-weight: 800;
+  }
+
+  .team-card__content > p:last-child {
+    margin-bottom: 0;
+    color: var(--color-muted);
+  }
+
+  @media (max-width: 800px) {
+    .team-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

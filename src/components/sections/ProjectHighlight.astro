@@ -1,0 +1,125 @@
+---
+import Button from "../ui/Button.astro";
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  result?: string;
+  image?: string;
+  imageAlt?: string;
+  buttonLabel?: string;
+  buttonHref?: string;
+}
+
+const {
+  eyebrow = "Featured project",
+  title = "A concise project or case-study highlight",
+  description = "Use this component to explain a real project, relevant challenge, approach, and approved outcome.",
+  result = "Add a verified result, client-approved quote, or project detail here.",
+  image = "",
+  imageAlt = "Placeholder for approved project image",
+  buttonLabel = "Discuss your project",
+  buttonHref = "/contact"
+} = Astro.props;
+---
+
+<section class="section">
+  <div class="container project-grid">
+    <div class="project-image">
+      {
+        image ? (
+          <img src={image} alt={imageAlt} loading="lazy" />
+        ) : (
+          <div role="img" aria-label={imageAlt}>Replace with approved project image</div>
+        )
+      }
+    </div>
+
+    <div class="project-content">
+      <p class="eyebrow">{eyebrow}</p>
+      <h2>{title}</h2>
+      <p>{description}</p>
+
+      <div class="result">
+        <strong>Project detail</strong>
+        <span>{result}</span>
+      </div>
+
+      <Button href={buttonHref}>{buttonLabel}</Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .project-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+  }
+
+  .project-image img,
+  .project-image > div {
+    width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+  }
+
+  .project-image > div {
+    display: grid;
+    min-height: 380px;
+    place-items: center;
+    padding: var(--space-5);
+    background: linear-gradient(135deg, #0f4c5c, #0f8174);
+    color: rgba(255, 255, 255, 0.85);
+    text-align: center;
+  }
+
+  .project-content {
+    padding: clamp(1.5rem, 4vw, 3.5rem);
+  }
+
+  .eyebrow {
+    color: var(--color-primary);
+    font-size: 0.8rem;
+    font-weight: 850;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.1;
+  }
+
+  .project-content > p:not(.eyebrow) {
+    color: var(--color-muted);
+  }
+
+  .result {
+    display: grid;
+    gap: var(--space-1);
+    margin-block: var(--space-5);
+    padding: var(--space-4);
+    border-left: 3px solid var(--color-accent);
+    background: var(--color-surface-alt);
+  }
+
+  .result span {
+    color: var(--color-muted);
+  }
+
+  @media (max-width: 760px) {
+    .project-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .project-image > div {
+      min-height: 240px;
+    }
+  }
+</style>

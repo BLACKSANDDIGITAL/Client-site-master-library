@@ -1,0 +1,98 @@
+---
+import SectionHeading from "../ui/SectionHeading.astro";
+
+interface Benefit {
+  title: string;
+  description: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  benefits?: Benefit[];
+}
+
+const {
+  eyebrow = "Benefits",
+  title = "Why this service matters",
+  description = "Replace these starter points with accurate, service-specific client benefits.",
+  benefits = [
+    {
+      title: "Clear expectations",
+      description: "Explain what customers can expect before work begins."
+    },
+    {
+      title: "Practical guidance",
+      description: "Use this for a real service benefit or meaningful differentiator."
+    },
+    {
+      title: "Simple next steps",
+      description: "Make it easy to call, request an estimate, or book."
+    }
+  ]
+} = Astro.props;
+---
+
+<section class="section">
+  <div class="container">
+    <SectionHeading
+      eyebrow={eyebrow}
+      title={title}
+      description={description}
+    />
+
+    <div class="benefits-grid">
+      {benefits.map((benefit) => (
+        <article>
+          <span aria-hidden="true">✓</span>
+          <h3>{benefit.title}</h3>
+          <p>{benefit.description}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+  }
+
+  article {
+    padding: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+  }
+
+  span {
+    display: grid;
+    width: 2.25rem;
+    height: 2.25rem;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--color-secondary);
+    color: var(--color-primary);
+    font-weight: 900;
+  }
+
+  h3 {
+    margin: var(--space-4) 0 var(--space-2);
+    font-size: 1.2rem;
+  }
+
+  p {
+    margin-bottom: 0;
+    color: var(--color-muted);
+  }
+
+  @media (max-width: 760px) {
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

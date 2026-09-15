@@ -1,0 +1,65 @@
+---
+interface Props {
+  title?: string;
+  logos?: string[];
+}
+
+const {
+  title = "Use only real, approved affiliations or client logos",
+  logos = ["Logo one", "Logo two", "Logo three", "Logo four"]
+} = Astro.props;
+---
+
+<section class="logo-bar" aria-label={title}>
+  <div class="container">
+    <p>{title}</p>
+
+    <div class="logo-grid">
+      {logos.map((logo) => (
+        <div class="logo-placeholder" aria-label={logo}>
+          {logo}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .logo-bar {
+    padding-block: var(--space-6);
+    border-block: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+
+  p {
+    margin: 0 0 var(--space-4);
+    color: var(--color-muted);
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .logo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+  }
+
+  .logo-placeholder {
+    display: grid;
+    min-height: 70px;
+    place-items: center;
+    border: 1px dashed var(--color-border);
+    border-radius: var(--radius-sm);
+    color: var(--color-muted);
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-align: center;
+  }
+
+  @media (max-width: 650px) {
+    .logo-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

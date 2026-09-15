@@ -1,0 +1,71 @@
+---
+import services from "../../content/services.json";
+import SectionHeading from "../ui/SectionHeading.astro";
+
+interface Props {
+  currentSlug?: string;
+}
+
+const { currentSlug = "" } = Astro.props;
+
+const related = services
+  .filter((service) => service.slug !== currentSlug)
+  .slice(0, 3);
+---
+
+{
+  related.length > 0 && (
+    <section class="section section--alt">
+      <div class="container">
+        <SectionHeading
+          title="Related services"
+          description="Explore other ways we may be able to help."
+        />
+
+        <div class="related-grid">
+          {related.map((service) => (
+            <article>
+              <h3>{service.name}</h3>
+              <p>{service.shortDescription}</p>
+              <a href={`/services/${service.slug}`}>Learn more</a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-5);
+  }
+
+  article {
+    padding: var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+  }
+
+  h3 {
+    margin-top: 0;
+  }
+
+  p {
+    color: var(--color-muted);
+  }
+
+  a {
+    color: var(--color-primary);
+    font-weight: 800;
+  }
+
+  @media (max-width: 760px) {
+    .related-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

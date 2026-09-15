@@ -1,0 +1,45 @@
+---
+interface Props {
+  type?: "info" | "success" | "error";
+}
+
+const { type = "info" } = Astro.props;
+
+const role = type === "error" ? "alert" : "status";
+---
+
+<div
+  class={`form-status form-status--${type}`}
+  role={role}
+  aria-live="polite"
+>
+  <slot />
+</div>
+
+<style>
+  .form-status {
+    padding: 0.9rem 1rem;
+    border: 1px solid;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .form-status--info {
+    border-color: #b2ddff;
+    background: #eff8ff;
+    color: #175cd3;
+  }
+
+  .form-status--success {
+    border-color: #abefc6;
+    background: #ecfdf3;
+    color: #067647;
+  }
+
+  .form-status--error {
+    border-color: #fecdca;
+    background: #fef3f2;
+    color: #b42318;
+  }
+</style>

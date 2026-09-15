@@ -1,0 +1,79 @@
+---
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  points?: string[];
+}
+
+const {
+  eyebrow = "Service overview",
+  title = "Explain the problem and the practical next step",
+  description = "Use this flexible section to explain who the service is for, which need it addresses, how the business helps, and how a customer can begin.",
+  points = [
+    "Who this service is for",
+    "The problem or need it addresses",
+    "How the client approaches the work",
+    "How visitors can request the service"
+  ]
+} = Astro.props;
+---
+
+<section class="section">
+  <div class="content-container">
+    <p class="eyebrow">{eyebrow}</p>
+    <h2>{title}</h2>
+    <p class="description">{description}</p>
+
+    <div class="overview-points">
+      {points.map((point) => (
+        <p>{point}</p>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .eyebrow {
+    margin: 0 0 var(--space-3);
+    color: var(--color-primary);
+    font-size: 0.82rem;
+    font-weight: 850;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3.1rem);
+    line-height: 1.1;
+  }
+
+  .description {
+    color: var(--color-muted);
+    font-size: 1.08rem;
+  }
+
+  .overview-points {
+    display: grid;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+
+  .overview-points p {
+    position: relative;
+    margin: 0;
+    padding-left: 1.75rem;
+    color: var(--color-text);
+    font-weight: 700;
+  }
+
+  .overview-points p::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    font-size: 1.5rem;
+    line-height: 1rem;
+  }
+</style>

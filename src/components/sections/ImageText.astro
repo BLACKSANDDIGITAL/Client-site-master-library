@@ -1,0 +1,118 @@
+---
+import Button from "../ui/Button.astro";
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description: string;
+  image?: string;
+  imageAlt?: string;
+  imagePosition?: "left" | "right";
+  buttonLabel?: string;
+  buttonHref?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  description,
+  image = "",
+  imageAlt = "",
+  imagePosition = "right",
+  buttonLabel,
+  buttonHref = "/contact"
+} = Astro.props;
+---
+
+<section class={`section image-text image-text--${imagePosition}`}>
+  <div class="container image-text__grid">
+    <div class="image-text__content">
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h2>{title}</h2>
+      <p>{description}</p>
+      {buttonLabel && <Button href={buttonHref}>{buttonLabel}</Button>}
+    </div>
+
+    {
+      image ? (
+        <img class="image-text__image" src={image} alt={imageAlt} loading="lazy" />
+      ) : (
+        <div class="image-text__placeholder" role="img" aria-label="Placeholder for client image">
+          Replace with approved client image
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .image-text__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: center;
+    gap: var(--space-7);
+  }
+
+  .image-text--left .image-text__content {
+    order: 2;
+  }
+
+  .image-text--left .image-text__image,
+  .image-text--left .image-text__placeholder {
+    order: 1;
+  }
+
+  .eyebrow {
+    color: var(--color-primary);
+    font-size: 0.82rem;
+    font-weight: 850;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    line-height: 1.1;
+  }
+
+  .image-text__content > p:not(.eyebrow) {
+    color: var(--color-muted);
+    font-size: 1.08rem;
+  }
+
+  .image-text__image,
+  .image-text__placeholder {
+    min-height: 360px;
+    width: 100%;
+    border-radius: var(--radius-lg);
+    object-fit: cover;
+  }
+
+  .image-text__placeholder {
+    display: grid;
+    place-items: center;
+    padding: var(--space-5);
+    background: linear-gradient(135deg, #0d5c45, #0f8174);
+    color: rgba(255, 255, 255, 0.86);
+    text-align: center;
+  }
+
+  @media (max-width: 760px) {
+    .image-text__grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+    }
+
+    .image-text--left .image-text__content,
+    .image-text--left .image-text__image,
+    .image-text--left .image-text__placeholder {
+      order: initial;
+    }
+
+    .image-text__image,
+    .image-text__placeholder {
+      min-height: 240px;
+    }
+  }
+</style>

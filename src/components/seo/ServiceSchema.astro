@@ -1,0 +1,35 @@
+---
+import site from "../../content/site.json";
+
+interface Props {
+  name: string;
+  description: string;
+  url?: string;
+}
+
+const {
+  name,
+  description,
+  url = Astro.url.toString()
+} = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name,
+  description,
+  url,
+  provider: {
+    "@type": "LocalBusiness",
+    name: site.businessName,
+    telephone: site.phoneLink,
+    email: site.email
+  },
+  areaServed: (site.serviceAreas || []).map((area) => ({
+    "@type": "City",
+    name: area
+  }))
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

@@ -1,0 +1,80 @@
+---
+import site from "../../content/site.json";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Need urgent help?",
+  description = "Use this section only when the business actually offers urgent or emergency response."
+} = Astro.props;
+---
+
+<section class="emergency-cta">
+  <div class="container emergency-cta__inner">
+    <div>
+      <p class="eyebrow">Urgent service</p>
+      <h2>{title}</h2>
+      <p>{description}</p>
+    </div>
+
+    <a href={`tel:${site.phoneLink}`}>Call {site.phoneDisplay}</a>
+  </div>
+</section>
+
+<style>
+  .emergency-cta {
+    padding-block: var(--space-6);
+    background: #7a271a;
+    color: white;
+  }
+
+  .emergency-cta__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-5);
+  }
+
+  .eyebrow {
+    margin: 0;
+    color: #fec84b;
+    font-size: 0.78rem;
+    font-weight: 850;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    margin: var(--space-2) 0 0;
+    font-size: clamp(1.8rem, 3vw, 2.7rem);
+  }
+
+  p:not(.eyebrow) {
+    margin-bottom: 0;
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  a {
+    display: inline-flex;
+    flex: 0 0 auto;
+    min-height: 50px;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+    background: white;
+    color: #7a271a;
+    font-weight: 850;
+    text-decoration: none;
+  }
+
+  @media (max-width: 680px) {
+    .emergency-cta__inner {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+</style>

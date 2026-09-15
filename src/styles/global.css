@@ -1,10 +1,12 @@
 @import "./theme.css";
 @import "./utilities.css";
+@import "./components.css";
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
-
 html {
   scroll-behavior: smooth;
 }

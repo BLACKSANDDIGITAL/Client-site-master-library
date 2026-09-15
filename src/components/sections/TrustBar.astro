@@ -1,27 +1,27 @@
 ---
-interface Item {
-  label: string;
+interface TrustItem {
   value: string;
+  label: string;
 }
 
 interface Props {
-  items?: Item[];
+  items?: TrustItem[];
 }
 
 const {
   items = [
-    { value: "Licensed", label: "Only if verified" },
-    { value: "Insured", label: "Only if verified" },
-    { value: "Local", label: "Use accurate service-area information" },
-    { value: "Trusted", label: "Support with approved reviews or proof" }
+    { value: "Verified", label: "Use real business credentials" },
+    { value: "Local", label: "Use actual service-area information" },
+    { value: "Clear", label: "Explain the customer process" },
+    { value: "Responsive", label: "Only if the client confirms it" }
   ]
 } = Astro.props;
 ---
 
 <section class="trust-bar" aria-label="Business trust information">
-  <div class="container trust-grid">
+  <div class="container trust-bar__grid">
     {items.map((item) => (
-      <div class="trust-item">
+      <div class="trust-bar__item">
         <strong>{item.value}</strong>
         <span>{item.label}</span>
       </div>
@@ -36,13 +36,13 @@ const {
     background: var(--color-surface);
   }
 
-  .trust-grid {
+  .trust-bar__grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: var(--space-4);
   }
 
-  .trust-item {
+  .trust-bar__item {
     display: grid;
     gap: var(--space-1);
     text-align: center;
@@ -55,12 +55,13 @@ const {
 
   span {
     color: var(--color-muted);
-    font-size: 0.8rem;
+    font-size: 0.82rem;
+    line-height: 1.4;
   }
 
   @media (max-width: 720px) {
-    .trust-grid {
-      grid-template-columns: repeat(2, 1fr);
+    .trust-bar__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 </style>

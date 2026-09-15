@@ -1,0 +1,113 @@
+---
+interface Props {
+  beforeImage?: string;
+  afterImage?: string;
+  beforeAlt?: string;
+  afterAlt?: string;
+  beforeLabel?: string;
+  afterLabel?: string;
+}
+
+const {
+  beforeImage = "",
+  afterImage = "",
+  beforeAlt = "Placeholder before image",
+  afterAlt = "Placeholder after image",
+  beforeLabel = "Before",
+  afterLabel = "After"
+} = Astro.props;
+---
+
+<div class="before-after">
+  <figure>
+    {
+      beforeImage ? (
+        <img src={beforeImage} alt={beforeAlt} loading="lazy" />
+      ) : (
+        <div class="placeholder placeholder--before" role="img" aria-label={beforeAlt}>
+          Replace with approved before photo
+        </div>
+      )
+    }
+
+    <figcaption>{beforeLabel}</figcaption>
+  </figure>
+
+  <figure>
+    {
+      afterImage ? (
+        <img src={afterImage} alt={afterAlt} loading="lazy" />
+      ) : (
+        <div class="placeholder placeholder--after" role="img" aria-label={afterAlt}>
+          Replace with approved after photo
+        </div>
+      )
+    }
+
+    <figcaption>{afterLabel}</figcaption>
+  </figure>
+</div>
+
+<style>
+  .before-after {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+  }
+
+  figure {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+  }
+
+  img,
+  .placeholder {
+    display: block;
+    width: 100%;
+    min-height: 280px;
+    aspect-ratio: 1 / 0.75;
+    object-fit: cover;
+  }
+
+  .placeholder {
+    display: grid;
+    place-items: center;
+    padding: var(--space-4);
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .placeholder--before {
+    background: linear-gradient(135deg, #667085, #344054);
+  }
+
+  .placeholder--after {
+    background: linear-gradient(135deg, #0d5c45, #0f8174);
+  }
+
+  figcaption {
+    position: absolute;
+    bottom: 0.75rem;
+    left: 0.75rem;
+    padding: 0.4rem 0.6rem;
+    border-radius: var(--radius-sm);
+    background: rgba(16, 24, 40, 0.85);
+    color: white;
+    font-size: 0.78rem;
+    font-weight: 850;
+  }
+
+  @media (max-width: 600px) {
+    .before-after {
+      grid-template-columns: 1fr;
+    }
+
+    img,
+    .placeholder {
+      min-height: 220px;
+    }
+  }
+</style>
