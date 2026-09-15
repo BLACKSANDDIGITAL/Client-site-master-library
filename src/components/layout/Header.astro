@@ -1,0 +1,50 @@
+---
+import site from "../../content/site.json";
+---
+
+<header class="border-bottom bg-white sticky-top">
+  <nav class="navbar navbar-expand-lg container py-3">
+    <a class="navbar-brand fw-bold fs-4" href="/">
+      {site.businessName}
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#mainNavigation"
+      aria-controls="mainNavigation"
+      aria-expanded="false"
+      aria-label="Open navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mainNavigation">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/services">Services</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contact</a>
+        </li>
+
+        <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+          <a class="btn btn-primary" href={`tel:${site.phoneLink}`}>
+            <i class="bi bi-telephone-fill me-2"></i>
+            {site.phoneDisplay}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>

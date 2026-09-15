@@ -1,0 +1,51 @@
+---
+interface Service {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+interface Props {
+  services: Service[];
+}
+
+const { services } = Astro.props;
+---
+
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-center text-center mb-5">
+      <div class="col-lg-8">
+        <p class="text-uppercase text-accent fw-bold small mb-3">
+          What We Offer
+        </p>
+
+        <h2 class="display-6">Services built around your needs.</h2>
+
+        <p class="lead text-secondary mb-0">
+          Professional service with straightforward communication.
+        </p>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      {
+        services.map((service) => (
+          <div class="col-md-6 col-lg-4">
+            <article class="card h-100 p-4">
+              <div class="fs-2 text-primary mb-4">
+                <i class={`bi ${service.icon}`}></i>
+              </div>
+
+              <h3 class="h4">{service.title}</h3>
+
+              <p class="text-secondary mb-0">
+                {service.description}
+              </p>
+            </article>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

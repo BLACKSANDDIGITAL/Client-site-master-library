@@ -1,0 +1,55 @@
+---
+import site from "../../content/site.json";
+
+const {
+  eyebrow = "Trusted Local Service",
+  title = site.tagline,
+  description = "Clear pricing, responsive communication, and quality work from a local team you can trust.",
+  primaryCtaLabel = site.primaryCta.label,
+  primaryCtaHref = site.primaryCta.href,
+  secondaryCtaLabel = "Call Us Today",
+  secondaryCtaHref = `tel:${site.phoneLink}`
+} = Astro.props;
+---
+
+<section class="section section-muted overflow-hidden">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <p class="text-uppercase text-accent fw-bold small mb-3">
+          {eyebrow}
+        </p>
+
+        <h1 class="display-4 mb-4">{title}</h1>
+
+        <p class="lead text-secondary mb-4">
+          {description}
+        </p>
+
+        <div class="d-flex flex-wrap gap-3">
+          <a class="btn btn-primary btn-lg" href={primaryCtaHref}>
+            {primaryCtaLabel}
+          </a>
+
+          <a class="btn btn-outline-dark btn-lg" href={secondaryCtaHref}>
+            {secondaryCtaLabel}
+          </a>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div
+          class="rounded-4 shadow-lg d-flex align-items-center justify-content-center text-white"
+          style="min-height: 360px; background: linear-gradient(135deg, #14532d, #0f766e);"
+        >
+          <div class="text-center p-5">
+            <i class="bi bi-house-check display-1"></i>
+            <p class="mt-3 mb-0 fs-5">
+              Replace this with a client photo
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

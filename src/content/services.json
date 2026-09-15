@@ -1,0 +1,17 @@
+[
+  {
+    "icon": "bi-tools",
+    "title": "Repairs & Maintenance",
+    "description": "Fast, dependable support to keep your home or business running smoothly."
+  },
+  {
+    "icon": "bi-house-check",
+    "title": "Professional Installation",
+    "description": "Careful installation, clear communication, and quality workmanship."
+  },
+  {
+    "icon": "bi-shield-check",
+    "title": "Inspections & Advice",
+    "description": "Clear guidance that helps customers understand their options and make confident decisions."
+  }
+]

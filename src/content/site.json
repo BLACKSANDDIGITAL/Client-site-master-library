@@ -1,0 +1,24 @@
+{
+  "businessName": "Demo Local Business",
+  "tagline": "Dependable local service you can trust",
+  "phoneDisplay": "(408) 555-0198",
+  "phoneLink": "+14085550198",
+  "email": "hello@example.com",
+  "address": {
+    "street": "123 Main Street",
+    "city": "San Jose",
+    "state": "CA",
+    "zip": "95112"
+  },
+  "serviceAreas": [
+    "San Jose",
+    "Santa Clara",
+    "Campbell",
+    "Sunnyvale"
+  ],
+  "hours": "Monday–Friday, 8 AM–6 PM",
+  "primaryCta": {
+    "label": "Request a Free Estimate",
+    "href": "/contact"
+  }
+}

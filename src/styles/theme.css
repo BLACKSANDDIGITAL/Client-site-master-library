@@ -1,0 +1,80 @@
+/*----bs-primary: #0a4b78;
+--brand-accent: #e66a2c;
+--font-heading: "Poppins", sans-serif;
+--font-body: "Open Sans", sans-serif; */ 
+:root {
+  --bs-primary: #14532d;
+  --bs-primary-rgb: 20, 83, 45;
+
+  --bs-secondary: #1f2937;
+  --bs-secondary-rgb: 31, 41, 55;
+
+  --bs-success: #15803d;
+  --bs-body-color: #172033;
+  --bs-body-bg: #ffffff;
+
+  --brand-accent: #f59e0b;
+  --brand-muted: #667085;
+  --brand-surface: #f7f8fa;
+
+  --font-heading: "DM Sans", Arial, sans-serif;
+  --font-body: "Inter", Arial, sans-serif;
+
+  --section-space: clamp(4rem, 8vw, 7rem);
+}
+
+body {
+  color: var(--bs-body-color);
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.section {
+  padding-block: var(--section-space);
+}
+
+.section-muted {
+  background: var(--brand-surface);
+}
+
+.btn {
+  border-radius: 999px;
+  font-weight: 700;
+  padding: 0.8rem 1.3rem;
+}
+
+.btn-primary {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #0f3d21;
+  border-color: #0f3d21;
+}
+
+.card {
+  border: 0;
+  border-radius: 1rem;
+  box-shadow: 0 12px 30px rgba(19, 33, 68, 0.08);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  transition: transform 180ms ease;
+}
+
+.text-accent {
+  color: var(--brand-accent);
+}

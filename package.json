@@ -12,7 +12,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^7.3.2"
+    "@popperjs/core": "^2.11.8",
+    "astro": "^7.3.2",
+    "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.1",
+    "sass": "^1.104.1"
   },
   "allowScripts": {
     "esbuild": true
