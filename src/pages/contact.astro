@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/layout/Header.astro";
 import Footer from "../components/layout/Footer.astro";
 import site from "../content/site.json";
+import CloudflareContactForm from "../components/forms/CloudflareContactForm.astro";
 ---
 
 <BaseLayout
@@ -85,13 +86,11 @@ import site from "../content/site.json";
                 Use the button below to start an email with the details of your request.
               </p>
 
-              <a
-                class="btn btn-primary btn-lg"
-                href={`mailto:${site.email}?subject=${encodeURIComponent(`Estimate request for ${site.businessName}`)}`}
-              >
-                <i class="bi bi-envelope-fill me-2"></i>
-                Email Us for an Estimate
-              </a>
+             <div class="col-lg-6">
+  <h2 class="h3 mb-4">Request an estimate</h2>
+
+  <CloudflareContactForm />
+</div>
 
               <p class="small text-secondary mt-4 mb-0">
                 For a production client site, replace this with a tested form endpoint.

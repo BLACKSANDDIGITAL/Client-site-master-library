@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+import site from "../content/site.json";
+---
+
+<BaseLayout
+  title={`Thank You | ${site.businessName}`}
+  description="Your contact request has been received."
+>
+  <Header />
+
+  <main>
+    <section class="section section-muted">
+      <div class="container text-center">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <i class="bi bi-check-circle-fill display-3 text-primary"></i>
+
+            <h1 class="display-5 mt-4 mb-3">
+              Thanks—we received your request.
+            </h1>
+
+            <p class="lead text-secondary mb-4">
+              We will review your message and get back to you as soon as possible.
+            </p>
+
+            <a class="btn btn-primary btn-lg" href="/">
+              Return Home
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

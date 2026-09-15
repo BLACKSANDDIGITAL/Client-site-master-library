@@ -12,6 +12,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@cloudflare/pages-plugin-static-forms": "^1.0.3",
     "@popperjs/core": "^2.11.8",
     "astro": "^7.3.2",
     "bootstrap": "^5.3.8",
