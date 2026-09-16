@@ -112,10 +112,17 @@ walkDir(distDir, (filePath) => {
   }
 
   // Check for H1 presence
+  // Internal library/guide/blueprints pages showcase multiple components that each have their own H1;
+  // multiple H1 tags are expected there and should not trigger a warning.
+  const isInternalShowcase =
+    relPath.startsWith("library/") ||
+    relPath.startsWith("guide/") ||
+    relPath.startsWith("blueprints/") ||
+    relPath.startsWith("examples/");
   const h1Matches = html.match(/<h1[^>]*>/gi);
   if (!h1Matches || h1Matches.length === 0) {
     warnings.push(`No H1 found in ${relPath}`);
-  } else if (h1Matches.length > 1) {
+  } else if (h1Matches.length > 1 && !isInternalShowcase) {
     warnings.push(`Multiple H1 tags in ${relPath}: ${h1Matches.length} found`);
   }
 

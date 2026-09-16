@@ -2,11 +2,12 @@
 /**
  * Production workflow script.
  * Validates → generates (build) → runs review checks → summarizes.
- * Uses staging directory to preserve last good output on failure.
- * Reports missing input together. Stops on errors with nonzero exit code.
+ * Backs up existing dist/ to dist-backup/ before building; restores on failure.
+ * Requires --force when existing output is present.
+ * Reports timing, build ID, and SuiteDash-ready summary. Appends to implementation log.
  */
 import { execSync } from "node:child_process";
-import { existsSync, rmSync, renameSync, mkdirSync, cpSync, writeFileSync, readFileSync } from "node:fs";
+import { existsSync, rmSync, renameSync, writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import crypto from "node:crypto";
@@ -49,46 +50,42 @@ try {
   process.exit(1);
 }
 
-// --- Phase 2: Generate (build with staging) ---
+// --- Phase 2: Generate (build with backup) ---
 log("Phase 2: Generating build...");
 
 // Check for existing output
 const hasExistingOutput = existsSync(distDir);
 
-// If existing output exists and no --force flag, warn
+// If existing output exists and no --force flag, require it
 if (hasExistingOutput && !process.argv.includes("--force")) {
-  log("  Existing build output found. Use --force to replace.");
-  log("  Preserving existing output and building to staging...");
+  logError("Existing build output found. Use --force to replace.");
+  process.exit(1);
+}
+
+// Back up existing output before building
+if (hasExistingOutput) {
+  if (existsSync(backupDir)) rmSync(backupDir, { recursive: true });
+  renameSync(distDir, backupDir);
+  log("  Backed up existing output to dist-backup/");
 }
 
 try {
   timePhase("generation", () => {
-    // Build to staging by temporarily setting output directory
-    // Astro doesn't support custom output dir via CLI, so we build normally
-    // and move the result
     execSync("npm run build", { cwd: projectRoot, stdio: "inherit" });
   });
-
-  // Move current dist to staging
-  if (existsSync(distDir)) {
-    if (existsSync(stagingDir)) rmSync(stagingDir, { recursive: true });
-    renameSync(distDir, stagingDir);
-  }
-
   log("  Build completed successfully.");
 } catch (e) {
-  logError("Build failed. Previous output preserved.");
+  logError("Build failed. Restoring previous output from backup.");
+  if (existsSync(backupDir)) {
+    renameSync(backupDir, distDir);
+    log("  Previous output restored.");
+  }
   process.exit(1);
 }
 
 // --- Phase 3: Review ---
 log("Phase 3: Running review checks...");
 try {
-  // Temporarily restore dist for review
-  if (existsSync(stagingDir)) {
-    cpSync(stagingDir, distDir, { recursive: true });
-  }
-
   timePhase("review", () => {
     execSync("node scripts/review.mjs", { cwd: projectRoot, stdio: "inherit" });
   });
@@ -97,8 +94,7 @@ try {
   logError("Review found issues. Check warnings above.");
   // Don't fail on warnings, only on errors
   if (e.status !== 0) {
-    // Review script exits 1 on errors
-    logError("Review errors detected. Restoring previous output if available.");
+    logError("Review errors detected. Restoring previous output from backup.");
     if (existsSync(backupDir)) {
       rmSync(distDir, { recursive: true });
       renameSync(backupDir, distDir);
@@ -109,12 +105,12 @@ try {
 }
 
 // --- Phase 4: Finalize ---
-// Back up previous output
-if (hasExistingOutput && existsSync(backupDir)) {
+// Clean up backup (build succeeded and was reviewed)
+if (existsSync(backupDir)) {
   rmSync(backupDir, { recursive: true });
 }
 
-// Clean up staging
+// Clean up staging (legacy)
 if (existsSync(stagingDir)) {
   rmSync(stagingDir, { recursive: true });
 }

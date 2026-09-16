@@ -1,0 +1,19 @@
+{
+  "runId": "run-dd947fd3",
+  "buildId": "db74c6a5",
+  "timestamp": "2026-09-16T01:17:38.998Z",
+  "status": "success",
+  "phases": {
+    "validation": "31ms",
+    "generation": "1347ms",
+    "review": "42ms",
+    "total": "1427ms"
+  },
+  "generationTimeSeconds": "1.35",
+  "totalTimeSeconds": "1.43",
+  "outputPath": "/home/user/workspace/client-site-master-library/dist",
+  "previewCommand": "npm run preview",
+  "backlogStatus": "See docs/workflow-guide.md",
+  "implementationLog": "docs/implementation-log.jsonl",
+  "notes": "Generation time excludes preparation, human review, and deployment."
+}
