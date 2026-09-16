@@ -1,0 +1,97 @@
+{
+  "id": "participation-community",
+  "name": "Participation and Community",
+  "description": "Community organization website that encourages participation, membership, and event attendance.",
+  "ctaBehavior": {
+    "primary": { "label": "Get Involved", "destination": "/community", "type": "navigation" },
+    "secondary": { "label": "Contact Us", "destination": "/contact", "type": "enquiry" }
+  },
+  "pages": [
+    {
+      "name": "Homepage",
+      "route": "/",
+      "sections": ["Hero", "TrustBar", "CommunityGrid", "ImageText", "ProcessSteps", "Testimonials", "FAQ", "ContactCTA"],
+      "required": ["Hero", "CommunityGrid", "ContactCTA"],
+      "optional": ["TrustBar", "ImageText", "ProcessSteps", "Testimonials", "FAQ"]
+    },
+    {
+      "name": "Community listing",
+      "route": "/community",
+      "sections": ["PageHero", "CommunityGrid", "ContactCTA"],
+      "required": ["CommunityGrid"],
+      "optional": ["ContactCTA"]
+    },
+    {
+      "name": "Opportunity detail",
+      "route": "/community/[slug]",
+      "sections": ["OpportunityDetail", "ImageText", "ProcessSteps", "RelatedOpportunities", "ContactCTA"],
+      "required": ["OpportunityDetail"],
+      "optional": ["ImageText", "ProcessSteps", "RelatedOpportunities", "ContactCTA"]
+    },
+    {
+      "name": "About",
+      "route": "/about",
+      "sections": ["PageHero", "ImageText", "TeamGrid", "ContactCTA"],
+      "required": ["PageHero"],
+      "optional": ["ImageText", "TeamGrid", "ContactCTA"]
+    },
+    {
+      "name": "Contact",
+      "route": "/contact",
+      "sections": ["PageHero", "ContactDetails", "ContactForm", "PhoneCTA"],
+      "required": ["PageHero", "ContactForm"],
+      "optional": ["ContactDetails", "PhoneCTA"]
+    },
+    {
+      "name": "Privacy Policy",
+      "route": "/privacy",
+      "sections": ["PageHero", "ProseContent"],
+      "required": ["PageHero", "ProseContent"],
+      "optional": []
+    },
+    {
+      "name": "Terms",
+      "route": "/terms",
+      "sections": ["PageHero", "ProseContent"],
+      "required": ["PageHero", "ProseContent"],
+      "optional": []
+    },
+    {
+      "name": "Accessibility",
+      "route": "/accessibility",
+      "sections": ["PageHero", "ProseContent"],
+      "required": ["PageHero", "ProseContent"],
+      "optional": []
+    },
+    {
+      "name": "404",
+      "route": "/404",
+      "sections": ["ErrorContent"],
+      "required": ["ErrorContent"],
+      "optional": []
+    },
+    {
+      "name": "Thank You",
+      "route": "/thank-you",
+      "sections": ["ThankYouContent"],
+      "required": ["ThankYouContent"],
+      "optional": []
+    }
+  ],
+  "contentRequirements": {
+    "site": ["businessName", "phoneDisplay", "phoneLink", "email", "primaryCta"],
+    "community": ["slug", "title", "type", "description"],
+    "navigation": ["main", "footer"],
+    "testimonials": ["quote", "name"],
+    "faq": ["question", "answer"],
+    "team": ["name", "role", "bio"]
+  },
+  "imageRoles": ["hero", "community-card", "opportunity-detail", "about", "gallery", "team-member"],
+  "validationRules": {
+    "slugs": "lowercase-kebab-case",
+    "requiredDestinations": ["/community", "/contact"],
+    "phoneFormat": "E.164 with + prefix",
+    "emailFormat": "valid email address",
+    "conditionalFields": "If event type includes date/location, require date and location details"
+  }
+}

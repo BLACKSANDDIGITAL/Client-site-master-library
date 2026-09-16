@@ -1,0 +1,64 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/layout/Header.astro";
+import Footer from "../../components/layout/Footer.astro";
+import ContactCTA from "../../components/sections/ContactCTA.astro";
+import site from "../../content/site.json";
+import products from "../../content/products.json";
+---
+
+<BaseLayout
+  title={`Products | ${site.businessName}`}
+  description={`Explore products from ${site.businessName}.`}
+>
+  <Header />
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">Products</p>
+        <h1>Our products</h1>
+        <p>Browse our selection and contact us for more information.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        {products.length > 0 ? (
+          <div class="product-grid">
+            {products.map((product) => (
+              <article class="product-card">
+                <h3>{product.name}</h3>
+                <p>{product.shortDescription}</p>
+                <p class="price">{product.price}</p>
+                <a href={`/products/${product.slug}`}>View details</a>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <p class="empty-state">Add products in <code>src/content/products.json</code>.</p>
+        )}
+      </div>
+    </section>
+
+    <ContactCTA />
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-hero { padding-block: var(--space-8); background: var(--color-secondary); }
+  .page-hero > div { max-width: 780px; }
+  .eyebrow { margin: 0 0 var(--space-3); color: var(--color-primary); font-size: 0.9rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+  h1 { margin: 0; font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.05; }
+  .product-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); }
+  .product-card { padding: var(--space-5); border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface); box-shadow: var(--shadow-sm); }
+  .product-card h3 { margin-top: 0; font-size: 1.3rem; }
+  .product-card p { color: var(--color-muted); }
+  .price { font-weight: 700; color: var(--color-primary); }
+  a { color: var(--color-primary); font-weight: 700; }
+  .empty-state { grid-column: 1 / -1; padding: var(--space-5); border: 1px dashed var(--color-border); border-radius: var(--radius-md); }
+  @media (max-width: 860px) { .product-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .product-grid { grid-template-columns: 1fr; } }
+</style>

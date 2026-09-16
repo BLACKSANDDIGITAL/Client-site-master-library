@@ -1,0 +1,64 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/layout/Header.astro";
+import Footer from "../../components/layout/Footer.astro";
+import ContactCTA from "../../components/sections/ContactCTA.astro";
+import site from "../../content/site.json";
+import portfolio from "../../content/portfolio.json";
+---
+
+<BaseLayout
+  title={`Portfolio | ${site.businessName}`}
+  description={`View our work and projects.`}
+>
+  <Header />
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">Portfolio</p>
+        <h1>Our work</h1>
+        <p>Explore our projects and see what we can do for you.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        {portfolio.length > 0 ? (
+          <div class="portfolio-grid">
+            {portfolio.map((project) => (
+              <article class="portfolio-card">
+                <h3>{project.title}</h3>
+                <p class="category">{project.category}</p>
+                <p>{project.description}</p>
+                <a href={`/portfolio/${project.slug}`}>View project</a>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <p class="empty-state">Add projects in <code>src/content/portfolio.json</code>.</p>
+        )}
+      </div>
+    </section>
+
+    <ContactCTA />
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-hero { padding-block: var(--space-8); background: var(--color-secondary); }
+  .page-hero > div { max-width: 780px; }
+  .eyebrow { margin: 0 0 var(--space-3); color: var(--color-primary); font-size: 0.9rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+  h1 { margin: 0; font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.05; }
+  .portfolio-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); }
+  .portfolio-card { padding: var(--space-5); border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface); box-shadow: var(--shadow-sm); }
+  .portfolio-card h3 { margin-top: 0; font-size: 1.3rem; }
+  .category { color: var(--color-primary); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; }
+  .portfolio-card p { color: var(--color-muted); }
+  a { color: var(--color-primary); font-weight: 700; }
+  .empty-state { grid-column: 1 / -1; padding: var(--space-5); border: 1px dashed var(--color-border); border-radius: var(--radius-md); }
+  @media (max-width: 860px) { .portfolio-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .portfolio-grid { grid-template-columns: 1fr; } }
+</style>

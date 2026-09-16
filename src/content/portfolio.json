@@ -1,0 +1,29 @@
+[
+  {
+    "slug": "demo-project-one",
+    "title": "Demo Project One",
+    "category": "Web Design",
+    "description": "Replace with an accurate, client-approved project summary.",
+    "image": "",
+    "client": "Demo Client",
+    "year": "2024"
+  },
+  {
+    "slug": "demo-project-two",
+    "title": "Demo Project Two",
+    "category": "Branding",
+    "description": "Replace with an accurate, client-approved project summary.",
+    "image": "",
+    "client": "Demo Client",
+    "year": "2024"
+  },
+  {
+    "slug": "demo-project-three",
+    "title": "Demo Project Three",
+    "category": "Development",
+    "description": "Replace with an accurate, client-approved project summary.",
+    "image": "",
+    "client": "Demo Client",
+    "year": "2024"
+  }
+]

@@ -9,7 +9,11 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "validate": "node scripts/validate.mjs",
+    "review": "node scripts/review.mjs",
+    "production": "node scripts/production.mjs",
+    "status": "node scripts/status.mjs"
   },
   "dependencies": {
     "@cloudflare/pages-plugin-static-forms": "^1.0.3",

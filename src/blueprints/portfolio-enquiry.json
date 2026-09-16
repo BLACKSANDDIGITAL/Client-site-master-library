@@ -1,0 +1,105 @@
+{
+  "id": "portfolio-enquiry",
+  "name": "Portfolio Enquiries",
+  "description": "Agency or freelancer website that showcases work and books discovery calls.",
+  "ctaBehavior": {
+    "primary": { "label": "View Our Work", "destination": "/portfolio", "type": "navigation" },
+    "secondary": { "label": "Start a Project", "destination": "/contact", "type": "enquiry" }
+  },
+  "pages": [
+    {
+      "name": "Homepage",
+      "route": "/",
+      "sections": ["Hero", "TrustBar", "ServicesGrid", "ProjectHighlight", "GalleryGrid", "ProcessSteps", "Testimonials", "FAQ", "ContactCTA"],
+      "required": ["Hero", "ProjectHighlight", "ContactCTA"],
+      "optional": ["TrustBar", "ServicesGrid", "GalleryGrid", "ProcessSteps", "Testimonials", "FAQ"]
+    },
+    {
+      "name": "Portfolio listing",
+      "route": "/portfolio",
+      "sections": ["PageHero", "GalleryGrid", "ProjectHighlight", "Testimonials", "ContactCTA"],
+      "required": ["GalleryGrid"],
+      "optional": ["ProjectHighlight", "Testimonials", "ContactCTA"]
+    },
+    {
+      "name": "Project detail",
+      "route": "/portfolio/[slug]",
+      "sections": ["ProjectDetail", "ImageText", "ProcessSteps", "RelatedProjects", "ContactCTA"],
+      "required": ["ProjectDetail"],
+      "optional": ["ImageText", "ProcessSteps", "RelatedProjects", "ContactCTA"]
+    },
+    {
+      "name": "Services listing",
+      "route": "/services",
+      "sections": ["PageHero", "ServicesGrid", "ContactCTA"],
+      "required": ["ServicesGrid"],
+      "optional": ["ContactCTA"]
+    },
+    {
+      "name": "About",
+      "route": "/about",
+      "sections": ["PageHero", "ImageText", "TeamGrid", "ContactCTA"],
+      "required": ["PageHero"],
+      "optional": ["ImageText", "TeamGrid", "ContactCTA"]
+    },
+    {
+      "name": "Contact",
+      "route": "/contact",
+      "sections": ["PageHero", "ContactDetails", "ContactForm", "PhoneCTA"],
+      "required": ["PageHero", "ContactForm"],
+      "optional": ["ContactDetails", "PhoneCTA"]
+    },
+    {
+      "name": "Privacy Policy",
+      "route": "/privacy",
+      "sections": ["PageHero", "ProseContent"],
+      "required": ["PageHero", "ProseContent"],
+      "optional": []
+    },
+    {
+      "name": "Terms",
+      "route": "/terms",
+      "sections": ["PageHero", "ProseContent"],
+      "required": ["PageHero", "ProseContent"],
+      "optional": []
+    },
+    {
+      "name": "Accessibility",
+      "route": "/accessibility",
+      "sections": ["PageHero", "ProseContent"],
+      "required": ["PageHero", "ProseContent"],
+      "optional": []
+    },
+    {
+      "name": "404",
+      "route": "/404",
+      "sections": ["ErrorContent"],
+      "required": ["ErrorContent"],
+      "optional": []
+    },
+    {
+      "name": "Thank You",
+      "route": "/thank-you",
+      "sections": ["ThankYouContent"],
+      "required": ["ThankYouContent"],
+      "optional": []
+    }
+  ],
+  "contentRequirements": {
+    "site": ["businessName", "phoneDisplay", "phoneLink", "email", "primaryCta"],
+    "portfolio": ["slug", "title", "category", "description"],
+    "navigation": ["main", "footer"],
+    "testimonials": ["quote", "name"],
+    "faq": ["question", "answer"],
+    "team": ["name", "role", "bio"],
+    "process": ["number", "title", "description"]
+  },
+  "imageRoles": ["hero", "project-card", "project-detail", "gallery", "team-member", "about"],
+  "validationRules": {
+    "slugs": "lowercase-kebab-case",
+    "requiredDestinations": ["/portfolio", "/contact"],
+    "phoneFormat": "E.164 with + prefix",
+    "emailFormat": "valid email address",
+    "projectPermissions": "Only show work, logos, testimonials, and results the owner has permission to publish"
+  }
+}

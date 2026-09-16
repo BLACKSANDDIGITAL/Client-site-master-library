@@ -1,0 +1,154 @@
+---
+import "../styles/global.css";
+import "../styles/library.css";
+
+import blueprints from "../blueprints/service-enquiry.json" with { type: "json" };
+import appointmentBP from "../blueprints/appointment-enquiry.json" with { type: "json" };
+import expertBP from "../blueprints/expert-consultation.json" with { type: "json" };
+import productBP from "../blueprints/product-discovery.json" with { type: "json" };
+import portfolioBP from "../blueprints/portfolio-enquiry.json" with { type: "json" };
+import communityBP from "../blueprints/participation-community.json" with { type: "json" };
+
+const allBlueprints = [blueprints, appointmentBP, expertBP, productBP, portfolioBP, communityBP];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Blueprints | Client Website Master Library</title>
+  </head>
+  <body>
+    <div class="library-page">
+      <aside class="library-sidebar">
+        <a class="library-brand" href="/library">
+          <span class="library-brand-mark">CL</span>
+          <span class="library-brand-copy">
+            <span class="library-brand-title">Client Library</span>
+            <span class="library-brand-subtitle">Blueprints</span>
+          </span>
+        </a>
+        <div class="library-nav-group">
+          <p class="library-nav-label">Internal system</p>
+          <nav class="library-nav" aria-label="Blueprint navigation">
+            <a href="/library"><span class="library-nav-number">00</span><span>Visual library</span></a>
+            <a href="/guide"><span class="library-nav-number">01</span><span>How to use</span></a>
+            <a class="is-active" href="#blueprints"><span class="library-nav-number">02</span><span>Blueprints</span></a>
+          </nav>
+        </div>
+      </aside>
+
+      <div class="library-main">
+        <header class="library-topbar">
+          <p class="library-topbar-title">Website Blueprints</p>
+          <span class="library-topbar-status">Internal reference</span>
+        </header>
+
+        <main>
+          <section id="blueprints" class="library-intro">
+            <div class="library-intro-inner">
+              <p class="library-kicker">Blueprint definitions</p>
+              <h1>Six website blueprints with page definitions, section order, and CTA behavior.</h1>
+              <p class="library-intro-description">
+                Each blueprint defines pages, section order, component variants, CTA behavior,
+                and content requirements. A theme controls appearance. They are independent.
+              </p>
+            </div>
+          </section>
+
+          <div class="library-content">
+            {allBlueprints.map((bp) => (
+              <section id={bp.id} class="library-section">
+                <div class="library-section-heading">
+                  <div>
+                    <p class="library-section-number">{bp.id}</p>
+                    <h2>{bp.name}</h2>
+                  </div>
+                  <p class="library-component-file">
+                    Blueprint: <code>src/blueprints/{bp.id}.json</code>
+                  </p>
+                </div>
+
+                <div class="library-preview library-preview--white">
+                  <p class="library-preview-description">{bp.description}</p>
+
+                  <div class="library-cta-display">
+                    <p><strong>Primary CTA:</strong> {bp.ctaBehavior.primary.label} → {bp.ctaBehavior.primary.destination}</p>
+                    <p><strong>Secondary CTA:</strong> {bp.ctaBehavior.secondary.label} → {bp.ctaBehavior.secondary.destination}</p>
+                  </div>
+
+                  <div class="library-table-wrap">
+                    <table class="library-table">
+                      <thead>
+                        <tr>
+                          <th>Page</th>
+                          <th>Route</th>
+                          <th>Required sections</th>
+                          <th>Optional sections</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {bp.pages.map((page) => (
+                          <tr>
+                            <td>{page.name}</td>
+                            <td><code>{page.route}</code></td>
+                            <td>{page.required.join(", ")}</td>
+                            <td>{page.optional.length > 0 ? page.optional.join(", ") : "—"}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="library-content-reqs">
+                    <h3>Content requirements</h3>
+                    <ul>
+                      {Object.entries(bp.contentRequirements).map(([key, fields]) => (
+                        <li><code>{key}.json</code>: {Array.isArray(fields) ? fields.join(", ") : fields}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div class="library-image-roles">
+                    <h3>Image roles</h3>
+                    <p>{bp.imageRoles.join(", ")}</p>
+                  </div>
+
+                  {bp.validationRules && (
+                    <div class="library-validation-rules">
+                      <h3>Validation rules</h3>
+                      <ul>
+                        {Object.entries(bp.validationRules).map(([key, value]) => (
+                          <li><strong>{key}:</strong> {value}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+
+                <div class="library-docs">
+                  <aside class="library-note">
+                    <strong>Blueprint vs Theme:</strong> This blueprint defines structure and content.
+                    Appearance is controlled separately by <code>src/styles/theme.css</code>.
+                  </aside>
+                </div>
+              </section>
+            ))}
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
+
+<style>
+  .library-preview-description { margin: 0 0 1rem; color: var(--color-muted); }
+  .library-cta-display { padding: 1rem; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface-alt); margin-bottom: 1.5rem; }
+  .library-cta-display p { margin: 0.25rem 0; }
+  .library-content-reqs, .library-image-roles, .library-validation-rules { margin-top: 1.5rem; }
+  .library-content-reqs h3, .library-image-roles h3, .library-validation-rules h3 { margin: 0 0 0.5rem; font-size: 1rem; }
+  .library-content-reqs ul, .library-validation-rules ul { display: grid; gap: 0.35rem; padding-left: 1rem; color: var(--color-muted); font-size: 0.9rem; }
+  .library-image-roles p { color: var(--color-muted); }
+</style>

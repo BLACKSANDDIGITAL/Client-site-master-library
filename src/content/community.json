@@ -1,0 +1,29 @@
+[
+  {
+    "slug": "demo-volunteer-opportunity",
+    "title": "Demo Volunteer Opportunity",
+    "type": "Volunteer",
+    "description": "Replace with accurate, client-approved opportunity information.",
+    "image": "",
+    "date": "",
+    "location": ""
+  },
+  {
+    "slug": "demo-community-event",
+    "title": "Demo Community Event",
+    "type": "Event",
+    "description": "Replace with accurate, client-approved event information.",
+    "image": "",
+    "date": "2024-12-01",
+    "location": "Community Center, San Jose, CA"
+  },
+  {
+    "slug": "demo-membership-program",
+    "title": "Demo Membership Program",
+    "type": "Membership",
+    "description": "Replace with accurate, client-approved membership information.",
+    "image": "",
+    "date": "",
+    "location": ""
+  }
+]

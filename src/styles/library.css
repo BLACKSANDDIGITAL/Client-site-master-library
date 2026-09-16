@@ -1264,11 +1264,11 @@ body:has(.library-page) {
   gap: 1.5rem;
 }
 
-.library-layout-preview :global(.header-simple),
-.library-layout-preview :global(.header-service),
-.library-layout-preview :global(.header-professional),
-.library-layout-preview :global(.footer-simple),
-.library-layout-preview :global(.footer-expanded) {
+.library-layout-preview .header-simple,
+.library-layout-preview .header-service,
+.library-layout-preview .header-professional,
+.library-layout-preview .footer-simple,
+.library-layout-preview .footer-expanded {
   position: relative;
   overflow: hidden;
   border-radius: 12px;

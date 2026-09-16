@@ -1,0 +1,66 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/layout/Header.astro";
+import Footer from "../../components/layout/Footer.astro";
+import ContactCTA from "../../components/sections/ContactCTA.astro";
+import site from "../../content/site.json";
+import products from "../../content/products.json";
+
+export function getStaticPaths() {
+  return products.map((product) => ({
+    params: { slug: product.slug },
+    props: { product }
+  }));
+}
+
+const { product } = Astro.props;
+---
+
+<BaseLayout
+  title={`${product.name} | ${site.businessName}`}
+  description={product.shortDescription}
+>
+  <Header />
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <nav aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="/products">Products</a>
+          <span aria-hidden="true">/</span>
+          <span>{product.name}</span>
+        </nav>
+        <p class="eyebrow">{product.category}</p>
+        <h1>{product.name}</h1>
+        <p class="price">{product.price}</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container content-container">
+        <h2>About this product</h2>
+        <p>{product.description}</p>
+      </div>
+    </section>
+
+    <ContactCTA
+      title={`Interested in ${product.name.toLowerCase()}?`}
+      description="Contact us for more information or to place an order."
+    />
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-hero { padding-block: var(--space-8); background: var(--color-secondary); }
+  .page-hero > div { max-width: 800px; }
+  .eyebrow { margin: 0 0 var(--space-3); color: var(--color-primary); font-size: 0.9rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+  nav { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-5); color: var(--color-muted); font-size: 0.95rem; }
+  nav a { color: var(--color-primary); }
+  h1 { margin: 0; font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.05; }
+  .price { font-weight: 700; color: var(--color-primary); font-size: 1.3rem; }
+  h2 { font-size: clamp(1.8rem, 4vw, 2.75rem); }
+</style>

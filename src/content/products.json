@@ -1,0 +1,29 @@
+[
+  {
+    "slug": "demo-product-one",
+    "name": "Demo Product One",
+    "shortDescription": "A short description of the first demo product.",
+    "description": "Replace with accurate, client-approved product information including materials, dimensions, and care instructions.",
+    "price": "Contact for pricing",
+    "image": "",
+    "category": "Featured"
+  },
+  {
+    "slug": "demo-product-two",
+    "name": "Demo Product Two",
+    "shortDescription": "A short description of the second demo product.",
+    "description": "Replace with accurate, client-approved product information.",
+    "price": "Contact for pricing",
+    "image": "",
+    "category": "Featured"
+  },
+  {
+    "slug": "demo-product-three",
+    "name": "Demo Product Three",
+    "shortDescription": "A short description of the third demo product.",
+    "description": "Replace with accurate, client-approved product information.",
+    "price": "Contact for pricing",
+    "image": "",
+    "category": "Standard"
+  }
+]

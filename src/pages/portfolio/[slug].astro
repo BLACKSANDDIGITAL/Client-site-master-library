@@ -1,0 +1,66 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/layout/Header.astro";
+import Footer from "../../components/layout/Footer.astro";
+import ContactCTA from "../../components/sections/ContactCTA.astro";
+import site from "../../content/site.json";
+import portfolio from "../../content/portfolio.json";
+
+export function getStaticPaths() {
+  return portfolio.map((project) => ({
+    params: { slug: project.slug },
+    props: { project }
+  }));
+}
+
+const { project } = Astro.props;
+---
+
+<BaseLayout
+  title={`${project.title} | ${site.businessName}`}
+  description={project.description}
+>
+  <Header />
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <nav aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="/portfolio">Portfolio</a>
+          <span aria-hidden="true">/</span>
+          <span>{project.title}</span>
+        </nav>
+        <p class="eyebrow">{project.category}</p>
+        <h1>{project.title}</h1>
+        {project.client && <p>Client: {project.client}</p>}
+        {project.year && <p>Year: {project.year}</p>}
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container content-container">
+        <h2>Project overview</h2>
+        <p>{project.description}</p>
+      </div>
+    </section>
+
+    <ContactCTA
+      title={`Interested in similar work?`}
+      description="Contact us to discuss your project."
+    />
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-hero { padding-block: var(--space-8); background: var(--color-secondary); }
+  .page-hero > div { max-width: 800px; }
+  .eyebrow { margin: 0 0 var(--space-3); color: var(--color-primary); font-size: 0.9rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+  nav { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-5); color: var(--color-muted); font-size: 0.95rem; }
+  nav a { color: var(--color-primary); }
+  h1 { margin: 0; font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.05; }
+  h2 { font-size: clamp(1.8rem, 4vw, 2.75rem); }
+</style>

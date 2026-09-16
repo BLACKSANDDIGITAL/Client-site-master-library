@@ -1,0 +1,97 @@
+{
+  "id": "appointment-enquiry",
+  "name": "Appointment Enquiries",
+  "description": "Business website that encourages appointment requests. Uses enquiry wording, not booking, unless a real booking integration is configured.",
+  "ctaBehavior": {
+    "primary": { "label": "Request an Appointment", "destination": "/contact", "type": "enquiry" },
+    "secondary": { "label": "Call Us", "destination": "tel:", "type": "phone" }
+  },
+  "pages": [
+    {
+      "name": "Homepage",
+      "route": "/",
+      "sections": ["Hero", "TrustBar", "ServicesGrid", "ProcessSteps", "Testimonials", "FAQ", "ContactCTA"],
+      "required": ["Hero", "ServicesGrid", "ContactCTA"],
+      "optional": ["TrustBar", "ProcessSteps", "Testimonials", "FAQ"]
+    },
+    {
+      "name": "Services listing",
+      "route": "/services",
+      "sections": ["PageHero", "ServicesGrid", "ContactCTA"],
+      "required": ["ServicesGrid"],
+      "optional": ["ContactCTA"]
+    },
+    {
+      "name": "Service detail",
+      "route": "/services/[slug]",
+      "sections": ["ServiceHero", "BenefitsList", "IncludedList", "ProcessSteps", "FAQ", "RelatedServices", "ContactCTA"],
+      "required": ["ServiceHero", "BenefitsList"],
+      "optional": ["IncludedList", "ProcessSteps", "FAQ", "RelatedServices", "ContactCTA"]
+    },
+    {
+      "name": "About",
+      "route": "/about",
+      "sections": ["PageHero", "ImageText", "TeamGrid", "ContactCTA"],
+      "required": ["PageHero"],
+      "optional": ["ImageText", "TeamGrid", "ContactCTA"]
+    },
+    {
+      "name": "Contact",
+      "route": "/contact",
+      "sections": ["PageHero", "ContactDetails", "ContactForm", "PhoneCTA"],
+      "required": ["PageHero", "ContactForm"],
+      "optional": ["ContactDetails", "PhoneCTA"]
+    },
+    {
+      "name": "Privacy Policy",
+      "route": "/privacy",
+      "sections": ["PageHero", "ProseContent"],
+      "required": ["PageHero", "ProseContent"],
+      "optional": []
+    },
+    {
+      "name": "Terms",
+      "route": "/terms",
+      "sections": ["PageHero", "ProseContent"],
+      "required": ["PageHero", "ProseContent"],
+      "optional": []
+    },
+    {
+      "name": "Accessibility",
+      "route": "/accessibility",
+      "sections": ["PageHero", "ProseContent"],
+      "required": ["PageHero", "ProseContent"],
+      "optional": []
+    },
+    {
+      "name": "404",
+      "route": "/404",
+      "sections": ["ErrorContent"],
+      "required": ["ErrorContent"],
+      "optional": []
+    },
+    {
+      "name": "Thank You",
+      "route": "/thank-you",
+      "sections": ["ThankYouContent"],
+      "required": ["ThankYouContent"],
+      "optional": []
+    }
+  ],
+  "contentRequirements": {
+    "site": ["businessName", "phoneDisplay", "phoneLink", "email", "address", "hours", "serviceAreas", "primaryCta"],
+    "services": ["slug", "name", "shortDescription", "description", "benefits", "included"],
+    "navigation": ["main", "footer"],
+    "testimonials": ["quote", "name"],
+    "faq": ["question", "answer"],
+    "team": ["name", "role", "bio"]
+  },
+  "imageRoles": ["hero", "service-card", "team-member", "about", "gallery"],
+  "validationRules": {
+    "slugs": "lowercase-kebab-case",
+    "requiredDestinations": ["/contact", "/services"],
+    "phoneFormat": "E.164 with + prefix",
+    "emailFormat": "valid email address",
+    "ctaWording": "Use 'Request an Appointment' unless a real booking integration is configured"
+  }
+}

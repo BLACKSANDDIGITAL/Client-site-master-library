@@ -1,0 +1,96 @@
+{
+  "id": "product-discovery",
+  "name": "Product Discovery",
+  "description": "Small product business website that drives product inquiries and discovery.",
+  "ctaBehavior": {
+    "primary": { "label": "Browse Products", "destination": "/products", "type": "navigation" },
+    "secondary": { "label": "Contact Us", "destination": "/contact", "type": "enquiry" }
+  },
+  "pages": [
+    {
+      "name": "Homepage",
+      "route": "/",
+      "sections": ["Hero", "TrustBar", "ServicesGrid", "ProductGrid", "Testimonials", "FAQ", "ContactCTA"],
+      "required": ["Hero", "ProductGrid", "ContactCTA"],
+      "optional": ["TrustBar", "ServicesGrid", "Testimonials", "FAQ"]
+    },
+    {
+      "name": "Products listing",
+      "route": "/products",
+      "sections": ["PageHero", "ProductGrid", "ContactCTA"],
+      "required": ["ProductGrid"],
+      "optional": ["ContactCTA"]
+    },
+    {
+      "name": "Product detail",
+      "route": "/products/[slug]",
+      "sections": ["ProductDetail", "BenefitsList", "FAQ", "RelatedProducts", "ContactCTA"],
+      "required": ["ProductDetail"],
+      "optional": ["BenefitsList", "FAQ", "RelatedProducts", "ContactCTA"]
+    },
+    {
+      "name": "About",
+      "route": "/about",
+      "sections": ["PageHero", "ImageText", "ContactCTA"],
+      "required": ["PageHero"],
+      "optional": ["ImageText", "ContactCTA"]
+    },
+    {
+      "name": "Contact",
+      "route": "/contact",
+      "sections": ["PageHero", "ContactDetails", "ContactForm", "PhoneCTA"],
+      "required": ["PageHero", "ContactForm"],
+      "optional": ["ContactDetails", "PhoneCTA"]
+    },
+    {
+      "name": "Privacy Policy",
+      "route": "/privacy",
+      "sections": ["PageHero", "ProseContent"],
+      "required": ["PageHero", "ProseContent"],
+      "optional": []
+    },
+    {
+      "name": "Terms",
+      "route": "/terms",
+      "sections": ["PageHero", "ProseContent"],
+      "required": ["PageHero", "ProseContent"],
+      "optional": []
+    },
+    {
+      "name": "Accessibility",
+      "route": "/accessibility",
+      "sections": ["PageHero", "ProseContent"],
+      "required": ["PageHero", "ProseContent"],
+      "optional": []
+    },
+    {
+      "name": "404",
+      "route": "/404",
+      "sections": ["ErrorContent"],
+      "required": ["ErrorContent"],
+      "optional": []
+    },
+    {
+      "name": "Thank You",
+      "route": "/thank-you",
+      "sections": ["ThankYouContent"],
+      "required": ["ThankYouContent"],
+      "optional": []
+    }
+  ],
+  "contentRequirements": {
+    "site": ["businessName", "phoneDisplay", "phoneLink", "email", "primaryCta"],
+    "products": ["slug", "name", "shortDescription", "description", "price"],
+    "navigation": ["main", "footer"],
+    "testimonials": ["quote", "name"],
+    "faq": ["question", "answer"]
+  },
+  "imageRoles": ["hero", "product-card", "product-detail", "about", "gallery"],
+  "validationRules": {
+    "slugs": "lowercase-kebab-case",
+    "requiredDestinations": ["/products", "/contact"],
+    "phoneFormat": "E.164 with + prefix",
+    "emailFormat": "valid email address",
+    "pricing": "Use 'Contact for pricing' if exact pricing is not approved"
+  }
+}

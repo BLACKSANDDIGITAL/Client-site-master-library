@@ -1,0 +1,67 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/layout/Header.astro";
+import Footer from "../../components/layout/Footer.astro";
+import ContactCTA from "../../components/sections/ContactCTA.astro";
+import site from "../../content/site.json";
+import community from "../../content/community.json";
+
+export function getStaticPaths() {
+  return community.map((item) => ({
+    params: { slug: item.slug },
+    props: { item }
+  }));
+}
+
+const { item } = Astro.props;
+---
+
+<BaseLayout
+  title={`${item.title} | ${site.businessName}`}
+  description={item.description}
+>
+  <Header />
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <nav aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="/community">Community</a>
+          <span aria-hidden="true">/</span>
+          <span>{item.title}</span>
+        </nav>
+        <span class="type-badge">{item.type}</span>
+        <h1>{item.title}</h1>
+        {item.date && <p class="meta">Date: {item.date}</p>}
+        {item.location && <p class="meta">Location: {item.location}</p>}
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container content-container">
+        <h2>About this opportunity</h2>
+        <p>{item.description}</p>
+      </div>
+    </section>
+
+    <ContactCTA
+      title="Interested in participating?"
+      description="Contact us to learn more or sign up."
+    />
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-hero { padding-block: var(--space-8); background: var(--color-secondary); }
+  .page-hero > div { max-width: 800px; }
+  .type-badge { display: inline-block; padding: 0.2rem 0.6rem; border-radius: var(--radius-pill); background: var(--color-accent); color: var(--color-text); font-size: 0.75rem; font-weight: 700; margin-bottom: var(--space-3); }
+  nav { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-5); color: var(--color-muted); font-size: 0.95rem; }
+  nav a { color: var(--color-primary); }
+  h1 { margin: 0; font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.05; }
+  .meta { color: var(--color-muted); }
+  h2 { font-size: clamp(1.8rem, 4vw, 2.75rem); }
+</style>
