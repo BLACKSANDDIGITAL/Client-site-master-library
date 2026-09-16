@@ -57,7 +57,8 @@ import ComponentShowcase from "../components/library/ComponentShowcase.astro";
 
 const mobileNavItems = [
   { number: "00", label: "Overview", href: "#overview" },
-  { number: "01", label: "How to use", href: "#how-to-use" },
+  { number: "01", label: "5-Minute Build Path", href: "#build-path" },
+  { number: "02", label: "Workflow Steps", href: "#workflow" },
   { number: "10", label: "Foundations", href: "#foundations" },
   { number: "11", label: "UI", href: "#ui" },
   { number: "12", label: "Layout", href: "#layout" },
@@ -71,7 +72,7 @@ const mobileNavItems = [
   { number: "26", label: "CTAs", href: "#ctas" },
   { number: "40", label: "Examples", href: "#examples" },
   { number: "80", label: "SEO", href: "#seo" },
-  { number: "90", label: "Build process", href: "#build-process" }
+  { number: "90", label: "Launch", href: "#build-process" }
 ];
 
 const colors = [
@@ -149,14 +150,14 @@ const seoComponents = [
               <span>Overview</span>
             </a>
 
-            <a href="#how-to-use">
+            <a href="#build-path">
               <span class="library-nav-number">01</span>
-              <span>How to use</span>
+              <span>5-Minute Build Path</span>
             </a>
 
-            <a href="#build-process">
-              <span class="library-nav-number">90</span>
-              <span>Build process</span>
+            <a href="#workflow">
+              <span class="library-nav-number">02</span>
+              <span>Workflow Steps</span>
             </a>
           </nav>
         </div>
@@ -265,7 +266,7 @@ const seoComponents = [
 
             <a href="#build-process">
               <span class="library-nav-number">90</span>
-              <span>QA and launch</span>
+              <span>Launch checklist</span>
             </a>
           </nav>
         </div>
@@ -296,9 +297,9 @@ const seoComponents = [
               </p>
 
               <div class="library-intro-actions">
-                <a class="library-quick-link" href="#how-to-use">How to use this library</a>
-                <a class="library-quick-link" href="#examples">Browse examples</a>
-                <a class="library-quick-link" href="#build-process">View build process</a>
+                <a class="library-quick-link" href="#build-path">5-Minute Build Path</a>
+                <a class="library-quick-link" href="#workflow">Workflow Steps</a>
+                <a class="library-quick-link" href="#examples">Browse Examples</a>
               </div>
 
               <div class="library-mobile-contents">
@@ -309,6 +310,217 @@ const seoComponents = [
                     <a href={item.href}>{item.number} {item.label}</a>
                   ))}
                 </nav>
+              </div>
+            </div>
+          </section>
+
+          <section id="build-path" class="library-section">
+            <div class="library-section-heading">
+              <div>
+                <p class="library-section-number">01 — Build Path</p>
+                <h2>Five steps from content to published site</h2>
+              </div>
+
+              <p class="library-component-file">
+                SOP: <code>docs/client-onboarding-sop.md</code>
+              </p>
+            </div>
+
+            <div class="library-preview library-preview--white">
+              <div class="system-model-grid">
+                <article>
+                  <span>01</span>
+                  <h3>Content</h3>
+                  <p>Populate <code>src/content/site.json</code> and related JSON files with verified client data.</p>
+                  <code>2 min</code>
+                </article>
+
+                <article>
+                  <span>02</span>
+                  <h3>Theme</h3>
+                  <p>Set brand colors, fonts, and spacing in <code>src/styles/theme.css</code>.</p>
+                  <code>30 sec</code>
+                </article>
+
+                <article>
+                  <span>03</span>
+                  <h3>Pages</h3>
+                  <p>Choose a blueprint and assemble sections in <code>src/pages/</code>.</p>
+                  <code>1 min</code>
+                </article>
+
+                <article>
+                  <span>04</span>
+                  <h3>Build</h3>
+                  <p>Run <code>npm run production -- --force</code> to validate, build, and review.</p>
+                  <code>5 sec</code>
+                </article>
+
+                <article>
+                  <span>05</span>
+                  <h3>Review</h3>
+                  <p>Preview locally, check every page, send for client approval.</p>
+                  <code>1 min</code>
+                </article>
+              </div>
+            </div>
+
+            <div class="library-docs">
+              <div>
+                <h3>Target: under 5 minutes</h3>
+                <p>
+                  The automated build and review pipeline runs in under 2 seconds.
+                  The 5-minute target covers content entry, theme application, page
+                  assembly, build, and automated review — excluding human preparation,
+                  client approval, and deployment.
+                </p>
+              </div>
+
+              <aside class="library-note library-note--success">
+                <strong>Measured:</strong> validation 31ms, generation 1.35s, review 42ms,
+                total 1.43s for 37 pages.
+              </aside>
+            </div>
+          </section>
+
+          <section id="workflow" class="library-section">
+            <div class="library-section-heading">
+              <div>
+                <p class="library-section-number">02 — Workflow</p>
+                <h2>Detailed steps with exact commands and files</h2>
+              </div>
+
+              <p class="library-component-file">
+                Full SOP: <code>docs/client-onboarding-sop.md</code>
+              </p>
+            </div>
+
+            <div class="library-preview library-preview--white">
+              <div class="library-variant-stack">
+
+                <div class="library-docs">
+                  <div>
+                    <h3>Step 1 — Initialize project</h3>
+                    <p>Create a clean branch from the master library and install dependencies.</p>
+                    <pre><code>{`git checkout main && git pull origin main
+git checkout -b client/{client-name}
+fnm use 22 && npm install
+npm run build  # Verify baseline: 37 pages, 0 errors`}</code></pre>
+                  </div>
+                </div>
+
+                <div class="library-docs">
+                  <div>
+                    <h3>Step 2 — Enter client content</h3>
+                    <p>Populate JSON files in <code>src/content/</code> with verified client data.</p>
+                    <div class="library-table-wrap">
+                      <table class="library-table">
+                        <thead>
+                          <tr><th>File</th><th>Required</th><th>Key fields</th></tr>
+                        </thead>
+                        <tbody>
+                          <tr><td><code>site.json</code></td><td>Yes</td><td>businessName, phone, email, address, hours, social</td></tr>
+                          <tr><td><code>services.json</code></td><td>Yes</td><td>slug, name, description, icon, featured</td></tr>
+                          <tr><td><code>navigation.json</code></td><td>Yes</td><td>main[], footer[] label+href pairs</td></tr>
+                          <tr><td><code>team.json</code></td><td>If team</td><td>name, role, bio, photo, slug</td></tr>
+                          <tr><td><code>testimonials.json</code></td><td>If reviews</td><td>name, business, quote, rating</td></tr>
+                          <tr><td><code>faq.json</code></td><td>If FAQ</td><td>question, answer, category</td></tr>
+                          <tr><td><code>service-areas.json</code></td><td>If local</td><td>city, state, zip, description</td></tr>
+                          <tr><td><code>products.json</code></td><td>If catalog</td><td>slug, name, description, price, image</td></tr>
+                          <tr><td><code>portfolio.json</code></td><td>If agency</td><td>slug, title, category, description, image</td></tr>
+                          <tr><td><code>community.json</code></td><td>If org</td><td>slug, title, type, description, date, location</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <p><strong>Images:</strong> place in <code>public/images/</code> — lowercase, hyphenated, match content slugs. Minimum sizes: logo 200x60, hero 1920x1080, team 400x400, service 600x400.</p>
+                  </div>
+                </div>
+
+                <div class="library-docs">
+                  <div>
+                    <h3>Step 3 — Choose blueprint</h3>
+                    <p>Select the page structure that matches the client's business type.</p>
+                    <div class="library-table-wrap">
+                      <table class="library-table">
+                        <thead>
+                          <tr><th>Blueprint</th><th>Business type</th></tr>
+                        </thead>
+                        <tbody>
+                          <tr><td><code>service-enquiry</code></td><td>General service business (cleaning, HVAC, plumbing)</td></tr>
+                          <tr><td><code>appointment-enquiry</code></td><td>Appointment-based (salon, spa, clinic)</td></tr>
+                          <tr><td><code>expert-consultation</code></td><td>Professional services (legal, financial, consulting)</td></tr>
+                          <tr><td><code>product-discovery</code></td><td>Product-based business with catalog</td></tr>
+                          <tr><td><code>portfolio-enquiry</code></td><td>Agency, freelancer, creative showcasing work</td></tr>
+                          <tr><td><code>participation-community</code></td><td>Community organization, nonprofit, membership</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <p><a href="/blueprints">View all blueprints with rendered examples</a></p>
+                  </div>
+                </div>
+
+                <div class="library-docs">
+                  <div>
+                    <h3>Step 4 — Apply theme</h3>
+                    <p>Set brand colors and fonts in <code>src/styles/theme.css</code> and <code>astro.config.mjs</code>.</p>
+                    <pre><code>{`/* src/styles/theme.css */
+:root {
+  --color-primary: #0d6efd;    /* Client brand color */
+  --color-primary-dark: #0b5ed7;
+  --color-accent: #f4a261;
+  --color-surface-alt: #f7fafc;
+  --bs-body-font-family: 'Inter', system-ui, sans-serif;
+  --bs-heading-font-family: 'Poppins', var(--bs-body-font-family);
+}`}</code></pre>
+                    <pre><code>{`// astro.config.mjs
+export default defineConfig({
+  site: 'https://client-domain.com',  // Canonical domain
+});`}</code></pre>
+                    <p>Add Google Fonts in <code>src/layouts/BaseLayout.astro</code> head section.</p>
+                  </div>
+                </div>
+
+                <div class="library-docs">
+                  <div>
+                    <h3>Step 5 — Assemble pages</h3>
+                    <p>Arrange sections in <code>src/pages/index.astro</code> following the blueprint order.</p>
+                    <p><strong>Homepage:</strong> Hero → TrustBar → Services → ImageText → WhyChooseUs → Process → Testimonials → ServiceArea → FAQ → ContactCTA</p>
+                    <p><strong>Service page:</strong> ServiceHero → Overview → Benefits → Included → Process → FAQ → Related → CTA</p>
+                    <p><strong>About:</strong> Hero/ImageText → Story → Team → ServiceArea → CTA</p>
+                    <p><strong>Contact:</strong> Contact details → ContactForm → Response expectations → Phone backup</p>
+                  </div>
+                </div>
+
+                <div class="library-docs">
+                  <div>
+                    <h3>Step 6 — Build and verify</h3>
+                    <p>Run the full production workflow.</p>
+                    <pre><code>{`npm run validate           # Check all JSON, slugs, references
+npm run production -- --force  # Validate + build + review + summary`}</code></pre>
+                    <p><strong>Expected:</strong> 37 pages, 638 links, 0 broken, 0 warnings, under 2 seconds.</p>
+                    <p><strong>Preview:</strong> <code>npm run preview</code> then open http://localhost:4321</p>
+                  </div>
+                </div>
+
+                <div class="library-docs">
+                  <div>
+                    <h3>Step 7 — Review and deploy</h3>
+                    <p>Manual checks before deployment.</p>
+                    <ul>
+                      <li>Walk through every page in the browser (desktop + mobile)</li>
+                      <li>Test form submission end-to-end</li>
+                      <li>Check keyboard navigation and focus states</li>
+                      <li>Run Lighthouse audit (target 90+ accessibility)</li>
+                      <li>Generate SuiteDash summary from <code>docs/suitedash-checklist.md</code></li>
+                      <li>Get client written approval</li>
+                      <li>Commit and push to trigger Cloudflare deployment</li>
+                    </ul>
+                    <pre><code>{`git add -A
+git commit -m "Deploy: {Client Name} website v1.0"
+git push origin client/{client-name}`}</code></pre>
+                  </div>
+                </div>
+
               </div>
             </div>
           </section>
@@ -380,48 +592,6 @@ const seoComponents = [
     </aside>
   </div>
 </section>
-            <section id="how-to-use" class="library-section">
-              <div class="library-section-heading">
-                <div>
-                  <p class="library-section-number">01 — How to use</p>
-                  <h2>Start with the business goal, not the component list</h2>
-                </div>
-
-                <p class="library-component-file">
-                  Guide: <code>docs/new-client-setup.md</code>
-                </p>
-              </div>
-
-              <div class="library-preview library-preview--white">
-                <ol class="library-checklist">
-                  <li>Choose the closest industry example and identify the client’s conversion goal.</li>
-                  <li>Update verified business facts in <code>src/content/site.json</code>.</li>
-                  <li>Set colors, fonts, spacing, and visual style in <code>src/styles/theme.css</code>.</li>
-                  <li>Choose a header, hero, service section, proof pattern, FAQ, and conversion CTA.</li>
-                  <li>Replace all placeholder copy, images, testimonials, pricing, ratings, and claims.</li>
-                  <li>Connect and test every form, booking, map, payment, social, and phone link.</li>
-                  <li>Run <code>npm run build</code> before a preview or production deployment.</li>
-                </ol>
-              </div>
-
-              <div class="library-docs">
-                <div>
-                  <h3>Core rule</h3>
-                  <p>
-                    This library is a toolbox. Select only the parts that help a visitor
-                    understand the client’s offer, trust the business, and take a useful
-                    next step.
-                  </p>
-                </div>
-
-                <aside class="library-note">
-                  <strong>Content first:</strong> update normal business information in
-                  <code> src/content/</code>. Update a component only when you are making
-                  a generic, reusable system improvement.
-                </aside>
-              </div>
-            </section>
-
             <section id="foundations" class="library-section">
               <div class="library-section-heading">
                 <div>
@@ -1143,26 +1313,103 @@ const seoComponents = [
             <section id="build-process" class="library-section">
               <div class="library-section-heading">
                 <div>
-                  <p class="library-section-number">90 — Build process</p>
-                  <h2>From master library to client launch</h2>
+                  <p class="library-section-number">90 — Launch</p>
+                  <h2>Launch checklist and command reference</h2>
                 </div>
 
                 <p class="library-component-file">
-                  Files: <code>README.md</code> and <code>docs/launch-checklist.md</code>
+                  SOP: <code>docs/client-onboarding-sop.md</code> | Log: <code>docs/implementation-log.jsonl</code>
                 </p>
               </div>
 
               <div class="library-preview library-preview--white">
-                <ol class="library-checklist">
-                  <li>Duplicate the master library into a new private client project.</li>
-                  <li>Confirm scope, conversion goals, client-provided content, domains, and third-party account ownership.</li>
-                  <li>Update central JSON business data and theme tokens.</li>
-                  <li>Choose a page recipe and component variations from this visual library.</li>
-                  <li>Replace all demo copy, reviews, images, credentials, prices, and placeholders.</li>
-                  <li>Connect and test functional integrations.</li>
-                  <li>Test desktop, tablet, mobile, keyboard interaction, all links, all forms, and the production build.</li>
-                  <li>Deploy preview, obtain client approval, connect the client-owned domain, and complete handoff.</li>
-                </ol>
+                <div class="library-variant-stack">
+
+                  <div class="library-docs">
+                    <div>
+                      <h3>Pre-launch checklist</h3>
+                      <p>Complete every item before pushing to production.</p>
+                      <ul>
+                        <li>All content JSON files populated with verified client data</li>
+                        <li>All images placed in <code>public/images/</code> at minimum sizes</li>
+                        <li>Theme colors and fonts applied in <code>src/styles/theme.css</code></li>
+                        <li>Canonical domain set in <code>astro.config.mjs</code></li>
+                        <li>Google Fonts loaded in <code>BaseLayout.astro</code></li>
+                        <li>All demo content removed or noindexed on client-facing pages</li>
+                        <li><code>npm run validate</code> passes with 0 errors</li>
+                        <li><code>npm run production -- --force</code> completes with 0 warnings</li>
+                        <li>Every page checked in browser (desktop + mobile)</li>
+                        <li>Form submission tested end-to-end</li>
+                        <li>Keyboard navigation and focus states verified</li>
+                        <li>Lighthouse accessibility score 90+</li>
+                        <li>Client has given written approval</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="library-docs">
+                    <div>
+                      <h3>Deploy sequence</h3>
+                      <pre><code>{`# 1. Final build
+npm run production -- --force
+
+# 2. Commit and push
+git add -A
+git commit -m "Deploy: {Client Name} website v1.0"
+git push origin client/{client-name}
+
+# 3. Cloudflare Pages auto-deploys from git push
+# 4. Verify live site: https://{domain}
+
+# 5. Post-launch
+echo '{"timestamp":"'$(date -u +%Y-%m-%dT%H:%M:%SZ)'","event":"launch-complete","client":"{Client Name}","domain":"https://{domain}","status":"live"}' >> docs/implementation-log.jsonl
+git add -A && git commit -m "Launch complete: {Client Name}" && git push origin client/{client-name}`}</code></pre>
+                    </div>
+                  </div>
+
+                  <div class="library-docs">
+                    <div>
+                      <h3>Command reference</h3>
+                      <div class="library-table-wrap">
+                        <table class="library-table">
+                          <thead>
+                            <tr><th>Command</th><th>Purpose</th><th>When</th></tr>
+                          </thead>
+                          <tbody>
+                            <tr><td><code>fnm use 22</code></td><td>Switch to Node.js 22</td><td>Before any npm command</td></tr>
+                            <tr><td><code>npm install</code></td><td>Install dependencies</td><td>After clone or pull</td></tr>
+                            <tr><td><code>npm run dev</code></td><td>Dev server with hot reload</td><td>During development</td></tr>
+                            <tr><td><code>npm run validate</code></td><td>Check JSON, slugs, references</td><td>After editing content</td></tr>
+                            <tr><td><code>npm run build</code></td><td>Build static site to dist/</td><td>Before review</td></tr>
+                            <tr><td><code>npm run review</code></td><td>Check links, images, structure</td><td>After build</td></tr>
+                            <tr><td><code>npm run production -- --force</code></td><td>Full workflow: validate + build + review + summary</td><td>Before sending to client</td></tr>
+                            <tr><td><code>npm run preview</code></td><td>Preview built site locally</td><td>After build</td></tr>
+                            <tr><td><code>npm run status</code></td><td>Print backlog status and log entries</td><td>Check project state</td></tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="library-docs">
+                    <div>
+                      <h3>Rollback</h3>
+                      <p>If deployment fails or client rejects after launch:</p>
+                      <pre><code>{`# Option A: Git revert
+git revert {commit-hash}
+git push origin client/{client-name}
+
+# Option B: Cloudflare Pages dashboard
+# Deployments → find last good → Promote to Production
+
+# Option C: Emergency (always create backup branch first)
+git branch backup/pre-rollback
+git reset --hard {commit-hash}
+git push --force origin client/{client-name}`}</code></pre>
+                    </div>
+                  </div>
+
+                </div>
               </div>
 
               <div class="library-docs">
@@ -1182,31 +1429,31 @@ const seoComponents = [
                       <tbody>
                         <tr>
                           <td>Homepage</td>
-                          <td>Hero → Services → Trust → Process → Testimonials → FAQ → CTA</td>
+                          <td>Hero → TrustBar → Services → ImageText → WhyChooseUs → Process → Testimonials → ServiceArea → FAQ → ContactCTA</td>
                           <td>Explain offer and drive the main conversion.</td>
                         </tr>
 
                         <tr>
                           <td>Service page</td>
-                          <td>Service hero → Overview → Benefits → Included list → Process → FAQ → Related services → CTA</td>
+                          <td>ServiceHero → Overview → Benefits → Included → Process → FAQ → Related → CTA</td>
                           <td>Explain a single service and generate a qualified lead.</td>
                         </tr>
 
                         <tr>
                           <td>About page</td>
-                          <td>Hero or ImageText → Story → Team or project proof → Service area → CTA</td>
+                          <td>Hero/ImageText → Story → Team → ServiceArea → CTA</td>
                           <td>Build trust in people, approach, and business identity.</td>
                         </tr>
 
                         <tr>
                           <td>Contact page</td>
-                          <td>Contact details → Correct form type → Response expectations → Phone backup</td>
+                          <td>Contact details → ContactForm → Response expectations → Phone backup</td>
                           <td>Make reaching the business simple.</td>
                         </tr>
 
                         <tr>
                           <td>Portfolio / gallery</td>
-                          <td>Intro → Gallery → Project highlight → Testimonials → CTA</td>
+                          <td>Intro → Gallery → ProjectHighlight → Testimonials → CTA</td>
                           <td>Prove capability with real work.</td>
                         </tr>
                       </tbody>
@@ -1218,7 +1465,8 @@ const seoComponents = [
                   <strong>Launch standard:</strong> verify facts, claims, reviews,
                   credentials, links, forms, mobile display, keyboard behavior, SEO
                   basics, production build success, written client approval, and account
-                  ownership before launch.
+                  ownership before launch. Mark launch complete only after the approved
+                  version is deployed and the live customer journey passes verification.
                 </aside>
               </div>
             </section>
