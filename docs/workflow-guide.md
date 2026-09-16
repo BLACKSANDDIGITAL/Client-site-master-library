@@ -5,10 +5,10 @@ This is the authoritative work list and workflow reference for the Black Sand Di
 ## One-command workflow
 
 ```bash
-npm run production
+npm run production -- --force
 ```
 
-This command validates content, generates the build, runs checks, and produces a summary. See `scripts/production.mjs` for implementation details.
+Use `--force` when existing build output is present. Without it, the script exits with an error to prevent accidental overwrites. The script backs up existing `dist/` to `dist-backup/` before building and restores it on failure.
 
 Additional commands:
 

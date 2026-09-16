@@ -77,6 +77,8 @@ try {
 } catch (e) {
   logError("Build failed. Restoring previous output from backup.");
   if (existsSync(backupDir)) {
+    // Remove any partial output left by failed build before restoring
+    if (existsSync(distDir)) rmSync(distDir, { recursive: true });
     renameSync(backupDir, distDir);
     log("  Previous output restored.");
   }
@@ -96,7 +98,7 @@ try {
   if (e.status !== 0) {
     logError("Review errors detected. Restoring previous output from backup.");
     if (existsSync(backupDir)) {
-      rmSync(distDir, { recursive: true });
+      if (existsSync(distDir)) rmSync(distDir, { recursive: true });
       renameSync(backupDir, distDir);
       log("  Previous output restored.");
     }

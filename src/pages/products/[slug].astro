@@ -18,6 +18,7 @@ const { product } = Astro.props;
 
 <BaseLayout
   title={`${product.name} | ${site.businessName}`}
+  noindex={true}
   description={product.shortDescription}
 >
   <Header />
