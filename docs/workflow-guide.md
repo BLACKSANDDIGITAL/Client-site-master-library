@@ -52,11 +52,16 @@ Additional commands:
 
 | Item | Reason | Interface documented |
 |---|---|---|
+| Intake import (JSON → site.json/services.json) | Needs explicit overwrite flow and conflict resolution | Yes — intake preserves existing values, shows proposed changes, requires explicit overwrite choice |
+| Image processing (resize, compress, WebP) | Requires image assets and processing pipeline | No — needs client image assets first |
+| Generated client replacement/staging | Requires explicit replacement authorization per client | Yes — isolated fixtures used for testing; Scoop's real site not regenerated |
 | Style Explorer integration | Requires external service access | No — needs API details from client |
 | Live booking/forms/payments | Requires client account credentials | Yes — form/booking CTA components exist, need real endpoints |
 | Hosted previews | Requires Cloudflare Pages deployment access | Yes — `npm run preview` works locally; Cloudflare deployment via Git push |
 | Deployment to production | Requires cPanel/domain access and SuiteDash approval | Yes — deployment workflow documented in guide.astro and docs/launch-checklist.md |
 | Live SuiteDash synchronization | Requires SuiteDash API access | Yes — checklist prepared as copy-ready text |
+| Browser/mobile/keyboard/accessibility checks | Requires browser-based testing environment | No — automated review covers links, structure, noindex; visual/interaction checks pending |
+| Client approval and launch | Requires human review and SuiteDash approval workflow | Yes — docs/suitedash-checklist.md prepared |
 
 ## Implementation log
 
@@ -73,17 +78,19 @@ All implementation and verification events are recorded in `docs/implementation-
 ## Verification status legend
 
 - **Implemented**: Code exists and build passes
-- **Build tested**: `npm run build` succeeds
-- **Browser/visual checks**: Checked in a browser (not yet performed in this session)
+- **Build tested**: `npm run build` succeeds (37 pages, ~0.7s)
+- **Review passed**: `npm run review` passes (0 warnings, 0 errors, 638 links checked)
+- **Browser/visual checks**: Checked in a browser (NOT performed in this session)
 - **Human/client approved**: Approved by a human reviewer (pending)
 - **Conversion measured**: Real performance data exists (not yet available)
 
 ## Backup and rollback
 
 1. The implementation branch preserves all changes. `git checkout main` returns to the baseline.
-2. The production script uses staging: it builds to `dist-staging/` before replacing `dist/`.
-3. If a build fails, the previous `dist/` is preserved.
+2. The production script backs up existing `dist/` to `dist-backup/` before building. If the build or review fails, `dist-backup/` is restored as `dist/`.
+3. If a build fails, the previous `dist/` is restored from `dist-backup/`.
 4. Git tags mark release points: `git tag -a v0.1.0 -m "Initial blueprint system"`.
+5. Cloudflare Pages also keeps deployment history for rollback via the dashboard.
 
 ## Generation time measurement
 
